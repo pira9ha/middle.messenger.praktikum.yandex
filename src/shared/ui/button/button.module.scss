@@ -1,0 +1,45 @@
+.button {
+  cursor: pointer;
+  width: 100%;
+  font: var(--font-13-500);
+  padding: 12px 0;
+  border-radius: 8px;
+
+  &.default {
+    background-color: var(--color-green);
+    color: var(--color-white);
+
+    &:hover {
+      background-color: var(--color-light-reen);
+    }
+  }
+
+  &.error {
+    background-color: var(--color-red);
+    color: var(--color-white);
+
+    &:hover {
+      background-color: var(--color-light-red);
+    }
+  }
+
+  &.text {
+    background-color: transparent;
+    color: var(--color-green);
+    width: fit-content;
+
+    &:hover {
+      color: var(--color-light-reen);
+    }
+  }
+
+  &.textError {
+    background-color: transparent;
+    color: var(--color-red);
+    width: fit-content;
+
+    &:hover {
+      color: var(--color-light-red);
+    }
+  }
+}

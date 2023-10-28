@@ -1,0 +1,34 @@
+.profileLink {
+  position: absolute;
+  top: 50%;
+}
+
+.profileWrapper {
+  max-width: 510px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: content-box;
+}
+
+.editLink {
+  font: var(--font-13-500);
+}
+
+.editForm {
+  margin-top: 50px;
+  @include form-style;
+}
+
+.formButton {
+  align-self: center;
+  max-width: 280px;
+}
+
+.formButton:first-of-type {
+  margin-top: 75px;
+}
+
+.formButton + .formButton {
+  margin-top: 16px;
+}

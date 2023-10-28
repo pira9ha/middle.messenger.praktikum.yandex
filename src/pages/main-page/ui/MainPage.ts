@@ -1,31 +1,14 @@
 import Handlebars from 'handlebars';
+import '../lib/utils/registerPartials.ts';
 import mainPage from './mainPage.template';
-import {Link, TLinkProps} from "@/shared/ui/link/Link";
-import {LoginPage} from "@/pages/login-page";
-
-type TPage = {
-	name: string;
-	component(): string;
-	link: TLinkProps;
-};
-type TPagesContext = Record<string, TPage | any>;
+import {Link} from "@/shared/ui/link/Link";
+import {context} from "@/pages/main-page/lib/context/context.ts";
 
 Handlebars.registerPartial({
 	link: Link,
 })
 
 export const MainPage = () => {
-	const pages: TPagesContext = {
-		login: {
-			name: 'login',
-			component: () => LoginPage(),
-			link: {
-				path: '/login',
-				title: 'go to login',
-			},
-		},
-	};
-
 	const template = Handlebars.compile(mainPage);
-	return template({ pages });
+	return template({ pages: context });
 };

@@ -1,22 +1,28 @@
-@import "../../styles/variables";
+.label {
+  font: var(--font-12-500);
+  color: var(--color-gray);
+}
 
-.card {
-  position: fixed;
-  width: fit-content;
-  height: fit-content;
+.input {
+  background-color: transparent;
+  padding: 5px 0;
+  width: inherit;
+  border: none;
+  border-bottom: 1px solid var(--color-gray);
+  outline: 1px;
+  font: var(--font-13-500);
 
-  border-radius: 12px;
-  background-color: var(--color-white);
-  box-shadow: 0 0 6px rgba(var(--color-dark-gray), 0.25);
-
-  padding: 30px;
-
-  @media screen and (max-width: $tablet) {
-    padding: 20px;
+  &:hover, &:focus {
+    border-bottom-color: var(--color-green);
   }
+}
 
-  @media screen and (max-width: $mobile) {
-    padding: 10px;
-    border-radius: 8px;
+.field {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+
+  & ~ & {
+    margin-top: 20px;
   }
 }

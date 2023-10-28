@@ -1,33 +1,26 @@
-import {MainPage} from "@/pages/main-page";
-import {LoginPage} from "@/pages/login-page";
+import {LoginPage, MainPage, NotFoundPage, ServerErrorPage, SigninPage} from "@/pages";
+import {ProfilePage} from "@/pages/profile-page/ui/ProfilePage.ts";
+import {DeleteChatModal} from "@/widgets/delete-chat-modal/DeleteChatModal.ts";
+import {CreateOrDeleteUserModal} from "@/widgets/create-or-delete-user-modal/CreateOrDeleteUserModal.ts";
+import {PROFILE, PROFILE_EDIT, PROFILE_PASSWORD_EDIT} from "@/pages/profile-page/lib/constants/profile.ts";
+
 
 export const Router = (rootElement: Element) => {
     const currentPath = window.location.pathname;
+
     const pages: Record<string, () => string> = {
         '/': MainPage,
         '/login': LoginPage,
+        '/signin': SigninPage,
+        '/server-errors': ServerErrorPage,
+        '/modal-delete-chat': DeleteChatModal,
+        '/modal-create-user': () => CreateOrDeleteUserModal({ isDelete: false }),
+        '/modal-delete-user': () => CreateOrDeleteUserModal({ isDelete: true }),
+        [PROFILE]: ProfilePage,
+        [PROFILE_EDIT]: ProfilePage,
+        [PROFILE_PASSWORD_EDIT]: ProfilePage,
     };
-    console.log(window.location.pathname)
+    const currentPage = pages[currentPath] ?? NotFoundPage;
 
-    rootElement.innerHTML = pages[currentPath]();
-
-    // const onRouterClickEvent = (e: Event) => {
-    //     debugger
-    //     const element = e.target;
-    //     // debugger
-    //
-    //     if (element instanceof Element) {
-    //         const attributeName = element.getAttribute('data-path') ?? '';
-    //         const elementKey = `${attributeName}`.split('/');
-    //         const item = pages[elementKey[1] as keyof TPage];
-    //         if (item) {
-    //             rootElement.innerHTML = item.component();
-    //         }
-    //     }
-    // };
-    //
-    // const pageLinks = document.querySelectorAll(`.${pageSelector}`);
-    // pageLinks.forEach((link) => {
-    //     link.addEventListener('onclick', onRouterClickEvent);
-    // });
+    rootElement.innerHTML = currentPage();
 };

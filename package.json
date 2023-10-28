@@ -1,0 +1,28 @@
+{
+  "name": "messenger_yandex",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "lint:ts": "eslint . --ext .ts --fix --ignore-pattern \"*.d.ts\""
+  },
+  "devDependencies": {
+    "@types/handlebars": "^4.1.0",
+    "@types/node": "^20.8.9",
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
+    "eslint": "^8.52.0",
+    "handlebars": "^4.7.8",
+    "sass": "^1.69.5",
+    "scss": "^0.2.4",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.5",
+    "vite-plugin-handlebars": "^1.6.0"
+  },
+  "dependencies": {
+    "postcss-modules": "^6.0.0"
+  }
+}

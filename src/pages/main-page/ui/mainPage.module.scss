@@ -1,0 +1,11 @@
+.mainPage {
+  padding: 35px;
+
+  li + li {
+    margin-top: 20px;
+  }
+}
+
+.link {
+  font: var(--font-20-500);
+}

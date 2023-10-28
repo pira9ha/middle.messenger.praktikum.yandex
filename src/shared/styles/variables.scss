@@ -1,10 +1,25 @@
 :root {
   // colors
   --color-white: #fff;
+  --color-black: 0, 0, 0;
   --color-dark-gray: 25, 25, 36;
-}
+  --color-gray: #766B6B;
+  --color-green: #99B800;
+  --color-light-reen: #aacc00;
+  --color-light-mint: #DBE6E1;
+  --color-red: #F35461;
+  --color-light-red: #f46672;
 
-////media
-$mobile: 480px;
-$tablet: 768px;
-$laptop: 1280px;
+  // fonts
+  --font-8-500: 500 8px/8px 'Inter', arial, sans-serif;
+  --font-12-500: 500 12px/9px 'Inter', arial, sans-serif;
+  --font-13-500: 500 13px/13px 'Inter', arial, sans-serif;
+  --font-20-500: 500 20px/24px 'Inter', arial, sans-serif;
+  --font-24-500: 500 20px/28px 'Inter', arial, sans-serif;
+
+  --font-20-600: 500 20px/22px 'Inter', arial, sans-serif;
+  --font-64-600: 500 64px/70px 'Inter', arial, sans-serif;
+
+  // z-indexes
+  --modal-index: 1000;
+}

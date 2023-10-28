@@ -1,14 +1,9 @@
 import Handlebars from 'handlebars';
+import '../lib/utils/registerPartials.ts';
 import loginPage from './loginPage.template';
-import card from '@/shared/ui/card/card.template'
-import mainLayout from '@/shared/ui/layouts/main/mainLayout.template'
-
-Handlebars.registerPartial({
-	card,
-	mainLayout,
-});
+import {context} from "../lib/context/context.ts";
 
 export const LoginPage = () => {
 	const template = Handlebars.compile(loginPage);
-	return template({ name: 'login'});
+	return template(context);
 };

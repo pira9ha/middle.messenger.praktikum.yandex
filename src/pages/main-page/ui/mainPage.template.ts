@@ -1,9 +1,12 @@
+import s from './mainPage.module.scss';
+
 // language=hbs
 export default `
-    <div class="absolute-centered-block">
+    <nav class="${s.mainPage}">
         {{#each pages}}
-            <li data-page-name="{{@key}}">{{this.name}}</li>
-            {{> link this.link }}
+            <li>
+                {{> link this.link }}
+            </li>
         {{/each}}
-    </div>
+    </nav>
 `;

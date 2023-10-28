@@ -1,20 +1,20 @@
 import Handlebars from 'handlebars';
 import link from './link.template';
+import s from './link.module.scss';
+import {classNames} from "@/shared/utils/classNames.ts";
+import arrowIcon from '@/shared/svg/arrowIcon.template.ts';
+
+Handlebars.registerPartial('arrowIcon', arrowIcon);
 
 export type TLinkProps = {
-    title: string;
     path: string;
-    pageSelector: string;
+    title?: string;
+    className?: string;
+    type?: 'text' | 'icon';
 }
 
-export const Link = ({ path, title, pageSelector}: TLinkProps) => {
-    const context = {
-        path,
-        title,
-        pageSelector,
-    };
-
+export const Link = (props: TLinkProps) => {
+    const className = classNames(props?.className, [s[props?.type ?? 'text']]);
     const template = Handlebars.compile(link);
-
-    return template(context);
+    return template({ ...props, className });
 }

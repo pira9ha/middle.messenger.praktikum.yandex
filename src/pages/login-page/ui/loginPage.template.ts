@@ -1,8 +1,12 @@
+import s from './loginPage.module.scss';
+
 // language=hbs
 export default `
     {{#> mainLayout }}
-        {{#> card}}
-            <h2>{{ name }}</h2>
-        {{/card}}
+        <div class="${s.loginCard}">
+            <h2 class="${s.title}">{{ formName }}</h2>
+            {{> form formContext }}
+            {{> link linkContext }}
+        </div>
     {{/mainLayout}}
 `;

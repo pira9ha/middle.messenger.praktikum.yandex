@@ -7,7 +7,8 @@ export enum ButtonVariant {
     TEXT = 'text',
     DEFAULT = 'default',
     ERROR = 'error',
-    TEXT_ERROR = 'textError'
+    TEXT_ERROR = 'textError',
+    ICON = 'icon'
 }
 
 export interface IButtonProps extends IButtonFields {

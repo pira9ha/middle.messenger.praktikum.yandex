@@ -9,6 +9,11 @@ export interface IUser {
     email: string
 }
 
+export interface IUserLogin {
+    login: string;
+    password: string;
+}
+
 export interface IUserRegistration extends IUser {
     password: string;
     password_check: string;

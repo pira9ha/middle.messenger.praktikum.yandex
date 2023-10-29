@@ -6,10 +6,18 @@ type TConvertDateProps = {
 type TDateReturn = string
 
 const DAYS = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
-const DAY_TIME = 24 * 3600 + 60 * 60 + 60;
+const MONTHS = ['Янв', 'Фев', 'Марта', 'Апр', 'Мая', 'Июня', 'Июля', 'Авг', 'Сен', 'Окт', 'Нояб', 'Дек'];
+const DAY_TIME = (24 * 3600 + 60 * 60 + 60) * 1000;
 
 function getWeekDay(date: Date): TDateReturn {
     return DAYS[date.getDay()];
+}
+
+function getTextDay(date: Date): TDateReturn {
+    const currentYear = new Date().getFullYear();
+    const year = currentYear !== date.getFullYear() ? '' : date.getFullYear();
+
+    return `${date.getDay()} ${MONTHS[date.getMonth()]} ${year}`;
 }
 
 function getCurrentFormatDate(date: Date): TDateReturn {
@@ -18,19 +26,20 @@ function getCurrentFormatDate(date: Date): TDateReturn {
     const weekTime = DAY_TIME * 7;
 
     switch (true) {
-        case sendTime - currentTime <= DAY_TIME: {
+        case Math.abs(currentTime - sendTime) <= DAY_TIME: {
             return convertDate({date, format: 'time'});
         }
-        case sendTime - currentTime <= weekTime: {
+        case Math.abs(currentTime - sendTime) <= weekTime: {
             return getWeekDay(date);
         }
         default: {
-            return `${date.getDay()}.${date.getMonth() + 1}.${date.getFullYear()}`;
+            return getTextDay(date);
         }
     }
 }
 
-function convertDate(params: TConvertDateProps): TDateReturn {
+export function convertDate(params: TConvertDateProps): TDateReturn {
+    // debugger
     let { date } = params;
     const format = params?.format ?? 'time';
 
@@ -38,8 +47,12 @@ function convertDate(params: TConvertDateProps): TDateReturn {
         date = new Date(date);
     }
 
-    if (format === 'time') {
-        return `${date.getHours()}:${date.getMinutes()}`;
+    switch (format) {
+        case 'time': {
+            return `${date.getHours()}:${date.getMinutes()}`;
+        }
+        case 'full': {
+            return getCurrentFormatDate(date);
+        }
     }
-    return getCurrentFormatDate(date);
 }

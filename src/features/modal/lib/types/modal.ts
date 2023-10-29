@@ -3,6 +3,6 @@ import {IButtonProps} from "@/shared/ui/button/Button.ts";
 
 export interface IModalProps {
     title: string;
-    formContext?: TFormProps;
+    formContext?: TFormProps<any>;
     buttonContext?: Record<string, IButtonProps>;
 }

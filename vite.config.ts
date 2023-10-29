@@ -12,7 +12,7 @@ export default defineConfig( {
 			{ find: '@/features', replacement: resolve(__dirname, 'src/features') },
 			{ find: '@/assets', replacement: resolve(__dirname, 'src/assets') },
 		],
-		extensions: ['', '.js', '.ts']
+		extensions: ['.js', '.ts']
 	},
 	build: {
 		outDir: resolve(__dirname, 'dist')

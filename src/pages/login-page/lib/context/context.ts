@@ -1,8 +1,9 @@
 import {TFormProps} from "@/features/form/ui/Form.ts";
 import s from "@/pages/login-page/ui/loginPage.module.scss";
 import {TLinkProps} from "@/shared/ui/link/Link.ts";
+import {IUserLogin} from "@/models/user.ts";
 
-const formContext: TFormProps = {
+const formContext: TFormProps<IUserLogin> = {
     fieldsContext: {
         login: {
             name: 'login',

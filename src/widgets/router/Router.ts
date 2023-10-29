@@ -1,5 +1,12 @@
-import {LoginPage, MainPage, NotFoundPage, ServerErrorPage, SigninPage} from "@/pages";
-import {ProfilePage} from "@/pages/profile-page/ui/ProfilePage.ts";
+import {
+    LoginPage,
+    MainPage,
+    NotFoundPage,
+    ServerErrorPage,
+    SigninPage,
+    ProfilePage,
+    ChatsPage,
+} from "@/pages";
 import {DeleteChatModal} from "@/widgets/delete-chat-modal/DeleteChatModal.ts";
 import {CreateOrDeleteUserModal} from "@/widgets/create-or-delete-user-modal/CreateOrDeleteUserModal.ts";
 import {PROFILE, PROFILE_EDIT, PROFILE_PASSWORD_EDIT} from "@/pages/profile-page/lib/constants/profile.ts";
@@ -19,6 +26,7 @@ export const Router = (rootElement: Element) => {
         [PROFILE]: ProfilePage,
         [PROFILE_EDIT]: ProfilePage,
         [PROFILE_PASSWORD_EDIT]: ProfilePage,
+        '/chats': ChatsPage,
     };
     const currentPage = pages[currentPath] ?? NotFoundPage;
 

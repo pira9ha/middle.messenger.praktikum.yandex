@@ -17,7 +17,7 @@ export const context: TMainPageContext = {
 		name: 'signin',
 		component: () => SigninPage(),
 		link: {
-			path: '/login',
+			path: '/signin',
 			title: 'Страница регистрации',
 			className: s.link
 		},

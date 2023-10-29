@@ -1,6 +1,6 @@
-import Handlebars from "handlebars";
+import Handlebars from 'handlebars';
 import input from './input.template';
-import {IInputFields} from "@/models/form.ts";
+import { IInputFields } from '@/models/form.ts';
 
 export interface IInputProps extends IInputFields {
     labelText: string;
@@ -9,11 +9,11 @@ export interface IInputProps extends IInputFields {
 }
 
 export const Input = (props: IInputProps) => {
-    const defaultInputProps = {
-        type: 'text',
-    };
-    const context = {...defaultInputProps, ...props};
+	const defaultInputProps = {
+		type: 'text',
+	};
+	const context = { ...defaultInputProps, ...props };
 
-    const template = Handlebars.compile(input);
-    return template(context);
+	const template = Handlebars.compile(input);
+	return template(context);
 };

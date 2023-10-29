@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars';
-import {ChatAvatar} from "@/features/chatAvatar";
+import { ChatAvatar } from '@/features/chatAvatar';
 
 Handlebars.registerPartial({
-    chatAvatar: ChatAvatar,
+	chatAvatar: ChatAvatar,
 });

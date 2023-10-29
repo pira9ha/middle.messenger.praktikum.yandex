@@ -1,1 +1,1 @@
-export {MessageInput} from './ui/MessageInput.ts';
+export { MessageInput } from './ui/MessageInput.ts';

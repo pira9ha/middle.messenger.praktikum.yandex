@@ -1,9 +1,9 @@
 import { resolve } from 'path';
-import {Plugin, defineConfig } from 'vite';
-import handlebars from "vite-plugin-handlebars";
+import { Plugin, defineConfig } from 'vite';
+import handlebars from 'vite-plugin-handlebars';
 
 export default defineConfig( {
-	root: resolve(__dirname, 'src'),
+	root: resolve(__dirname),
 	resolve: {
 		alias: [
 			{ find: '@/pages', replacement: resolve(__dirname, 'src/pages') },
@@ -20,10 +20,10 @@ export default defineConfig( {
 	plugins: [handlebars() as unknown as Plugin],
 	css: {
 		preprocessorOptions: {
-			scss: { additionalData: `@import "src/shared/styles/media";@import "src/shared/styles/global";` },
+			scss: { additionalData: '@import "src/shared/styles/media";@import "src/shared/styles/global";' },
 		},
 		modules: {
-			generateScopedName: "[name]__[local]__[hash:base64:4]"
+			generateScopedName: '[name]__[local]__[hash:base64:4]'
 		},
 	},
 });

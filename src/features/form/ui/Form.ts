@@ -1,11 +1,11 @@
 import Handlebars from 'handlebars';
-import form from "./form.template";
-import {IInputProps, Input} from "@/shared/ui/input/Input.ts";
-import {Button, IButtonProps} from "@/shared/ui/button/Button.ts";
+import form from './form.template';
+import { IInputProps, Input } from '@/shared/ui/input/Input.ts';
+import { Button, IButtonProps } from '@/shared/ui/button/Button.ts';
 
 Handlebars.registerPartial({
-    input: Input,
-    button: Button,
+	input: Input,
+	button: Button,
 });
 
 export type TFormProps<T> = {
@@ -15,6 +15,6 @@ export type TFormProps<T> = {
 };
 
 export function Form<T>(props: TFormProps<T>) {
-    const template = Handlebars.compile(form);
-    return template(props);
-};
+	const template = Handlebars.compile(form);
+	return template(props);
+}

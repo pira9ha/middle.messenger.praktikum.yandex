@@ -1,1 +1,1 @@
-export {Message} from './ui/Message.ts';
+export { Message } from './ui/Message.ts';

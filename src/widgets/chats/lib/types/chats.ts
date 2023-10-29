@@ -1,4 +1,4 @@
-import {IAvatarProps} from "@/features/chatAvatar/lib/types/avatar.ts";
+import { IAvatarProps } from '@/features/chatAvatar/lib/types/avatar.ts';
 
 
 export type TChatContext = {

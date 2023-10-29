@@ -1,4 +1,4 @@
-import s from "./userAvatar.module.scss";
+import s from './userAvatar.module.scss';
 
 // language=hbs
 export default `

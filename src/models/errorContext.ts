@@ -1,4 +1,4 @@
-import {TLinkProps} from "@/shared/ui/link/Link.ts";
+import { TLinkProps } from '@/shared/ui/link/Link.ts';
 
 export type TErrorPageContext = {
     errorCode: number;

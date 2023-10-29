@@ -1,4 +1,4 @@
-import s from "./modal.module.scss";
+import s from './modal.module.scss';
 
 // language=hbs
 export default `

@@ -1,7 +1,7 @@
-import Handlebars from "handlebars";
+import Handlebars from 'handlebars';
 import s from './button.module.scss';
 import button from './button.template';
-import {IButtonFields} from "@/models/form.ts";
+import { IButtonFields } from '@/models/form.ts';
 
 export enum ButtonVariant {
     TEXT = 'text',
@@ -17,13 +17,13 @@ export interface IButtonProps extends IButtonFields {
 }
 
 export const Button = (props: IButtonProps) => {
-    const variant = props?.variant ?? ButtonVariant.DEFAULT;
-    const defaultInputProps = {
-        type: "button",
-        className: props?.className,
-        styleVariant: s[variant],
-    };
+	const variant = props?.variant ?? ButtonVariant.DEFAULT;
+	const defaultInputProps = {
+		type: 'button',
+		className: props?.className,
+		styleVariant: s[variant],
+	};
 
-    const template = Handlebars.compile(button);
-    return template({...defaultInputProps, ...props});
+	const template = Handlebars.compile(button);
+	return template({ ...defaultInputProps, ...props });
 };

@@ -1,4 +1,4 @@
-import s from "./chatAvatar.module.scss";
+import s from './chatAvatar.module.scss';
 
 // language=hbs
 export default `

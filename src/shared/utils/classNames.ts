@@ -5,20 +5,20 @@ type TClassNamesParams = [
 ]
 
 export const classNames = (...params: TClassNamesParams): string => {
-    const [className, additional,  mods] = params;
-    const result = [className];
+	const [className, additional,  mods] = params;
+	const result = [className];
 
-    if (mods) {
-        Object.entries(mods).forEach(([key, value]) => {
-            if (value) {
-                result.push(key);
-            }
-        });
-    }
+	if (mods) {
+		Object.entries(mods).forEach(([key, value]) => {
+			if (value) {
+				result.push(key);
+			}
+		});
+	}
 
-    if (additional && additional.length) {
-        result.concat(additional);
-    }
+	if (additional && additional.length) {
+		result.concat(additional);
+	}
 
-    return result.join(' ')
+	return result.join(' ');
 };

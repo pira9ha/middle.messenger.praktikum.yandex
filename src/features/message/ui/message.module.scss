@@ -1,0 +1,62 @@
+.messageWrapper {
+  display: flex;
+  margin: 10px 20px;
+}
+
+.message {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  padding: 11px 11px 30px;
+  background-color: var(--color-light-gray);
+  color: rgb(var(--color-dark-gray));
+  font: var(--font-12-500);
+  max-width: 400px;
+  border-radius: 0 12px 12px 12px;
+
+  & + & {
+    margin-top: 10px;
+  }
+}
+
+.mainMessage {
+  justify-content: flex-end;
+
+  .message {
+    background-color: var(--color-light-mint);
+    border-radius: 12px 0 12px 12px;
+  }
+}
+
+.time {
+  position: absolute;
+  bottom: 11px;
+  right: 11px;
+  font: var(--font-8-500);
+  color: var(--color-gray);
+}
+
+.isUnread::after {
+  content: '';
+  position: absolute;
+  bottom: 17px;
+  right: 40px;
+  display: inline-block;
+  width: 7px;
+  height: 3px;
+  border-left: 1px solid var(--color-gray);
+  border-bottom: 1px solid var(--color-gray);
+  transform: rotate(-45deg);
+}
+
+.isRead::before {
+  content: '';
+  position: absolute;
+  bottom: 17px;
+  right: 37px;
+  display: inline-block;
+  width: 7px;
+  height: 3px;
+  border-bottom: 1px solid var(--color-gray);
+  transform: rotate(-45deg);
+}

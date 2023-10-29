@@ -15,4 +15,5 @@ export interface IMessage {
     content: string;
     isMainMessage?: boolean;
     currentUserId?: number;
+    isRead?: boolean;
 }

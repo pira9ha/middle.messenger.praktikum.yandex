@@ -11,23 +11,14 @@ export default `
             </aside>
 
             {{#> chatWrapper}}
-                {{#if chatContext }}
+                {{#if isChatOpen }}
                     {{> header chatContext }}
-                <div class="${s.messagesWrapper}">
-                    {{#each messagesContext }}
-                        {{> message this}}
-                    {{/each}}
-                    
-                    <div class="${s.sendInput}">
-                        {{> button fileButton }}
-                        <textarea
-                            class="${s.messageInput}"
-                            name="message"
-                            placeholder="Сообщение"
-                        ></textarea>
-                        {{> button sendButton }}
+                    <div class="${s.messagesWrapper}">
+                        {{#each messagesContext }}
+                            {{> message this}}
+                        {{/each}}
+                        {{> messageInput messageInputContext }}
                     </div>
-                </div>
                 {{ else }}
                     <span class="${s.emptyChat}">Выберите чат чтобы отправить сообщение</span>
                 {{/if}}

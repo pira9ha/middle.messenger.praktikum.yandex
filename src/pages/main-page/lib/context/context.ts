@@ -1,5 +1,5 @@
 import {TMainPageContext} from "../../lib/types/mainPage.ts";
-import {LoginPage, NotFoundPage, ServerErrorPage, SigninPage} from "@/pages";
+import {ChatsPage, LoginPage, NotFoundPage, ServerErrorPage, SigninPage} from "@/pages";
 import s from "../../ui/mainPage.module.scss";
 import {ProfilePage} from "@/pages/profile-page/ui/ProfilePage.ts";
 
@@ -19,6 +19,15 @@ export const context: TMainPageContext = {
         link: {
             path: '/login',
             title: 'Страница регистрации',
+            className: s.link
+        },
+    },
+    chats: {
+        name: 'chats',
+        component: () => ChatsPage(),
+        link: {
+            path: '/chats',
+            title: 'Страница чатов',
             className: s.link
         },
     },

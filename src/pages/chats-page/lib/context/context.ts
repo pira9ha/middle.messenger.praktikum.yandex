@@ -10,7 +10,7 @@ const chats = [
         userAvatar: {},
         unread_count: 15,
         content: 'hjfhsjbdmsbmdbwjkergjkwehfkls,d',
-        isMainMessage: false,
+        isMainMessage: true,
         userName: 'User Name',
         time: convertDate({
             date: "2020-01-02T14:22:22.000Z",
@@ -187,6 +187,47 @@ const chats = [
         }),
     },
 ];
+
+const messagesContext: TChatPageContext['messagesContext'] = [
+    {
+        "id": 1,
+        "time": convertDate({ date: "2020-01-02T14:22:22.000Z" }),
+        "content": "this is message content",
+        chat_id: 123,
+        user_id: 123,
+        currentUserId: 12,
+    },
+    {
+        "id": 2,
+        "time": convertDate({ date: "2020-01-02T14:22:22.000Z" }),
+        "content": "this is message content this is message content this is message content this is message content this is message content this is message content this is message content",
+        chat_id: 123,
+        user_id: 123,
+        currentUserId: 12,
+    },
+    {
+        "id": 3,
+        "time": convertDate({ date: "2020-01-02T14:22:22.000Z" }),
+        "content": "this is message content",
+        chat_id: 123,
+        user_id: 12,
+        currentUserId: 12,
+        isRead: true,
+    },
+]
+
+const messageInputContext: TChatPageContext['messageInputContext'] = {
+    fileButton: {
+        title: '',
+        variant: ButtonVariant.ICON,
+        className: s.fileButton,
+    },
+    sendButton: {
+        title: '',
+        variant: ButtonVariant.ICON,
+        className: s.sendButton,
+    },
+}
 export const context = (): TChatPageContext => {
     const params = window.location.search;
     const paramsFields = new URLSearchParams(params);
@@ -207,49 +248,17 @@ export const context = (): TChatPageContext => {
             className: s.searchInput,
             icon: s.searchIcon,
         },
+        isChatOpen: false,
     };
 
     for (let key of paramsFields.keys()) {
         if (key === 'chat') {
+            pageContext.isChatOpen = true;
             pageContext.chatContext = {
                 userName: 'User',
             };
-            pageContext.messagesContext = [
-                {
-                    "id": 1,
-                    "time": convertDate({ date: "2020-01-02T14:22:22.000Z" }),
-                    "content": "this is message content",
-                    chat_id: 123,
-                    user_id: 123,
-                    currentUserId: 12,
-                },
-                {
-                    "id": 2,
-                    "time": convertDate({ date: "2020-01-02T14:22:22.000Z" }),
-                    "content": "this is message content this is message content this is message content this is message content this is message content this is message content this is message content",
-                    chat_id: 123,
-                    user_id: 123,
-                    currentUserId: 12,
-                },
-                {
-                    "id": 3,
-                    "time": convertDate({ date: "2020-01-02T14:22:22.000Z" }),
-                    "content": "this is message content",
-                    chat_id: 123,
-                    user_id: 12,
-                    currentUserId: 12,
-                },
-            ];
-            pageContext.fileButton = {
-                title: '',
-                variant: ButtonVariant.ICON,
-                className: s.fileButton,
-            };
-            pageContext.sendButton = {
-                title: '',
-                variant: ButtonVariant.ICON,
-                className: s.sendButton,
-            };
+            pageContext.messagesContext = messagesContext;
+            pageContext.messageInputContext = messageInputContext;
         }
     }
 

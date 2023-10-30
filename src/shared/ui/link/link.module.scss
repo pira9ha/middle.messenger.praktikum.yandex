@@ -1,0 +1,10 @@
+.link {
+  text-decoration: none;
+  display: inline-block;
+  color: var(--color-green);
+  font: var(--font-12-500);
+
+  &:hover {
+    color: var(--color-light-reen);
+  }
+}

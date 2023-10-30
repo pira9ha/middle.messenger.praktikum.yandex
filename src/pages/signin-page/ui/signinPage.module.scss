@@ -1,0 +1,29 @@
+.signinCard {
+  @include card;
+  @include absolute-centered-block;
+  @include flex-center;
+  @include flex-column;
+
+  .title {
+    margin: 20px auto 40px;
+    text-align: center;
+  }
+  .link {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.signinPage_input {
+  width: 100%;
+  max-width: 280px;
+}
+
+.signinPage_form {
+  width: 280px;
+
+  button {
+    margin-top: 60px;
+    margin-bottom: 14px;
+  }
+}

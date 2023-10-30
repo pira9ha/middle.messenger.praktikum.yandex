@@ -1,0 +1,37 @@
+:root {
+  // colors
+  --color-white: #fff;
+  --color-black: 0, 0, 0;
+  --color-dark-gray: 25, 25, 36;
+
+  --color-light-gray: #E4E4E4;
+  --color-gray: #766B6B;
+  --color-medium-dark-gray: #EFEFEF;
+  --color-extra-light-gray: #FBFBFB;
+  --color-medium-light-gray: #E2DFDF;
+
+  --color-green: #99B800;
+  --color-light-reen: #aacc00;
+  --color-mint: #E7EFEB;
+  --color-light-mint: #DBE6E1;
+  --color-extra-light-mint: #F3F7F5;
+
+  --color-red: #F35461;
+  --color-light-red: #f46672;
+
+  // fonts
+  --font-8-500: 500 8px/14px 'Inter', arial, sans-serif;
+  --font-10-500: 500 10px/12px 'Inter', arial, sans-serif;
+  --font-12-500: 500 12px/16px 'Inter', arial, sans-serif;
+  --font-13-500: 500 13px/13px 'Inter', arial, sans-serif;
+  --font-20-500: 500 20px/24px 'Inter', arial, sans-serif;
+  --font-24-500: 500 20px/28px 'Inter', arial, sans-serif;
+
+  --font-20-600: 500 20px/22px 'Inter', arial, sans-serif;
+  --font-64-600: 500 64px/70px 'Inter', arial, sans-serif;
+
+  // z-indexes
+  --modal-index: 1000;
+
+  --chats-head: 94px;
+}

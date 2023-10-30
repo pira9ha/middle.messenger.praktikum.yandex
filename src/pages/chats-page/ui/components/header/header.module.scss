@@ -1,0 +1,19 @@
+.chatHeader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-extra-light-mint);
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userMeta {
+  @include flex-center;
+
+  :first-child {
+    margin-right: 10px;
+  }
+}

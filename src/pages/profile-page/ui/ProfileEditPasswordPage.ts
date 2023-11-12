@@ -1,19 +1,18 @@
 import Handlebars from 'handlebars';
 import s from './profilePage.module.scss';
 import profile from './profilePage.template';
-import { profileInfoPageContext } from '../lib/context/context.ts';
 import Component from '@/shared/lib/component/Component.ts';
 import { IComponentProps } from '@/shared/lib/component/componentTypes.ts';
-import {
-  IProfilePageChildren,
-  IProfilePageProps,
-} from '../lib/types/profile.ts';
-import { ProfileInfo } from './components/profileInfo/ProfileInfo.ts';
+import { IProfilePageChildren } from '../lib/types/profile.ts';
+import { Form } from '@/features/form';
 import { UserAvatar } from '@/features/userAvatar';
 import { Link } from '@/shared/ui/link';
+import { profileEditPasswordPageContext } from '../lib/context/context.ts';
+import { IProfileEditPasswordPageProps } from '../lib/types/profile.ts';
+import { TUserChangePassword } from '@/models/user.ts';
 
-export class ProfilePageComponent extends Component {
-  constructor(profileProps: IProfilePageProps) {
+export class ProfileEditPasswordPageComponent extends Component {
+  constructor(profileProps: IProfileEditPasswordPageProps) {
     const props = {
       ...profileProps,
       className: s.profilePage,
@@ -22,7 +21,10 @@ export class ProfilePageComponent extends Component {
     const children: IProfilePageChildren = {
       userAvatar: new UserAvatar(profileProps.userAvatar),
       link: new Link(profileProps.link),
-      profileInfo: new ProfileInfo(profileProps.profileContext),
+      reset: new Link(profileProps.reset),
+      formPassword: new Form<TUserChangePassword>(
+        profileProps.formPasswordContext,
+      ),
     };
 
     const componentProps: IComponentProps<IProfilePageChildren> = {
@@ -39,5 +41,5 @@ export class ProfilePageComponent extends Component {
   }
 }
 
-export const ProfilePage = () =>
-  new ProfilePageComponent(profileInfoPageContext);
+export const ProfileEditPasswordPage = () =>
+  new ProfileEditPasswordPageComponent(profileEditPasswordPageContext);

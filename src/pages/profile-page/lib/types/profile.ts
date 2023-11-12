@@ -27,17 +27,36 @@ export type TProfileInfoChildren = {
 
 export type TProfileInfoField = TData;
 
-export type IProfilePageProps = {
+export type IProfileContext = {
   userAvatar: IUserAvatarProps;
   link: TLinkProps;
+};
+
+export type IProfilePageContext = {
+  reset?: TLinkProps;
   profileContext?: TProfileInfoProps;
   formEditContext?: TFormProps<TUserFields>;
   formPasswordContext?: TFormProps<TUserChangePassword>;
-};
+} & IProfileContext;
+
+export type IProfilePageProps = {
+  profileContext: TProfileInfoProps;
+} & IProfileContext;
+
+export type IProfileEditPageProps = {
+  reset: TLinkProps;
+  formEditContext: TFormProps<TUserFields>;
+} & IProfileContext;
+
+export type IProfileEditPasswordPageProps = {
+  reset: TLinkProps;
+  formPasswordContext: TFormProps<TUserChangePassword>;
+} & IProfileContext;
 
 export type IProfilePageChildren = {
   userAvatar: UserAvatar;
   link: Link;
+  reset?: Link;
   profileInfo?: ProfileInfo;
   formEdit?: Form<TUserFields>;
   formPassword?: Form<TUserChangePassword>;

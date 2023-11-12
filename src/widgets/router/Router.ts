@@ -6,6 +6,8 @@ import {
   SigninPage,
   ProfilePage,
   ChatsPage,
+  ProfileEditPage,
+  ProfileEditPasswordPage,
 } from '@/pages';
 import { DeleteChatModal } from '@/widgets/delete-chat-modal/DeleteChatModal.ts';
 import { CreateOrDeleteUserModal } from '@/widgets/create-or-delete-user-modal/CreateOrDeleteUserModal.ts';
@@ -28,8 +30,8 @@ export const Router = (rootElement: Element) => {
     '/modal-create-user': () => CreateOrDeleteUserModal({ isDelete: false }),
     '/modal-delete-user': () => CreateOrDeleteUserModal({ isDelete: true }),
     [PROFILE]: ProfilePage,
-    [PROFILE_EDIT]: ProfilePage,
-    [PROFILE_PASSWORD_EDIT]: ProfilePage,
+    [PROFILE_EDIT]: ProfileEditPage,
+    [PROFILE_PASSWORD_EDIT]: ProfileEditPasswordPage,
     '/chats': ChatsPage,
   };
 

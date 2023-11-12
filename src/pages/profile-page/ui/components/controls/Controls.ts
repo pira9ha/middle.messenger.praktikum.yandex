@@ -1,6 +1,6 @@
 import Component from '@/shared/lib/component/Component.ts';
 import s from './controls.module.scss';
-import { Link } from '@/shared/ui';
+import { Link } from '@/shared/ui/link';
 import { IComponentProps } from '@/shared/lib/component/componentTypes.ts';
 import {
   TControlsChildren,

@@ -5,10 +5,15 @@ import {
   PROFILE_PASSWORD_EDIT,
 } from '../constants/profile.ts';
 import { ButtonVariant } from '@/shared/ui/button';
-import { IProfilePageProps } from '../types/profile.ts';
+import {
+  IProfileEditPageProps,
+  IProfileEditPasswordPageProps,
+  IProfilePageContext,
+  IProfilePageProps,
+} from '../types/profile.ts';
 import { arrowLeftIcon } from '@/shared/svg';
 
-const profileContext: IProfilePageProps['profileContext'] = {
+const profileContext: IProfilePageContext['profileContext'] = {
   info: {
     email: {
       field: 'Почта',
@@ -57,7 +62,7 @@ const profileContext: IProfilePageProps['profileContext'] = {
   },
 };
 
-const formEditContext: IProfilePageProps['formEditContext'] = {
+const formEditContext: IProfilePageContext['formEditContext'] = {
   fields: {
     email: {
       input: {
@@ -126,16 +131,11 @@ const formEditContext: IProfilePageProps['formEditContext'] = {
       title: 'Сохранить',
       customClass: s.formButton,
     },
-    {
-      title: 'Отменить',
-      variant: ButtonVariant.TEXT,
-      customClass: s.formButton,
-    },
   ],
   className: s.editForm,
 };
 
-const formPasswordContext: IProfilePageProps['formPasswordContext'] = {
+const formPasswordContext: IProfilePageContext['formPasswordContext'] = {
   fields: {
     oldPassword: {
       input: {
@@ -173,35 +173,53 @@ const formPasswordContext: IProfilePageProps['formPasswordContext'] = {
       title: 'Сохранить',
       customClass: s.formButton,
     },
-    {
-      title: 'Отменить',
-      variant: ButtonVariant.TEXT,
-      customClass: s.formButton,
-    },
   ],
   className: s.editForm,
 };
 
-export const context = (): IProfilePageProps => {
-  const profilePageState = window.location.pathname;
+const reset: IProfilePageContext['reset'] = {
+  title: 'Отменить',
+  className: s.resetLink,
+  path: PROFILE,
+};
 
-  return {
-    userAvatar: {
-      name: profilePageState !== PROFILE ? undefined : 'My name',
-    },
-    link: {
-      type: 'icon',
-      path: '',
-      className: s.profileLink,
-      icon: arrowLeftIcon,
-      isBackButton: true,
-    },
-    profileContext: profilePageState === PROFILE ? profileContext : undefined,
-    formEditContext:
-      profilePageState === PROFILE_EDIT ? formEditContext : undefined,
-    formPasswordContext:
-      profilePageState === PROFILE_PASSWORD_EDIT
-        ? formPasswordContext
-        : undefined,
-  };
+export const profileInfoPageContext: IProfilePageProps = {
+  userAvatar: {
+    name: 'My name',
+  },
+  link: {
+    type: 'icon',
+    path: '/chats',
+    className: s.profileLink,
+    icon: arrowLeftIcon,
+  },
+  profileContext,
+};
+
+export const profileEditPageContext: IProfileEditPageProps = {
+  userAvatar: {
+    avatar: '../src/assets/img/default_avatar.png',
+  },
+  link: {
+    type: 'icon',
+    className: s.profileLink,
+    icon: arrowLeftIcon,
+    isBackButton: true,
+  },
+  reset,
+  formEditContext,
+};
+
+export const profileEditPasswordPageContext: IProfileEditPasswordPageProps = {
+  userAvatar: {
+    avatar: '../src/assets/img/default_avatar.png',
+  },
+  link: {
+    type: 'icon',
+    className: s.profileLink,
+    icon: arrowLeftIcon,
+    isBackButton: true,
+  },
+  reset,
+  formPasswordContext,
 };

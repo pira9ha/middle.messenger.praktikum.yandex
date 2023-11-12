@@ -7,7 +7,7 @@ import {
   TMainPageChildren,
   TMainPageContext,
 } from '@/pages/main-page/lib/types/mainPage.ts';
-import { Link } from '@/shared/ui';
+import { Link } from '@/shared/ui/link';
 import s from './mainPage.module.scss';
 
 export class MainPageComponent extends Component {

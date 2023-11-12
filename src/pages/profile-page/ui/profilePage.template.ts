@@ -18,5 +18,9 @@ export default `
         {{#if formPasswordContext }}
             {{{ formPassword }}}
         {{/if}}
+
+        {{#if reset }}
+            {{{ reset }}}
+        {{/if}}
     </div>
 `;

@@ -4,7 +4,7 @@ import { context } from '../lib/context/context.ts';
 import Component from '@/shared/lib/component/Component.ts';
 import s from '@/pages/login-page/ui/loginPage.module.scss';
 import { Form } from '@/features/form';
-import { Link } from '@/shared/ui';
+import { Link } from '@/shared/ui/link';
 import { IComponentProps } from '@/shared/lib/component/componentTypes.ts';
 import {
   TSigninPageChildren,

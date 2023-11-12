@@ -8,7 +8,7 @@ import {
   TLoginPageProps,
 } from '@/pages/login-page/lib/types/loginPage.ts';
 import { Form } from '@/features/form';
-import { Link } from '@/shared/ui';
+import { Link } from '@/shared/ui/link';
 import { context } from '../lib/context/context';
 
 export class LoginPageComponent extends Component {

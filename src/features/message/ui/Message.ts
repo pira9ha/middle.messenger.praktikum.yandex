@@ -1,10 +1,33 @@
 import Handlebars from 'handlebars';
+import Component from '@/shared/lib/component/Component.ts';
 import message from './message.template.ts';
-import { IMessage } from '@/models/chat.ts';
+import s from './message.module.scss';
+import { classNames } from '@/shared/lib/utils/classNames.ts';
+import { MessageVariant, TMessageProps } from '../lib/types/message.ts';
+import { convertDate } from '@/shared/lib/utils/convertDate.ts';
 
-export const Message = (props: IMessage) => {
-	props.isMainMessage = props.user_id === props.currentUserId;
+export class Message extends Component {
+  constructor(messageProps: TMessageProps) {
+    const isMainMessage = messageProps.user_id === messageProps.currentUserId;
+    const variant = messageProps?.messageVariant || MessageVariant.TEXT;
 
-	const template = Handlebars.compile(message);
-	return template(props);
-};
+    const componentProps = {
+      props: {
+        ...messageProps,
+        className: classNames(s.messageWrapper, [], {
+          [s.mainMessage]: isMainMessage,
+        }),
+        isMainMessage,
+        variant,
+        time: convertDate({ date: messageProps.time }),
+      },
+    };
+
+    super('div', componentProps);
+  }
+
+  render() {
+    const template = Handlebars.compile(message);
+    return this.compile(template);
+  }
+}

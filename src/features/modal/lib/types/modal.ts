@@ -1,8 +1,16 @@
-import { TFormProps } from '@/features/form/ui/Form.ts';
-import { IButtonProps } from '@/shared/ui/button/Button.ts';
+import { TFormProps } from '@/features/form/lib/types/form';
+import { IButtonProps } from '@/shared/ui/button';
+
+export type TModalCreateOrDelete = {
+  login: string;
+};
+
+export type TModalLoadFile = {
+  avatar: File;
+};
 
 export interface IModalProps {
-    title: string;
-    formContext?: TFormProps<any>;
-    buttonContext?: Record<string, IButtonProps>;
+  title: string;
+  formContext?: TFormProps<TModalLoadFile | TModalCreateOrDelete>;
+  buttonContext?: Record<string, IButtonProps>;
 }

@@ -1,0 +1,11 @@
+.messageInput {
+  height: 36px;
+  max-height: 150px;
+  resize: none;
+  width: 100%;
+  border-radius: 30px;
+  background-color: var(--color-medium-dark-gray);
+  border: none;
+  padding: 10px 20px;
+  font: var(--font-12-500);
+}

@@ -7,11 +7,11 @@ import { ProfilePage } from './profile-page';
 import { ChatsPage } from './chats-page';
 
 export {
-	MainPage,
-	LoginPage,
-	NotFoundPage,
-	ServerErrorPage,
-	SigninPage,
-	ProfilePage,
-	ChatsPage,
+  MainPage,
+  LoginPage,
+  NotFoundPage,
+  ServerErrorPage,
+  SigninPage,
+  ProfilePage,
+  ChatsPage,
 };

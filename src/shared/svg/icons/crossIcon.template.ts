@@ -1,0 +1,7 @@
+export default `
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <circle cx="11" cy="11" r="10.25" stroke="#99B800" stroke-width="1.5"/>
+        <line x1="7.11077" y1="7.11103" x2="14.8889" y2="14.8892" stroke="#99B800" stroke-width="1.5"/>
+        <line x1="7.11078" y1="14.8891" x2="14.889" y2="7.11093" stroke="#99B800" stroke-width="1.5"/>
+    </svg>
+`;

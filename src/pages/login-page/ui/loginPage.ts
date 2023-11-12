@@ -4,6 +4,6 @@ import loginPage from './loginPage.template';
 import { context } from '../lib/context/context.ts';
 
 export const LoginPage = () => {
-	const template = Handlebars.compile(loginPage);
-	return template(context);
+  const template = Handlebars.compile(loginPage);
+  return template(context);
 };

@@ -3,20 +3,17 @@
   --color-white: #fff;
   --color-black: 0, 0, 0;
   --color-dark-gray: 25, 25, 36;
-
-  --color-light-gray: #E4E4E4;
-  --color-gray: #766B6B;
-  --color-medium-dark-gray: #EFEFEF;
-  --color-extra-light-gray: #FBFBFB;
-  --color-medium-light-gray: #E2DFDF;
-
-  --color-green: #99B800;
-  --color-light-reen: #aacc00;
-  --color-mint: #E7EFEB;
-  --color-light-mint: #DBE6E1;
-  --color-extra-light-mint: #F3F7F5;
-
-  --color-red: #F35461;
+  --color-light-gray: #e4e4e4;
+  --color-gray: #766b6b;
+  --color-medium-dark-gray: #efefef;
+  --color-extra-light-gray: #fbfbfb;
+  --color-medium-light-gray: #e2dfdf;
+  --color-green: #99b800;
+  --color-light-green: #ac0;
+  --color-mint: #e7efeb;
+  --color-light-mint: #dbe6e1;
+  --color-extra-light-mint: #f3f7f5;
+  --color-red: #f35461;
   --color-light-red: #f46672;
 
   // fonts
@@ -26,12 +23,12 @@
   --font-13-500: 500 13px/13px 'Inter', arial, sans-serif;
   --font-20-500: 500 20px/24px 'Inter', arial, sans-serif;
   --font-24-500: 500 20px/28px 'Inter', arial, sans-serif;
-
   --font-20-600: 500 20px/22px 'Inter', arial, sans-serif;
   --font-64-600: 500 64px/70px 'Inter', arial, sans-serif;
 
   // z-indexes
   --modal-index: 1000;
-
+  --dropdown-index: 999;
+  --simple-index: 5;
   --chats-head: 94px;
 }

@@ -8,6 +8,22 @@
   font: var(--font-20-600);
 }
 
+.changeAvatar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  @include flex-center;
+  @include transition;
+
+  background-color: rgb(var(--color-black), 0.5);
+  color: var(--color-white);
+  font: var(--font-13-500);
+  transform: translateY(100%);
+}
+
 .avatarWrapper {
   --size: 160px;
 
@@ -40,20 +56,4 @@
   object-fit: cover;
   width: inherit;
   height: inherit;
-}
-
-.changeAvatar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  @include flex-center;
-  @include transition;
-
-  background-color: rgba(var(--color-black), 0.5);
-  color: var(--color-white);
-  font: var(--font-13-500);
-  transform: translateY(100%);
 }

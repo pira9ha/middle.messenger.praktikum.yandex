@@ -1,0 +1,12 @@
+@mixin main-layout {
+  position: relative;
+  min-height: 100vh;
+  min-width: 100vw;
+  width: 100%;
+}
+
+@mixin profile-layout {
+  width: 100%;
+  min-height: 100vh;
+  margin: 45px 30px;
+}

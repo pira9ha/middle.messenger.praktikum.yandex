@@ -1,3 +1,7 @@
+.profilePage {
+  @include profile-layout;
+}
+
 .profileLink {
   position: absolute;
   top: 50%;
@@ -17,6 +21,7 @@
 
 .editForm {
   margin-top: 50px;
+
   @include form-style;
 }
 

@@ -6,6 +6,7 @@
 
 .page {
   @include absolute-centered-block;
+  @include main-layout;
 }
 
 .contentWrapper {

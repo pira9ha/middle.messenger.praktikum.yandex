@@ -2,7 +2,7 @@ import s from './profilePage.module.scss';
 
 // language=hbs
 export default `
-    {{#> profileLayout }}
+    <div class="${s.profilePage}">
         {{> link backButton }}
         
         <div class="${s.profileWrapper}">
@@ -20,5 +20,5 @@ export default `
                 {{> form formPasswordContext }}
             {{/if}}
         </div>
-    {{/profileLayout}}
+    </div>
 `;

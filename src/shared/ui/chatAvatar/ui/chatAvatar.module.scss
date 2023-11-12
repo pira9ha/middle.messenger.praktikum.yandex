@@ -1,0 +1,13 @@
+.avatarImage {
+  object-fit: cover;
+  border-radius: 50%;
+  width: 47px;
+  height: 47px;
+  overflow: hidden;
+  background-color: var(--color-light-gray);
+  background-image: url('../../../../assets/img/default_avatar.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  font: var(--font-12-500);
+}

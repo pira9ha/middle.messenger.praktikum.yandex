@@ -24,7 +24,7 @@
   display: flex;
 
   &:hover,
-  &[data-active="true"] {
+  &[data-active='true'] {
     background-color: var(--color-mint);
   }
 }
@@ -41,14 +41,15 @@
   display: flex;
   justify-content: space-between;
   margin-left: 10px;
+
   @include flex-column;
+
   gap: 4px;
 }
 
 .message {
   font: var(--font-12-500);
   max-width: 193px;
-
   word-break: break-all;
   overflow: hidden;
   display: -webkit-box;

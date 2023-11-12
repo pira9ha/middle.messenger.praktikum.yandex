@@ -1,0 +1,14 @@
+.input {
+  background-color: transparent;
+  padding: 5px 0;
+  width: inherit;
+  border: none;
+  border-bottom: 1px solid var(--color-gray);
+  outline: 1px;
+  font: var(--font-13-500);
+
+  &:hover,
+  &:focus {
+    border-bottom-color: var(--color-green);
+  }
+}

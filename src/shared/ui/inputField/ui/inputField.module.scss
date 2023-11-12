@@ -1,0 +1,15 @@
+.field {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+
+  & ~ & {
+    margin-top: 20px;
+  }
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}

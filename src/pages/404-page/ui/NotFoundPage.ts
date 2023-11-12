@@ -4,6 +4,6 @@ import notFoundPage from './notFoundPage.template';
 import { context } from '@/pages/404-page/lib/context/context.ts';
 
 export const NotFoundPage = () => {
-	const template = Handlebars.compile(notFoundPage);
-	return template(context);
+  const template = Handlebars.compile(notFoundPage);
+  return template(context);
 };

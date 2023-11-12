@@ -1,0 +1,17 @@
+.arrow:hover {
+  .circle {
+    fill: var(--color-light-green);
+  }
+}
+
+.menu:hover {
+  .circle {
+    fill: var(--color-light-green);
+  }
+}
+
+.staple:hover {
+  path {
+    fill: var(--color-green);
+  }
+}

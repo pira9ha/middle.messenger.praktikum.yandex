@@ -12,6 +12,7 @@ import {
   IProfilePageProps,
 } from '../types/profile.ts';
 import { arrowLeftIcon } from '@/shared/svg';
+import { TLinkProps } from '@/shared/ui/link';
 
 const profileContext: IProfilePageContext['profileContext'] = {
   info: {
@@ -183,15 +184,19 @@ const reset: IProfilePageContext['reset'] = {
   path: PROFILE,
 };
 
+const link: TLinkProps = {
+  type: 'icon',
+  className: s.profileLink,
+  icon: arrowLeftIcon,
+};
+
 export const profileInfoPageContext: IProfilePageProps = {
   userAvatar: {
     name: 'My name',
   },
   link: {
-    type: 'icon',
+    ...link,
     path: '/chats',
-    className: s.profileLink,
-    icon: arrowLeftIcon,
   },
   profileContext,
 };
@@ -201,9 +206,7 @@ export const profileEditPageContext: IProfileEditPageProps = {
     avatar: '../src/assets/img/default_avatar.png',
   },
   link: {
-    type: 'icon',
-    className: s.profileLink,
-    icon: arrowLeftIcon,
+    ...link,
     isBackButton: true,
   },
   reset,
@@ -215,9 +218,7 @@ export const profileEditPasswordPageContext: IProfileEditPasswordPageProps = {
     avatar: '../src/assets/img/default_avatar.png',
   },
   link: {
-    type: 'icon',
-    className: s.profileLink,
-    icon: arrowLeftIcon,
+    ...link,
     isBackButton: true,
   },
   reset,

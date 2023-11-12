@@ -1,4 +1,4 @@
-import { TLinkProps } from '@/shared/ui/link/ui/Link.ts';
+import { Link, TLinkProps } from '@/shared/ui/link';
 import Component from '@/shared/lib/component/Component.ts';
 
 type TPage = {
@@ -7,3 +7,6 @@ type TPage = {
   link: TLinkProps;
 };
 export type TMainPageContext = Record<string, TPage>;
+export type TMainPageChildren = {
+  links: Link[];
+};

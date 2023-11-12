@@ -21,7 +21,7 @@ export type TChildren<T> = {
     : unknown;
 };
 
-export interface IComponentProps<T = TProps> {
+export interface IComponentProps<T = unknown> {
   children?: TChildren<T>;
   props: TProps;
 }

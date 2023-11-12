@@ -1,12 +1,3 @@
-.profileLink {
-  position: absolute;
-  top: 50%;
-}
-
-.dataWrapper {
-  margin: 45px 0;
-}
-
 .dataField {
   font: var(--font-13-500);
   padding: 10px 0;
@@ -20,13 +11,4 @@
   .value {
     color: var(--color-gray);
   }
-}
-
-.controlWrapper {
-  display: flex;
-
-  @include flex-column;
-
-  gap: 20px;
-  font: var(--font-13-500);
 }

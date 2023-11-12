@@ -9,9 +9,12 @@ export class Textarea extends Component {
         className: s.messageInput,
         events: {
           input: (event: InputEvent | Event) => {
-            const textarea = event.target as HTMLTextAreaElement;
-            textarea.style.height = '0';
-            textarea.style.height = `${textarea.scrollHeight}px`;
+            const textarea = event.target;
+
+            if (textarea instanceof HTMLTextAreaElement) {
+              textarea.style.height = '0';
+              textarea.style.height = `${textarea.scrollHeight}px`;
+            }
           },
         },
         attr: {

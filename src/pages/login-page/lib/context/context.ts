@@ -1,30 +1,40 @@
-import { TFormProps } from '@/features/form/ui/Form.ts';
 import s from '@/pages/login-page/ui/loginPage.module.scss';
-import { TLinkProps } from '@/shared/ui/link/ui/Link.ts';
+import { TLinkProps } from '@/shared/ui/link';
 import { IUserLogin } from '@/models/user.ts';
+import { TFormProps } from '@/features/form/lib/types/form';
 
-const formContext: TFormProps<IUserLogin> = {
-  fieldsContext: {
+const form: TFormProps<IUserLogin> = {
+  fields: {
     login: {
-      name: 'login',
-      labelText: 'Логин',
+      input: {
+        name: 'login',
+      },
+      label: {
+        labelText: 'Логин',
+        for: 'login',
+      },
     },
     password: {
-      name: 'password',
-      labelText: 'Пароль',
-      type: 'password',
-      autocomplete: 'off',
+      input: {
+        name: 'password',
+        type: 'password',
+        autocomplete: 'off',
+      },
+      label: {
+        labelText: 'Пароль',
+        for: 'password',
+      },
     },
   },
-  buttonContext: {
-    login: {
+  buttons: [
+    {
       type: 'submit',
       title: 'Войти',
     },
-  },
+  ],
   className: s.loginPage_form,
 };
-const linkContext: TLinkProps = {
+const link: TLinkProps = {
   path: '/signin',
   title: 'Нет аккаунта?',
   className: s.link,
@@ -32,6 +42,6 @@ const linkContext: TLinkProps = {
 
 export const context = {
   formName: 'Вход',
-  formContext,
-  linkContext,
+  form,
+  link,
 };

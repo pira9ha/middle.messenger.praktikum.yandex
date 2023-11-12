@@ -6,7 +6,6 @@ import {
   ServerErrorPage,
   SigninPage,
 } from '@/pages';
-import s from '../../ui/mainPage.module.scss';
 import { ProfilePage } from '@/pages/profile-page/ui/ProfilePage.ts';
 
 export const context: TMainPageContext = {
@@ -16,7 +15,6 @@ export const context: TMainPageContext = {
     link: {
       path: '/login',
       title: 'Страница авторизации',
-      className: s.link,
     },
   },
   signin: {
@@ -25,7 +23,6 @@ export const context: TMainPageContext = {
     link: {
       path: '/signin',
       title: 'Страница регистрации',
-      className: s.link,
     },
   },
   chats: {
@@ -34,7 +31,6 @@ export const context: TMainPageContext = {
     link: {
       path: '/chats',
       title: 'Страница чатов',
-      className: s.link,
     },
   },
   profile: {
@@ -43,7 +39,6 @@ export const context: TMainPageContext = {
     link: {
       path: '/profile',
       title: 'Профиль пользователя',
-      className: s.link,
     },
   },
   serverError: {
@@ -52,7 +47,6 @@ export const context: TMainPageContext = {
     link: {
       path: '/secret-page',
       title: 'Страница ошибки 404',
-      className: s.link,
     },
   },
   notFound: {
@@ -61,7 +55,6 @@ export const context: TMainPageContext = {
     link: {
       path: '/server-error',
       title: 'Страница ошибок сервера',
-      className: s.link,
     },
   },
 };

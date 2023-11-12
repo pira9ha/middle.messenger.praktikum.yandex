@@ -10,20 +10,31 @@ import { classNames } from '@/shared/lib/utils/classNames.ts';
 
 export class Form<T> extends Component {
   constructor(props: TFormProps<T>) {
+    const fields: TInputFieldProps[] = Object.values(props.fields);
     const componentProps: IComponentProps<TFormChildren> = {
       props: {
         ...props,
+        fields,
         className: classNames(s.form, [props.className]),
+        events: {
+          submit: (event: SubmitEvent | Event) => {
+            event.preventDefault();
+
+            if (event.currentTarget && event instanceof SubmitEvent) {
+              const formData = new FormData(
+                event.currentTarget as HTMLFormElement,
+              );
+              console.log(...formData);
+            }
+          },
+        },
       },
       children: {
-        buttons: Object.values(props.buttonContext).map(
-          (button) => new Button(button),
-        ),
-        fields: Object.values(props.fieldsContext).map(
-          (field) => new InputField(field as TInputFieldProps),
-        ),
+        buttons: props.buttons.map((button) => new Button(button)),
+        fields: fields.map((field) => new InputField(field)),
       },
     };
+    // debugger;
     super('form', componentProps);
   }
   render() {

@@ -19,6 +19,8 @@ export class Label extends Component {
   }
 
   render() {
-    return this.compile(() => (this.props as TLabelProps).labelText);
+    return this.compile(() =>
+      this.props?.labelText ? this.props.labelText.toString() : '',
+    );
   }
 }

@@ -1,7 +1,12 @@
-import { TLinkProps } from '@/shared/ui';
+import { Link, TLinkProps } from '@/shared/ui/link';
+import { StatusError, TStatusErrorProps } from '@/features/statusError';
 
 export type TErrorPageContext = {
-  errorCode: number;
-  title: string;
   link: TLinkProps;
+  statusError: TStatusErrorProps;
+};
+
+export type TErrorPageChildren = {
+  link: Link;
+  statusError: StatusError;
 };

@@ -6,24 +6,6 @@
 
 .page {
   @include absolute-centered-block;
-  @include main-layout;
-}
-
-.contentWrapper {
-  width: 214px;
-  height: 214px;
-  border-radius: 50%;
-  background-color: var(--color-green);
-  color: var(--color-white);
-  font: var(--font-20-500);
-  gap: 9px;
-
-  @include flex-center;
-  @include flex-column;
-
-  .errorCode {
-    font: var(--font-64-600);
-  }
 }
 
 .link {

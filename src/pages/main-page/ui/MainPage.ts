@@ -1,14 +1,36 @@
 import Handlebars from 'handlebars';
-import '../lib/utils/registerPartials.ts';
 import mainPage from './mainPage.template';
-import { Link } from '@/shared/ui/link/ui/Link.ts';
 import { context } from '@/pages/main-page/lib/context/context.ts';
+import Component from '@/shared/lib/component/Component.ts';
+import { IComponentProps } from '@/shared/lib/component/componentTypes.ts';
+import {
+  TMainPageChildren,
+  TMainPageContext,
+} from '@/pages/main-page/lib/types/mainPage.ts';
+import { Link } from '@/shared/ui';
+import s from './mainPage.module.scss';
 
-Handlebars.registerPartial({
-  link: Link,
-});
+export class MainPageComponent extends Component {
+  constructor(mainPageProps: TMainPageContext) {
+    const links = Object.values(mainPageProps).map((prop) => prop.link);
+    const componentProps: IComponentProps<TMainPageChildren> = {
+      props: {
+        ...mainPageProps,
+        className: s.mainPage,
+        links,
+      },
+      children: {
+        links: links.map((link) => new Link(link)),
+      },
+    };
 
-export const MainPage = () => {
-  const template = Handlebars.compile(mainPage);
-  return template({ pages: context });
-};
+    super('nav', componentProps);
+  }
+
+  render() {
+    const template = Handlebars.compile(mainPage);
+    return this.compile(template);
+  }
+}
+
+export const MainPage = () => new MainPageComponent(context);

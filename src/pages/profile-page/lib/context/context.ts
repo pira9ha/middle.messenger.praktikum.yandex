@@ -1,35 +1,15 @@
-import { IAvatarProps } from '@/features/userAvatar/lib/types/avatar.ts';
-import { TLinkProps } from '@/shared/ui';
 import s from '../../ui/profilePage.module.scss';
-import { IUser, TUserChangePassword } from '@/models/user.ts';
-import { TFormProps } from '@/features/form/ui/Form.ts';
 import {
   PROFILE,
   PROFILE_EDIT,
   PROFILE_PASSWORD_EDIT,
 } from '../constants/profile.ts';
-import { ButtonVariant, IButtonProps } from '@/shared/ui/button';
+import { ButtonVariant } from '@/shared/ui/button';
+import { IProfilePageProps } from '../types/profile.ts';
+import { arrowLeftIcon } from '@/shared/svg';
 
-type TUserFields = Omit<IUser, 'id' | 'avatar'>;
-type TData = {
-  field: string;
-  value: string;
-};
-
-type IProfilePageContext = {
-  avatar: IAvatarProps;
-  backButton: TLinkProps;
-  profileContext?: {
-    data: Record<keyof TUserFields, TData>;
-    linksContext: Record<string, TLinkProps>;
-    buttonsContext: Record<string, IButtonProps>;
-  };
-  formEditContext?: TFormProps<TUserFields>;
-  formPasswordContext?: TFormProps<TUserChangePassword>;
-};
-
-const profileContext: IProfilePageContext['profileContext'] = {
-  data: {
+const profileContext: IProfilePageProps['profileContext'] = {
+  info: {
     email: {
       field: 'Почта',
       value: 'saigafarova00@yandex.ru',
@@ -55,113 +35,166 @@ const profileContext: IProfilePageContext['profileContext'] = {
       value: '+7 (800) 555 35 35',
     },
   },
-  linksContext: {
-    editData: {
-      path: PROFILE_EDIT,
-      title: 'Изменить данные',
-      className: s.editLink,
-    },
-    editPassword: {
-      path: PROFILE_PASSWORD_EDIT,
-      title: 'Изменить пароль',
-      className: s.editLink,
-    },
-  },
-  buttonsContext: {
-    logout: {
-      title: 'Выйти',
-      variant: ButtonVariant.TEXT_ERROR,
-    },
+  controls: {
+    links: [
+      {
+        path: PROFILE_EDIT,
+        title: 'Изменить данные',
+        className: s.editLink,
+      },
+      {
+        path: PROFILE_PASSWORD_EDIT,
+        title: 'Изменить пароль',
+        className: s.editLink,
+      },
+    ],
+    buttons: [
+      {
+        title: 'Выйти',
+        variant: ButtonVariant.TEXT_ERROR,
+      },
+    ],
   },
 };
 
-const formEditContext: IProfilePageContext['formEditContext'] = {
-  fieldsContext: {
+const formEditContext: IProfilePageProps['formEditContext'] = {
+  fields: {
     email: {
-      labelText: 'Почта',
-      name: 'email',
-      value: 'saigafarova00@yandex.ru',
+      input: {
+        name: 'email',
+        type: 'email',
+        value: 'saigafarova00@yandex.ru',
+      },
+      label: {
+        labelText: 'Почта',
+        for: 'email',
+      },
     },
     login: {
-      labelText: 'Логин',
-      name: 'login',
-      value: 'pira9ha',
+      input: {
+        name: 'login',
+        value: 'pira9ha',
+      },
+      label: {
+        labelText: 'Логин',
+        for: 'login',
+      },
     },
     first_name: {
-      labelText: 'Имя',
-      name: 'first_name',
-      value: 'MyName',
+      input: {
+        name: 'first_name',
+        value: 'MyName',
+      },
+      label: {
+        labelText: 'Имя',
+        for: 'first_name',
+      },
     },
     second_name: {
-      labelText: 'Фамилия',
-      name: 'second_name',
-      value: 'MySecondName',
+      input: {
+        name: 'second_name',
+        value: 'MySecondName',
+      },
+      label: {
+        labelText: 'Фамилия',
+        for: 'second_name',
+      },
     },
     display_name: {
-      labelText: 'Имя в чате',
-      name: 'display_name',
-      value: 'My name',
+      input: {
+        name: 'display_name',
+        value: 'My name',
+      },
+      label: {
+        labelText: 'Имя в чате',
+        for: 'display_name',
+      },
     },
     phone: {
-      labelText: 'Телефон',
-      name: 'phone',
-      value: '+7 (800) 555 35 35',
+      input: {
+        name: 'phone',
+        value: '+7 (800) 555 35 35',
+      },
+      label: {
+        labelText: 'Телефон',
+        for: 'phone',
+      },
     },
   },
-  buttonContext: {
-    save: {
+  buttons: [
+    {
       title: 'Сохранить',
       customClass: s.formButton,
     },
-    cancel: {
+    {
       title: 'Отменить',
       variant: ButtonVariant.TEXT,
       customClass: s.formButton,
     },
-  },
+  ],
   className: s.editForm,
 };
 
-const formPasswordContext: IProfilePageContext['formPasswordContext'] = {
-  fieldsContext: {
+const formPasswordContext: IProfilePageProps['formPasswordContext'] = {
+  fields: {
     oldPassword: {
-      labelText: 'Старый пароль',
-      name: 'oldPassword',
+      input: {
+        name: 'old_password',
+        type: 'password',
+      },
+      label: {
+        labelText: 'Старый пароль',
+        for: 'old_password',
+      },
     },
     newPassword: {
-      labelText: 'Новый пароль',
-      name: 'newPassword',
+      input: {
+        name: 'new_password',
+        type: 'password',
+      },
+      label: {
+        labelText: 'Новый пароль',
+        for: 'new_password',
+      },
     },
     passwordCheck: {
-      labelText: 'Повторите новый пароль',
-      name: 'password_check',
+      input: {
+        name: 'password_check',
+        type: 'password',
+      },
+      label: {
+        labelText: 'Повторите новый пароль',
+        for: 'password_check',
+      },
     },
   },
-  buttonContext: {
-    save: {
+  buttons: [
+    {
       title: 'Сохранить',
       customClass: s.formButton,
     },
-    cancel: {
+    {
       title: 'Отменить',
       variant: ButtonVariant.TEXT,
       customClass: s.formButton,
     },
-  },
+  ],
   className: s.editForm,
 };
 
-export const context = (): IProfilePageContext => {
+export const context = (): IProfilePageProps => {
   const profilePageState = window.location.pathname;
 
   return {
-    avatar: {
+    userAvatar: {
       name: profilePageState !== PROFILE ? undefined : 'My name',
     },
-    backButton: {
+    link: {
       type: 'icon',
-      path: '/chats',
+      path: '',
       className: s.profileLink,
+      icon: arrowLeftIcon,
+      isBackButton: true,
     },
     profileContext: profilePageState === PROFILE ? profileContext : undefined,
     formEditContext:

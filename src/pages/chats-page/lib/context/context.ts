@@ -31,9 +31,9 @@ const chats: TChatsProps['chats'] = [
     time: new Date().toISOString(),
   },
   {
-    id: 123,
+    id: 2324,
     userAvatar: {},
-    unread_count: 30,
+    unread_count: 1000,
     content:
       'hjfhsjbdmsbmdbwjkergjkwehfklshjfhsjbdmsbmdbwjkergjkwehfklshjfhsjbdmsbmdbwjkergjkwehfklshjfhsjbdmsbmdbwjkergjkwehfkls,d',
     isMainMessage: false,
@@ -41,9 +41,8 @@ const chats: TChatsProps['chats'] = [
     time: new Date(2023, 10, 10).toISOString(),
   },
   {
-    id: 123,
+    id: 24,
     userAvatar: {},
-    unread_count: 2,
     content:
       'hjfhsjbdmsbmdbwjkergjkwehfklshjfhsjbdmsbmdbwjkergjkwehfklshjfhsjbdmsbmdbwjkergjkwehfklshjfhsjbdmsbmdbwjkergjkwehfklshjfhsjbdmsbmdbwjkergjkwehfklshjfhsjbdmsbmdbwjkergjkwehfklshjfhsjbdmsbmdbwjkergjkwehfklshjfhsjbdmsbmdbwjkergjkwehfklshjfhsjbdmsbmdbwjkergjkwehfkls,d',
     isMainMessage: false,
@@ -179,13 +178,21 @@ export const context = (): TChatPageContext => {
     },
   };
 
-  for (const key of paramsFields.keys()) {
+  for (const [key, value] of paramsFields.entries()) {
     if (key === 'chat') {
       pageContext.chat = {
         messageFormContext,
         chatContext,
         messages,
       };
+
+      pageContext.chatsContext.chats.chats =
+        pageContext.chatsContext.chats.chats.map((chat) => {
+          if (chat.id === Number(value)) {
+            return { ...chat, isActive: true };
+          }
+          return chat;
+        });
     }
   }
 

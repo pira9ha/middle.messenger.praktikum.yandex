@@ -1,7 +1,6 @@
 import EventBus from '@/shared/lib/eventBus/EventBus.ts';
 import {
   IComponentProps,
-  TProps,
   Tag,
   TMeta,
 } from '@/shared/lib/component/componentTypes.ts';
@@ -21,7 +20,7 @@ class Component<Props extends IComponentProps = IComponentProps> {
   private _isNeedUpdate = false;
 
   private eventBus: () => EventBus;
-  public props: TProps;
+  public props: IComponentProps['props'];
   public children: IComponentProps['children'];
 
   constructor(tagName: Tag = 'div', props: Props) {
@@ -81,7 +80,10 @@ class Component<Props extends IComponentProps = IComponentProps> {
     this.eventBus().emit(Component.EVENTS.FLOW_CDM);
   }
 
-  _componentDidUpdate(oldProps: TProps, newProps: TProps) {
+  _componentDidUpdate(
+    oldProps: IComponentProps['props'],
+    newProps: IComponentProps['props'],
+  ) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
@@ -89,7 +91,10 @@ class Component<Props extends IComponentProps = IComponentProps> {
     this._render();
   }
 
-  componentDidUpdate(oldProps: TProps, newProps: TProps) {
+  componentDidUpdate(
+    oldProps: IComponentProps['props'],
+    newProps: IComponentProps['props'],
+  ) {
     const newPropsValues = Object.entries(newProps);
 
     for (const [key, value] of newPropsValues) {
@@ -101,7 +106,7 @@ class Component<Props extends IComponentProps = IComponentProps> {
     return false;
   }
 
-  setProps(nextProps: TProps) {
+  setProps(nextProps: IComponentProps['props']) {
     if (!nextProps) {
       return;
     }
@@ -120,8 +125,8 @@ class Component<Props extends IComponentProps = IComponentProps> {
   }
 
   compile(
-    template?: (props?: TProps) => string,
-    props?: TProps,
+    template?: (props?: IComponentProps['props']) => string,
+    props?: IComponentProps['props'],
   ): DocumentFragment {
     if (typeof props === 'undefined') {
       props = this.props;
@@ -145,9 +150,9 @@ class Component<Props extends IComponentProps = IComponentProps> {
   }
 
   _setTemplateChildrens(
-    props: TProps,
+    props: IComponentProps['props'],
     fragment: HTMLTemplateElement,
-    template: (props?: TProps) => string,
+    template: (props?: IComponentProps['props']) => string,
   ) {
     if (!this.children) {
       return;
@@ -213,15 +218,15 @@ class Component<Props extends IComponentProps = IComponentProps> {
     return this.element;
   }
 
-  _makePropsProxy(props: TProps): TProps {
+  _makePropsProxy(props: IComponentProps['props']): IComponentProps['props'] {
     const self = this;
 
     return new Proxy(props, {
-      get(target: TProps, prop: string) {
+      get(target: IComponentProps['props'], prop: string) {
         const value = target[prop];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target: TProps, prop: string, value: unknown) {
+      set(target: IComponentProps['props'], prop: string, value: unknown) {
         if (target[prop] !== value) {
           self._isNeedUpdate = true;
         }
@@ -235,7 +240,7 @@ class Component<Props extends IComponentProps = IComponentProps> {
     });
   }
 
-  _getChildren(propsAndChildren: IComponentProps) {
+  _getChildren(propsAndChildren: IComponentProps): IComponentProps {
     const { children = {}, props = {} } = propsAndChildren;
 
     return { children, props };

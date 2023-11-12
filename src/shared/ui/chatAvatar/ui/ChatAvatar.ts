@@ -14,7 +14,7 @@ export class ChatAvatar extends Component {
         className: s.avatarImage,
         attr: {
           alt: props?.alt || 'Аватар пользователя',
-          src: props.avatar,
+          src: props?.avatar || './src/assets/img/default_avatar.png',
         },
       },
     };

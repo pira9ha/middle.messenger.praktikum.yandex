@@ -1,56 +1,88 @@
-import { TFormProps } from '@/features/form/ui/Form.ts';
-import { TLinkProps } from '@/shared/ui';
 import s from '../../ui/signinPage.module.scss';
-import { IUserRegistration } from '@/models/user.ts';
+import { TSigninPageProps } from '../types/signinPage.ts';
 
-const formContext: TFormProps<
-  Omit<IUserRegistration, 'id' | 'avatar' | 'display_name'>
-> = {
-  fieldsContext: {
+const form: TSigninPageProps['form'] = {
+  fields: {
     email: {
-      name: 'email',
-      labelText: 'Почта',
-      type: 'email',
+      input: {
+        name: 'email',
+        type: 'email',
+      },
+      label: {
+        labelText: 'Почта',
+        for: 'email',
+      },
     },
     login: {
-      name: 'login',
-      labelText: 'Логин',
+      input: {
+        name: 'login',
+      },
+      label: {
+        labelText: 'Логин',
+        for: 'login',
+      },
     },
     first_name: {
-      name: 'first_name',
-      labelText: 'Имя',
+      input: {
+        name: 'first_name',
+      },
+      label: {
+        labelText: 'Имя',
+        for: 'first_name',
+      },
     },
     second_name: {
-      name: 'second_name',
-      labelText: 'Фамилия',
+      input: {
+        name: 'second_name',
+      },
+      label: {
+        labelText: 'Фамилия',
+        for: 'second_name',
+      },
     },
     phone: {
-      name: 'phone',
-      labelText: 'Телефон',
-      type: 'tel',
+      input: {
+        name: 'phone',
+        type: 'tel',
+      },
+      label: {
+        labelText: 'Телефон',
+        for: 'phone',
+      },
     },
     password: {
-      name: 'password',
-      labelText: 'Пароль',
-      type: 'password',
-      autocomplete: 'off',
+      input: {
+        name: 'password',
+        type: 'password',
+        autocomplete: 'off',
+      },
+      label: {
+        labelText: 'Пароль',
+        for: 'password',
+      },
     },
     password_check: {
-      name: 'password_check',
-      labelText: 'Пароль (ещё раз)',
-      type: 'password',
-      autocomplete: 'off',
+      input: {
+        name: 'password_check',
+        type: 'password',
+        autocomplete: 'off',
+      },
+      label: {
+        labelText: 'Пароль (ещё раз)',
+        for: 'password_check',
+      },
     },
   },
-  buttonContext: {
-    login: {
+  buttons: [
+    {
       type: 'submit',
       title: 'Зарегистрироваться',
     },
-  },
+  ],
   className: s.signinPage_form,
 };
-const linkContext: TLinkProps = {
+
+const link: TSigninPageProps['link'] = {
   path: '/login',
   title: 'Войти',
   className: s.link,
@@ -58,6 +90,6 @@ const linkContext: TLinkProps = {
 
 export const context = {
   formName: 'Регистрация',
-  formContext,
-  linkContext,
+  form,
+  link,
 };

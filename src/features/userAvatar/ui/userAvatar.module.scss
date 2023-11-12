@@ -45,15 +45,4 @@
   &:hover .changeAvatar {
     transform: translateY(0);
   }
-
-  background-image: url('../../../../src/assets/img/default_avatar.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
-.avatarImage {
-  object-fit: cover;
-  width: inherit;
-  height: inherit;
 }

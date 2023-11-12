@@ -23,7 +23,7 @@ export const Router = (rootElement: Element) => {
     '/': MainPage,
     '/login': LoginPage,
     '/signin': SigninPage,
-    '/server-errors': ServerErrorPage,
+    '/server-error': ServerErrorPage,
     '/modal-delete-chat': DeleteChatModal,
     '/modal-create-user': () => CreateOrDeleteUserModal({ isDelete: false }),
     '/modal-delete-user': () => CreateOrDeleteUserModal({ isDelete: true }),
@@ -33,7 +33,13 @@ export const Router = (rootElement: Element) => {
     '/chats': ChatsPage,
   };
 
-  const currentPage = pages[currentPath]() ?? NotFoundPage;
+  let currentPage;
+
+  if (Object.keys(pages).includes(currentPath)) {
+    currentPage = pages[currentPath]();
+  } else {
+    currentPage = NotFoundPage();
+  }
 
   if (currentPage instanceof Component) {
     const page = currentPage.getContent();

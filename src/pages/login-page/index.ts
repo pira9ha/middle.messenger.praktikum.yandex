@@ -1,1 +1,1 @@
-export { LoginPage } from './ui/loginPage.ts';
+export { LoginPage } from './ui/LoginPage.ts';

@@ -27,7 +27,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: '@import "src/shared/styles";',
+        additionalData: '@import "src/shared/styles/index.scss";',
       },
     },
     modules: {

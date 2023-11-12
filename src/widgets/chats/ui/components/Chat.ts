@@ -19,7 +19,7 @@ export class Chat extends Component {
         className: s.chat,
         attr: {
           id: props.id,
-          'data-active': props.isActive,
+          'data-active': `${!!props.isActive}`,
         },
         events: {
           click: () => {

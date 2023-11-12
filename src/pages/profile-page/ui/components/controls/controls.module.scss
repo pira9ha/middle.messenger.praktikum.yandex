@@ -1,0 +1,8 @@
+.controlWrapper {
+  display: flex;
+
+  @include flex-column;
+
+  gap: 20px;
+  font: var(--font-13-500);
+}

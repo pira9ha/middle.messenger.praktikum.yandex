@@ -6,14 +6,14 @@ export default `
         <div class="${s.modalCard}">
             <span class="${s.modalTitle}">{{ title }}</span>
             {{#if formContext }}
-                {{> form formContext }}
+                {{{ this }}}
             {{/if}}
             {{#if buttonContext }}
                 {{#each buttonContext }}
-                    {{>button this }}
+                    {{{ this }}}
                 {{/each}}
             {{/if}}
         </div>
-        <div class="${s.overlay}"></div>
+        {{{ overlay }}}
     </div>
 `;

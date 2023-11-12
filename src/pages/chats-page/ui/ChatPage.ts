@@ -1,6 +1,5 @@
 import Handlebars from 'handlebars';
 import s from './chatPage.module.scss';
-import '../lib/utils/registerPartials';
 import chatPage from './chatPage.template.ts';
 import { context } from '../lib/context/context.ts';
 import Component from '@/shared/lib/component/Component.ts';

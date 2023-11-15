@@ -8,22 +8,21 @@ export type EventListener<T extends keyof DocumentEventMap> = (
 ) => void;
 export type Event = Record<EventName, EventListener<EventName>>;
 
-export type TProps = {
+export type TDefaultProps = {
   events?: Partial<Event>;
   attr?: Record<string, unknown>;
   className?: string | string[];
   [prop: string]: unknown;
 };
 
-export type TChildren<T> = {
-  [child in keyof T]: T[child] extends Component
-    ? T[child] | T[child][]
-    : unknown;
-};
+export type TDefaultChildren = Record<string, Component | Component[]>;
 
-export interface IComponentProps<T = unknown> {
-  children?: TChildren<T>;
-  props: TProps;
+export interface IComponentProps<
+  Props extends TDefaultProps,
+  Children extends TDefaultChildren,
+> {
+  children?: Children;
+  props: Props;
 }
 
 export type TMeta<T> = {

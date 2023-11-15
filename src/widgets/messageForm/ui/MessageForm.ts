@@ -6,38 +6,41 @@ import {
 } from '../lib/types/messageForm.ts';
 import Component from '@/shared/lib/component/Component.ts';
 import s from './messageForm.module.scss';
-import {
-  IComponentProps,
-  TProps,
-} from '@/shared/lib/component/componentTypes.ts';
+import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 import { Button } from '@/shared/ui/button';
 import { Dropdown } from '@/shared/ui/dropdown';
 import { Textarea } from './components/Textarea.ts';
 
-export class MessageForm extends Component {
-  constructor(props: TMessageFormProps & TProps) {
-    const componentProps: IComponentProps<TMessageChildrenProps> = {
-      props: {
-        ...props,
-        className: s.messageForm,
-        events: {
-          submit: (event: SubmitEvent | Event) => {
-            event.preventDefault();
+export class MessageForm extends Component<
+  TDefaultProps,
+  TMessageChildrenProps
+> {
+  constructor(messageFormProps: TMessageFormProps) {
+    const props: TDefaultProps = {
+      className: s.messageForm,
+      events: {
+        submit: (event: SubmitEvent | Event) => {
+          event.preventDefault();
 
-            if (event.currentTarget && event instanceof SubmitEvent) {
-              const formData = new FormData(
-                event.currentTarget as HTMLFormElement,
-              );
-              console.log(...formData);
-            }
-          },
+          if (event.currentTarget && event instanceof SubmitEvent) {
+            const formData = new FormData(
+              event.currentTarget as HTMLFormElement,
+            );
+            console.log(...formData);
+          }
         },
       },
-      children: {
-        dropdown: new Dropdown(props.dropdownAdd),
-        sendButton: new Button(props.sendButton),
-        textarea: new Textarea(props.input),
-      },
+    };
+
+    const children: TMessageChildrenProps = {
+      dropdown: new Dropdown(messageFormProps.dropdownAdd),
+      sendButton: new Button(messageFormProps.sendButton),
+      textarea: new Textarea(messageFormProps.input),
+    };
+
+    const componentProps = {
+      props,
+      children,
     };
     super('form', componentProps);
   }

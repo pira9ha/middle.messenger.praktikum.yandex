@@ -1,4 +1,3 @@
-import { TMainPageContext } from '../../lib/types/mainPage.ts';
 import {
   ChatsPage,
   LoginPage,
@@ -7,8 +6,9 @@ import {
   SigninPage,
 } from '@/pages';
 import { ProfilePage } from '@/pages/profile-page/ui/ProfilePage.ts';
+import { TMainPageContext } from '@/pages/main-page/lib/types/mainPage.ts';
 
-export const context: TMainPageContext = {
+export const contextPages = {
   login: {
     name: 'login',
     component: () => LoginPage(),
@@ -58,3 +58,5 @@ export const context: TMainPageContext = {
     },
   },
 };
+
+export const context: TMainPageContext = { links: Object.values(contextPages) };

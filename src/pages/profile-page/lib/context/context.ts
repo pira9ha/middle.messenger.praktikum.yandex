@@ -15,43 +15,43 @@ import { arrowLeftIcon } from '@/shared/svg';
 import { TLinkProps } from '@/shared/ui/link';
 
 const profileContext: IProfilePageContext['profileContext'] = {
-  info: {
-    email: {
+  info: [
+    {
       field: 'Почта',
       value: 'saigafarova00@yandex.ru',
     },
-    login: {
+    {
       field: 'Логин',
       value: 'pira9ha',
     },
-    first_name: {
+    {
       field: 'Имя',
       value: 'MyName',
     },
-    second_name: {
+    {
       field: 'Фамилия',
       value: 'MySecondName',
     },
-    display_name: {
+    {
       field: 'Имя в чате',
       value: 'My name',
     },
-    phone: {
+    {
       field: 'Телефон',
       value: '+7 (800) 555 35 35',
     },
-  },
+  ],
   controls: {
     links: [
       {
         path: PROFILE_EDIT,
         title: 'Изменить данные',
-        className: s.editLink,
+        classNames: s.editLink,
       },
       {
         path: PROFILE_PASSWORD_EDIT,
         title: 'Изменить пароль',
-        className: s.editLink,
+        classNames: s.editLink,
       },
     ],
     buttons: [
@@ -64,8 +64,8 @@ const profileContext: IProfilePageContext['profileContext'] = {
 };
 
 const formEditContext: IProfilePageContext['formEditContext'] = {
-  fields: {
-    email: {
+  fields: [
+    {
       input: {
         name: 'email',
         type: 'email',
@@ -76,7 +76,7 @@ const formEditContext: IProfilePageContext['formEditContext'] = {
         for: 'email',
       },
     },
-    login: {
+    {
       input: {
         name: 'login',
         value: 'pira9ha',
@@ -86,7 +86,7 @@ const formEditContext: IProfilePageContext['formEditContext'] = {
         for: 'login',
       },
     },
-    first_name: {
+    {
       input: {
         name: 'first_name',
         value: 'MyName',
@@ -96,7 +96,7 @@ const formEditContext: IProfilePageContext['formEditContext'] = {
         for: 'first_name',
       },
     },
-    second_name: {
+    {
       input: {
         name: 'second_name',
         value: 'MySecondName',
@@ -106,7 +106,7 @@ const formEditContext: IProfilePageContext['formEditContext'] = {
         for: 'second_name',
       },
     },
-    display_name: {
+    {
       input: {
         name: 'display_name',
         value: 'My name',
@@ -116,7 +116,7 @@ const formEditContext: IProfilePageContext['formEditContext'] = {
         for: 'display_name',
       },
     },
-    phone: {
+    {
       input: {
         name: 'phone',
         value: '+7 (800) 555 35 35',
@@ -126,19 +126,19 @@ const formEditContext: IProfilePageContext['formEditContext'] = {
         for: 'phone',
       },
     },
-  },
+  ],
   buttons: [
     {
       title: 'Сохранить',
       customClass: s.formButton,
     },
   ],
-  className: s.editForm,
+  classNames: s.editForm,
 };
 
 const formPasswordContext: IProfilePageContext['formPasswordContext'] = {
-  fields: {
-    oldPassword: {
+  fields: [
+    {
       input: {
         name: 'old_password',
         type: 'password',
@@ -148,7 +148,7 @@ const formPasswordContext: IProfilePageContext['formPasswordContext'] = {
         for: 'old_password',
       },
     },
-    newPassword: {
+    {
       input: {
         name: 'new_password',
         type: 'password',
@@ -158,7 +158,7 @@ const formPasswordContext: IProfilePageContext['formPasswordContext'] = {
         for: 'new_password',
       },
     },
-    passwordCheck: {
+    {
       input: {
         name: 'password_check',
         type: 'password',
@@ -168,25 +168,25 @@ const formPasswordContext: IProfilePageContext['formPasswordContext'] = {
         for: 'password_check',
       },
     },
-  },
+  ],
   buttons: [
     {
       title: 'Сохранить',
       customClass: s.formButton,
     },
   ],
-  className: s.editForm,
+  classNames: s.editForm,
 };
 
 const reset: IProfilePageContext['reset'] = {
   title: 'Отменить',
-  className: s.resetLink,
+  classNames: s.resetLink,
   path: PROFILE,
 };
 
 const link: TLinkProps = {
   type: 'icon',
-  className: s.profileLink,
+  classNames: s.profileLink,
   icon: arrowLeftIcon,
 };
 

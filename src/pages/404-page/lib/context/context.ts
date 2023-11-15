@@ -8,7 +8,7 @@ export const context: TErrorPageContext = {
   },
   link: {
     title: 'Назад',
-    className: s.link,
+    classNames: s.link,
     isBackButton: true,
   },
 };

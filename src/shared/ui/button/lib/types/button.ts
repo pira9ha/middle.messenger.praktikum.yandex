@@ -8,10 +8,10 @@ export enum ButtonVariant {
   ICON = 'icon',
 }
 
-export interface IButtonProps extends IButtonFields {
+export type IButtonProps = {
   variant?: ButtonVariant;
   customClass?: string;
   iconImage?: string;
   width?: number;
   height?: number;
-}
+} & IButtonFields;

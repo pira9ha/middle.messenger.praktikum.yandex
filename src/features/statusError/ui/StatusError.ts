@@ -2,12 +2,12 @@ import Handlebars from 'handlebars';
 import statusError from './statusError.template.ts';
 import Component from '@/shared/lib/component/Component.ts';
 import s from './statusError.module.scss';
-import { IComponentProps } from '@/shared/lib/component/componentTypes.ts';
+import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 import { TStatusErrorProps } from '../lib/types/statusError.ts';
 
-export class StatusError extends Component {
+export class StatusError extends Component<TStatusErrorProps & TDefaultProps> {
   constructor(props: TStatusErrorProps) {
-    const componentProps: IComponentProps = {
+    const componentProps = {
       props: {
         ...props,
         className: s.statusError,

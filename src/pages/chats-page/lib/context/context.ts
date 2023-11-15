@@ -160,7 +160,7 @@ export const context = (): TChatPageContext => {
       link: {
         path: PROFILE,
         title: 'Мой профиль',
-        className: s.chatsLink,
+        classNames: s.chatsLink,
       },
       searchInput: {
         input: {

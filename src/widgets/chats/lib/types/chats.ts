@@ -22,5 +22,5 @@ export type TChatChildren = {
 };
 
 export type TChatsChildren = {
-  chats: Chat;
+  chats: Chat[];
 };

@@ -1,7 +1,7 @@
 import Component from '@/shared/lib/component/Component.ts';
 import s from './controls.module.scss';
 import { Link } from '@/shared/ui/link';
-import { IComponentProps } from '@/shared/lib/component/componentTypes.ts';
+import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 import {
   TControlsChildren,
   TControlsProps,
@@ -10,7 +10,10 @@ import { Button } from '@/shared/ui/button';
 import Handlebars from 'handlebars';
 import controls from './controls.template.ts';
 
-export class Controls extends Component {
+export class Controls extends Component<
+  TControlsProps & TDefaultProps,
+  TControlsChildren
+> {
   constructor(controlsProps: TControlsProps) {
     const props = {
       ...controlsProps,
@@ -22,7 +25,7 @@ export class Controls extends Component {
       links: controlsProps.links.map((link) => new Link(link)),
     };
 
-    const componentProps: IComponentProps<TControlsChildren> = {
+    const componentProps = {
       props,
       children,
     };

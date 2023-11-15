@@ -3,7 +3,7 @@ import s from './profilePage.module.scss';
 import profile from './profilePage.template';
 import { profileInfoPageContext } from '../lib/context/context.ts';
 import Component from '@/shared/lib/component/Component.ts';
-import { IComponentProps } from '@/shared/lib/component/componentTypes.ts';
+import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 import {
   IProfilePageChildren,
   IProfilePageProps,
@@ -12,7 +12,10 @@ import { ProfileInfo } from './components/profileInfo/ProfileInfo.ts';
 import { UserAvatar } from '@/features/userAvatar';
 import { Link } from '@/shared/ui/link';
 
-export class ProfilePageComponent extends Component {
+export class ProfilePageComponent extends Component<
+  IProfilePageProps & TDefaultProps,
+  IProfilePageChildren
+> {
   constructor(profileProps: IProfilePageProps) {
     const props = {
       ...profileProps,
@@ -25,7 +28,7 @@ export class ProfilePageComponent extends Component {
       profileInfo: new ProfileInfo(profileProps.profileContext),
     };
 
-    const componentProps: IComponentProps<IProfilePageChildren> = {
+    const componentProps = {
       props,
       children,
     };

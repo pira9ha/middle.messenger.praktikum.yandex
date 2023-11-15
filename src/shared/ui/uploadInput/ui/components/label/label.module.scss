@@ -1,0 +1,18 @@
+.label {
+  font: var(--font-12-500);
+  color: var(--color-green);
+  text-decoration: underline;
+  cursor: pointer;
+  display: block;
+  width: 122px;
+  margin: 0 auto;
+}
+
+.inputHide {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}

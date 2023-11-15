@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 import s from './serverErrorPage.module.scss';
 import Component from '@/shared/lib/component/Component.ts';
-import { IComponentProps } from '@/shared/lib/component/componentTypes.ts';
+import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 import serverErrorPage from './serverErrorPage.template';
 import { context } from '../lib/context/context.ts';
 import {
@@ -11,9 +11,12 @@ import {
 import { Link } from '@/shared/ui/link';
 import { StatusError } from '@/features/statusError';
 
-export class ServerErrorPageComponent extends Component {
+export class ServerErrorPageComponent extends Component<
+  TErrorPageContext & TDefaultProps,
+  TErrorPageChildren
+> {
   constructor(props: TErrorPageContext) {
-    const componentProps: IComponentProps<TErrorPageChildren> = {
+    const componentProps = {
       props: {
         ...props,
         className: s.page,

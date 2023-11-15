@@ -1,4 +1,4 @@
-import { IUser, TUserChangePassword } from '@/models/user';
+import { IUser } from '@/models/user';
 import { Controls } from '@/pages/profile-page/ui/components/controls/Controls.ts';
 import { ProfileInfoField } from '../../ui/components/profileInfoField/ProfileInfoField.ts';
 import { TControlsProps } from './controls.ts';
@@ -9,14 +9,13 @@ import { UserAvatar } from '@/features/userAvatar';
 import { ProfileInfo } from '@/pages/profile-page/ui/components/profileInfo/ProfileInfo.ts';
 import { Form } from '@/features/form';
 
-export type TUserFields = Omit<IUser, 'id' | 'avatar'>;
 type TData = {
   field: string;
   value: string;
 };
 
 export type TProfileInfoProps = {
-  info: Record<keyof TUserFields, TData>;
+  info: TData[];
   controls: TControlsProps;
 };
 
@@ -35,8 +34,8 @@ export type IProfileContext = {
 export type IProfilePageContext = {
   reset?: TLinkProps;
   profileContext?: TProfileInfoProps;
-  formEditContext?: TFormProps<TUserFields>;
-  formPasswordContext?: TFormProps<TUserChangePassword>;
+  formEditContext?: TFormProps;
+  formPasswordContext?: TFormProps;
 } & IProfileContext;
 
 export type IProfilePageProps = {
@@ -45,12 +44,12 @@ export type IProfilePageProps = {
 
 export type IProfileEditPageProps = {
   reset: TLinkProps;
-  formEditContext: TFormProps<TUserFields>;
+  formEditContext: TFormProps;
 } & IProfileContext;
 
 export type IProfileEditPasswordPageProps = {
   reset: TLinkProps;
-  formPasswordContext: TFormProps<TUserChangePassword>;
+  formPasswordContext: TFormProps;
 } & IProfileContext;
 
 export type IProfilePageChildren = {
@@ -58,6 +57,6 @@ export type IProfilePageChildren = {
   link: Link;
   reset?: Link;
   profileInfo?: ProfileInfo;
-  formEdit?: Form<TUserFields>;
-  formPassword?: Form<TUserChangePassword>;
+  formEdit?: Form;
+  formPassword?: Form;
 };

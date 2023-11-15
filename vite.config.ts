@@ -8,6 +8,7 @@ export default defineConfig({
     alias: [
       { find: '@/pages', replacement: resolve(__dirname, 'src/pages') },
       { find: '@/shared', replacement: resolve(__dirname, 'src/shared') },
+      { find: '@/app', replacement: resolve(__dirname, 'src/app') },
       {
         find: '@/widgets',
         replacement: resolve(__dirname, 'src/widgets'),
@@ -23,6 +24,7 @@ export default defineConfig({
   build: {
     outDir: resolve(__dirname, 'dist'),
   },
+  appType: 'spa',
   plugins: [handlebars() as unknown as Plugin],
   css: {
     preprocessorOptions: {

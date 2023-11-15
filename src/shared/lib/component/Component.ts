@@ -2,11 +2,16 @@ import EventBus from '@/shared/lib/eventBus/EventBus.ts';
 import {
   IComponentProps,
   Tag,
+  TDefaultChildren,
+  TDefaultProps,
   TMeta,
 } from '@/shared/lib/component/componentTypes.ts';
 import { v4 as makeUUID } from 'uuid';
 
-class Component<Props extends IComponentProps = IComponentProps> {
+abstract class Component<
+  Props extends TDefaultProps = TDefaultProps,
+  Children extends TDefaultChildren = TDefaultChildren,
+> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -15,16 +20,16 @@ class Component<Props extends IComponentProps = IComponentProps> {
   };
 
   private _element: HTMLElement | null = null;
-  private _meta: TMeta<Props>;
+  private _meta: TMeta<IComponentProps<Props, Children>>;
   private _elementId: string;
   private _isNeedUpdate = false;
 
   private eventBus: () => EventBus;
-  public props: IComponentProps['props'];
-  public children: IComponentProps['children'];
+  public props: Props;
+  public children: Children | Record<string, unknown>;
 
-  constructor(tagName: Tag = 'div', props: Props) {
-    const { props: elementProps, children } = this._getChildren(props);
+  constructor(tagName: Tag = 'div', props: IComponentProps<Props, Children>) {
+    const { props: elementProps, children = {} } = props;
 
     const eventBus = new EventBus();
     this._meta = {
@@ -80,10 +85,7 @@ class Component<Props extends IComponentProps = IComponentProps> {
     this.eventBus().emit(Component.EVENTS.FLOW_CDM);
   }
 
-  _componentDidUpdate(
-    oldProps: IComponentProps['props'],
-    newProps: IComponentProps['props'],
-  ) {
+  _componentDidUpdate(oldProps: Props, newProps: Props) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
@@ -91,10 +93,7 @@ class Component<Props extends IComponentProps = IComponentProps> {
     this._render();
   }
 
-  componentDidUpdate(
-    oldProps: IComponentProps['props'],
-    newProps: IComponentProps['props'],
-  ) {
+  componentDidUpdate(oldProps: Props, newProps: Props) {
     const newPropsValues = Object.entries(newProps);
 
     for (const [key, value] of newPropsValues) {
@@ -106,7 +105,7 @@ class Component<Props extends IComponentProps = IComponentProps> {
     return false;
   }
 
-  setProps(nextProps: IComponentProps['props']) {
+  setProps(nextProps: Props | Partial<Props>) {
     if (!nextProps) {
       return;
     }
@@ -125,8 +124,8 @@ class Component<Props extends IComponentProps = IComponentProps> {
   }
 
   compile(
-    template?: (props?: IComponentProps['props']) => string,
-    props?: IComponentProps['props'],
+    template?: (props?: Props) => string,
+    props?: Props,
   ): DocumentFragment {
     if (typeof props === 'undefined') {
       props = this.props;
@@ -143,16 +142,16 @@ class Component<Props extends IComponentProps = IComponentProps> {
     if (typeof this.children === 'string') {
       fragment.innerHTML = template();
     } else {
-      this._setTemplateChildrens({ ...props }, fragment, template);
+      this._setTemplateChildren({ ...props }, fragment, template);
     }
 
     return fragment.content;
   }
 
-  _setTemplateChildrens(
-    props: IComponentProps['props'],
+  _setTemplateChildren(
+    props: Props,
     fragment: HTMLTemplateElement,
-    template: (props?: IComponentProps['props']) => string,
+    template: (props?: Props) => string,
   ) {
     if (!this.children) {
       return;
@@ -164,12 +163,17 @@ class Component<Props extends IComponentProps = IComponentProps> {
       if (Array.isArray(children)) {
         children.forEach((child, i) => {
           const propsChild = propsItem[key];
+
           if (Array.isArray(propsChild)) {
             propsChild[i] = `<div data-id="${child._elementId}"></div>`;
+          } else {
+            (propsItem as TDefaultProps)[
+              key
+            ] = `<div data-id="${child._elementId}"></div>`;
           }
         });
       } else {
-        propsItem[key] =
+        (propsItem as TDefaultProps)[key] =
           children instanceof Component
             ? `<div data-id="${children._elementId}"></div>`
             : '';
@@ -218,32 +222,26 @@ class Component<Props extends IComponentProps = IComponentProps> {
     return this.element;
   }
 
-  _makePropsProxy(props: IComponentProps['props']): IComponentProps['props'] {
+  _makePropsProxy(props: Props): Props {
     const self = this;
 
     return new Proxy(props, {
-      get(target: IComponentProps['props'], prop: string) {
+      get(target: Props, prop: string) {
         const value = target[prop];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target: IComponentProps['props'], prop: string, value: unknown) {
+      set(target: Props, prop: string, value: unknown) {
         if (target[prop] !== value) {
           self._isNeedUpdate = true;
         }
 
-        target[prop] = value;
+        (target as TDefaultProps)[prop] = value;
         return true;
       },
       deleteProperty() {
         throw new Error('Нет доступа');
       },
     });
-  }
-
-  _getChildren(propsAndChildren: IComponentProps): IComponentProps {
-    const { children = {}, props = {} } = propsAndChildren;
-
-    return { children, props };
   }
 
   _createDocumentElement(tagName: Tag) {
@@ -260,7 +258,11 @@ class Component<Props extends IComponentProps = IComponentProps> {
 
     if (Array.isArray(className)) {
       className.forEach((elementClass) => {
-        element.classList.add(elementClass);
+        if (Array.isArray(elementClass)) {
+          elementClass.forEach((style) => element.classList.add(style));
+        } else {
+          element.classList.add(elementClass || '');
+        }
       });
     } else {
       element.classList.add(className);

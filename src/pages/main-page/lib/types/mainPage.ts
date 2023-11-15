@@ -6,7 +6,9 @@ type TPage = {
   component(): string | Component;
   link: TLinkProps;
 };
-export type TMainPageContext = Record<string, TPage>;
+export type TMainPageContext = {
+  links: TPage[];
+};
 export type TMainPageChildren = {
   links: Link[];
 };

@@ -2,7 +2,7 @@ import Handlebars from 'handlebars';
 import s from './notFoundPage.module.scss';
 import notFoundPage from './notFoundPage.template';
 import { context } from '../lib/context/context.ts';
-import { IComponentProps } from '@/shared/lib/component/componentTypes.ts';
+import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 import {
   TErrorPageChildren,
   TErrorPageContext,
@@ -11,9 +11,12 @@ import Component from '@/shared/lib/component/Component.ts';
 import { Link } from '@/shared/ui/link';
 import { StatusError } from '@/features/statusError';
 
-export class NotFoundPageComponent extends Component {
+export class NotFoundPageComponent extends Component<
+  TErrorPageContext & TDefaultProps,
+  TErrorPageChildren
+> {
   constructor(props: TErrorPageContext) {
-    const componentProps: IComponentProps<TErrorPageChildren> = {
+    const componentProps = {
       props: {
         ...props,
         className: s.page,

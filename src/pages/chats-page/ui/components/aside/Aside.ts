@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars';
 import Component from '@/shared/lib/component/Component.ts';
-import { IComponentProps } from '@/shared/lib/component/componentTypes.ts';
+import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 import s from './aside.module.scss';
 import aside from './aside.template.ts';
 import { Chats } from '@/widgets/chats';
@@ -11,9 +11,12 @@ import {
 import { Link } from '@/shared/ui/link';
 import { InputField } from '@/shared/ui/inputField';
 
-export class Aside extends Component {
+export class Aside extends Component<
+  TAsideProps & TDefaultProps,
+  TAsideChildren
+> {
   constructor(props: TAsideProps) {
-    const componentProps: IComponentProps<TAsideChildren> = {
+    const componentProps = {
       props: {
         ...props,
         className: s.chats,

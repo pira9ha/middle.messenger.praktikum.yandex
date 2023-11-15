@@ -4,9 +4,11 @@ import s from './userAvatar.module.scss';
 export default `
     <div class="${s.avatarWrapper}">
         {{{ avatar }}}
-        <div class="${s.changeAvatar}">Поменять<br>аватар</div>
+        {{{ avatarEdit }}}
     </div>
     {{#if name }}
         <span>{{ name }}</span>
     {{/if}}
+    
+    {{{ modal }}}
 `;

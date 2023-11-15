@@ -14,17 +14,18 @@ export type TModalLoadFile = {
 
 export type TModalProps = {
   content: TModalContentProps;
-  handleClose(): void;
+  isOpen?: boolean;
+  handleClose?: (event?: Event) => void;
 };
 
 export type TModalContentProps = {
   title: string;
-  formContext?: TFormProps<TModalLoadFile | TModalCreateOrDelete>;
+  formContext?: TFormProps;
   buttons?: IButtonProps[];
 };
 
 export type IModalContentChildren = {
-  form?: Form<TModalLoadFile | TModalCreateOrDelete>;
+  form?: Form;
   buttons?: Button[];
 };
 

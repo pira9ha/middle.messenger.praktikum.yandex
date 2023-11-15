@@ -6,14 +6,20 @@ import {
   TChatContentChildren,
   TOpenedChat,
 } from '@/pages/chats-page/lib/types/chat.ts';
-import { IComponentProps } from '@/shared/lib/component/componentTypes.ts';
+import {
+  IComponentProps,
+  TDefaultProps,
+} from '@/shared/lib/component/componentTypes.ts';
 import { MessageForm } from '@/widgets/messageForm/ui/MessageForm.ts';
 import { Header } from '@/pages/chats-page/ui/components/header/Header.ts';
 import { Message } from '@/features/message';
 
 export class ChatContent extends Component {
-  constructor(chatContentProps?: TOpenedChat) {
-    const componentProps: IComponentProps<TChatContentChildren> = {
+  constructor(chatContentProps: TOpenedChat) {
+    const componentProps: IComponentProps<
+      TOpenedChat & TDefaultProps,
+      TChatContentChildren
+    > = {
       props: {
         ...chatContentProps,
         isChatOpen: Boolean(chatContentProps),

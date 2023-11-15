@@ -5,16 +5,15 @@ import { classNames } from '@/shared/lib/utils/classNames.ts';
 
 export class Overlay extends Component {
   constructor(overlayProps: TOverlayProps) {
-    const componentProps = {
-      props: {
-        className: classNames(s.overlay, [overlayProps?.className]),
-        events: {
-          click: (event: MouseEvent | Event) => {
-            overlayProps?.onClick?.(event);
-          },
+    const props = {
+      className: classNames(s.overlay, [overlayProps?.className]),
+      events: {
+        click: (event: MouseEvent | Event) => {
+          overlayProps?.onClick?.(event);
         },
       },
     };
+    const componentProps = { props };
     super('div', componentProps);
   }
 

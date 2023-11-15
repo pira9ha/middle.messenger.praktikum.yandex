@@ -2,7 +2,7 @@ import Handlebars from 'handlebars';
 import mainPage from './mainPage.template';
 import { context } from '@/pages/main-page/lib/context/context.ts';
 import Component from '@/shared/lib/component/Component.ts';
-import { IComponentProps } from '@/shared/lib/component/componentTypes.ts';
+import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 import {
   TMainPageChildren,
   TMainPageContext,
@@ -10,17 +10,18 @@ import {
 import { Link } from '@/shared/ui/link';
 import s from './mainPage.module.scss';
 
-export class MainPageComponent extends Component {
+export class MainPageComponent extends Component<
+  TMainPageContext & TDefaultProps,
+  TMainPageChildren
+> {
   constructor(mainPageProps: TMainPageContext) {
-    const links = Object.values(mainPageProps).map((prop) => prop.link);
-    const componentProps: IComponentProps<TMainPageChildren> = {
+    const componentProps = {
       props: {
         ...mainPageProps,
         className: s.mainPage,
-        links,
       },
       children: {
-        links: links.map((link) => new Link(link)),
+        links: mainPageProps.links.map((link) => new Link(link.link)),
       },
     };
 

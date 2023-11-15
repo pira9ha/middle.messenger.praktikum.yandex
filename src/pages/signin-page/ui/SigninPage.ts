@@ -5,13 +5,15 @@ import Component from '@/shared/lib/component/Component.ts';
 import s from '@/pages/login-page/ui/loginPage.module.scss';
 import { Form } from '@/features/form';
 import { Link } from '@/shared/ui/link';
-import { IComponentProps } from '@/shared/lib/component/componentTypes.ts';
 import {
   TSigninPageChildren,
   TSigninPageProps,
 } from '@/pages/signin-page/lib/types/signinPage.ts';
 
-export class SigninPageComponent extends Component {
+export class SigninPageComponent extends Component<
+  TSigninPageProps,
+  TSigninPageChildren
+> {
   constructor(signinPageProps: TSigninPageProps) {
     const props = {
       ...signinPageProps,
@@ -23,7 +25,7 @@ export class SigninPageComponent extends Component {
       link: new Link(signinPageProps.link),
     };
 
-    const componentProps: IComponentProps<TSigninPageChildren> = {
+    const componentProps = {
       props,
       children,
     };

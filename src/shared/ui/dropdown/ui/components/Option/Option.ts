@@ -1,16 +1,13 @@
 import Handlebars from 'handlebars';
 import { TOption } from '../../../lib/types/dropdown.ts';
 import Component from '@/shared/lib/component/Component.ts';
-import {
-  IComponentProps,
-  TProps,
-} from '@/shared/lib/component/componentTypes.ts';
+import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 import s from './option.module.scss';
 import option from './option.template.ts';
 
-export class Option extends Component {
-  constructor(props: TOption & TProps) {
-    const componentProps: IComponentProps = {
+export class Option extends Component<TOption & TDefaultProps> {
+  constructor(props: TOption) {
+    const componentProps = {
       props: {
         ...props,
         className: s.option,

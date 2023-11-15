@@ -1,15 +1,18 @@
 import Handlebars from 'handlebars';
 import Component from '@/shared/lib/component/Component.ts';
-import { IComponentProps } from '@/shared/lib/component/componentTypes.ts';
 import inputField from './inputField.template.ts';
-import { IInputFieldChildren, TInputFieldProps } from '../lib/types/input.ts';
+import { TInputFieldChildren, TInputFieldProps } from '../lib/types/input.ts';
 import s from './inputField.module.scss';
-import { Input } from './components/input/Input.ts';
+import { Input } from '@/shared/ui/input';
 import { Label } from './components/label/Label.ts';
+import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 
-export class InputField extends Component {
+export class InputField extends Component<
+  TInputFieldProps & TDefaultProps,
+  TInputFieldChildren
+> {
   constructor(fieldProps: TInputFieldProps) {
-    const componentProps: IComponentProps<IInputFieldChildren> = {
+    const componentProps = {
       props: {
         ...fieldProps,
         className: s.field,

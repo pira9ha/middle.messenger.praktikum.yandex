@@ -1,5 +1,5 @@
 import Component from '@/shared/lib/component/Component.ts';
-import { IComponentProps } from '@/shared/lib/component/componentTypes.ts';
+import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 import Handlebars from 'handlebars';
 import {
   TProfileInfoChildren,
@@ -9,20 +9,23 @@ import { Controls } from '../controls/Controls.ts';
 import { ProfileInfoField } from '../profileInfoField/ProfileInfoField.ts';
 import profileInfo from './profileInfo.template.ts';
 
-export class ProfileInfo extends Component {
+export class ProfileInfo extends Component<
+  TProfileInfoProps & TDefaultProps,
+  TProfileInfoChildren
+> {
   constructor(profileInfoProps: TProfileInfoProps) {
-    const info = Object.values(profileInfoProps.info);
     const props = {
       ...profileInfoProps,
-      info,
     };
 
     const children: TProfileInfoChildren = {
       controls: new Controls(profileInfoProps.controls),
-      info: info.map((infoField) => new ProfileInfoField(infoField)),
+      info: profileInfoProps.info.map(
+        (infoField) => new ProfileInfoField(infoField),
+      ),
     };
 
-    const componentProps: IComponentProps<TProfileInfoChildren> = {
+    const componentProps = {
       props,
       children,
     };

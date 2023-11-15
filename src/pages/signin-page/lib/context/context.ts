@@ -2,8 +2,8 @@ import s from '../../ui/signinPage.module.scss';
 import { TSigninPageProps } from '../types/signinPage.ts';
 
 const form: TSigninPageProps['form'] = {
-  fields: {
-    email: {
+  fields: [
+    {
       input: {
         name: 'email',
         type: 'email',
@@ -13,7 +13,7 @@ const form: TSigninPageProps['form'] = {
         for: 'email',
       },
     },
-    login: {
+    {
       input: {
         name: 'login',
       },
@@ -22,7 +22,7 @@ const form: TSigninPageProps['form'] = {
         for: 'login',
       },
     },
-    first_name: {
+    {
       input: {
         name: 'first_name',
       },
@@ -31,7 +31,7 @@ const form: TSigninPageProps['form'] = {
         for: 'first_name',
       },
     },
-    second_name: {
+    {
       input: {
         name: 'second_name',
       },
@@ -40,7 +40,7 @@ const form: TSigninPageProps['form'] = {
         for: 'second_name',
       },
     },
-    phone: {
+    {
       input: {
         name: 'phone',
         type: 'tel',
@@ -50,7 +50,7 @@ const form: TSigninPageProps['form'] = {
         for: 'phone',
       },
     },
-    password: {
+    {
       input: {
         name: 'password',
         type: 'password',
@@ -61,7 +61,7 @@ const form: TSigninPageProps['form'] = {
         for: 'password',
       },
     },
-    password_check: {
+    {
       input: {
         name: 'password_check',
         type: 'password',
@@ -72,20 +72,20 @@ const form: TSigninPageProps['form'] = {
         for: 'password_check',
       },
     },
-  },
+  ],
   buttons: [
     {
       type: 'submit',
       title: 'Зарегистрироваться',
     },
   ],
-  className: s.signinPage_form,
+  classNames: s.signinPage_form,
 };
 
 const link: TSigninPageProps['link'] = {
   path: '/login',
   title: 'Войти',
-  className: s.link,
+  classNames: s.link,
 };
 
 export const context = {

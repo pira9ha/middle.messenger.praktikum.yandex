@@ -1,14 +1,12 @@
 import Component from '@/shared/lib/component/Component.ts';
-import { IComponentProps } from '@/shared/lib/component/componentTypes.ts';
 import s from './avatar.module.scss';
 import { TAvatarProps } from '../../../lib/types/avatar.ts';
 import { DEFAULT_AVATAR } from '../../../lib/constants/avatar.ts';
 
 export class Avatar extends Component {
   constructor(props: TAvatarProps) {
-    const componentProps: IComponentProps = {
+    const componentProps = {
       props: {
-        ...props,
         className: s.avatarImage,
         attr: {
           alt: props?.altText || `Аватар пользователя ${props.name}`,

@@ -5,8 +5,9 @@ import s from './message.module.scss';
 import { classNames } from '@/shared/lib/utils/classNames.ts';
 import { MessageVariant, TMessageProps } from '../lib/types/message.ts';
 import { convertDate } from '@/shared/lib/utils/convertDate.ts';
+import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 
-export class Message extends Component {
+export class Message extends Component<TMessageProps & TDefaultProps> {
   constructor(messageProps: TMessageProps) {
     const isMainMessage = messageProps.user_id === messageProps.currentUserId;
     const variant = messageProps?.messageVariant || MessageVariant.TEXT;

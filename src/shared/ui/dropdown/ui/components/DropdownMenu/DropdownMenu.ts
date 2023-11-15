@@ -5,20 +5,20 @@ import {
   TDropdownMenu,
   TDropdownMenuChildren,
 } from '../../../lib/types/dropdown.ts';
-import {
-  IComponentProps,
-  TProps,
-} from '@/shared/lib/component/componentTypes.ts';
+import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 import { Option } from '../Option/Option.ts';
 import s from './dropdownMenu.module.scss';
 import dropdownMenu from './dropdownMenu.template.ts';
 import { classNames } from '@/shared/lib/utils/classNames.ts';
 
-export class DropdownMenu extends Component {
-  constructor(props: TDropdownMenu & TProps) {
+export class DropdownMenu extends Component<
+  TDropdownMenu & TDefaultProps,
+  TDropdownMenuChildren
+> {
+  constructor(props: TDropdownMenu) {
     const placeVariant = props.place || DropdownMenuPlace.BOTTOM_RIGHT;
 
-    const componentProps: IComponentProps<TDropdownMenuChildren> = {
+    const componentProps = {
       props: {
         ...props,
         className: classNames(s.dropdownMenu, [s[placeVariant]]),
@@ -40,7 +40,6 @@ export class DropdownMenu extends Component {
 
   render() {
     const template = Handlebars.compile(dropdownMenu);
-    // debugger;
     return this.compile(template);
   }
 }

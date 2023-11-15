@@ -4,7 +4,7 @@ import s from './modalContent.module.scss';
 export default `
     <span class="${s.modalTitle}">{{ title }}</span>
     {{#if formContext }}
-        {{{ this }}}
+        {{{ form }}}
     {{/if}}
     {{#if buttons }}
         {{#each buttons }}

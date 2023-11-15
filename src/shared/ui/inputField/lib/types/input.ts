@@ -1,15 +1,9 @@
-import { IInputFields } from '@/models/form.ts';
-import { Input } from '../../ui/components/input/Input.ts';
+import { Input } from '@/shared/ui/input/ui/Input.ts';
 import { Label } from '../../ui/components/label/Label.ts';
-import { TProps } from '@/shared/lib/component/componentTypes.ts';
-
-export interface IInputProps extends IInputFields {
-  className?: string;
-  events?: TProps['events'];
-}
+import { TInputProps } from '@/shared/ui/input';
 
 export type TInputFieldProps = {
-  input: IInputProps;
+  input: TInputProps;
   label: TLabelProps;
   icon?: string;
   iconStyle?: string;
@@ -17,10 +11,10 @@ export type TInputFieldProps = {
 
 export type TLabelProps = {
   labelText: string;
-  for: IInputProps['name'];
+  for: TInputProps['name'];
 };
 
-export interface IInputFieldChildren {
+export type TInputFieldChildren = {
   input: Input;
   label: Label;
-}
+};

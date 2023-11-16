@@ -18,7 +18,7 @@ export class ChatContent extends Component<
   TDefaultProps,
   TChatContentChildren
 > {
-  constructor(chatContentProps: TOpenedChat) {
+  constructor(chatContentProps?: TOpenedChat) {
     const componentProps: IComponentProps<TDefaultProps, TChatContentChildren> =
       {
         props: {

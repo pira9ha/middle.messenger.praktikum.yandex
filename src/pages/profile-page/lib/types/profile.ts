@@ -1,4 +1,3 @@
-import { IUser } from '@/models/user';
 import { Controls } from '@/pages/profile-page/ui/components/controls/Controls.ts';
 import { ProfileInfoField } from '../../ui/components/profileInfoField/ProfileInfoField.ts';
 import { TControlsProps } from './controls.ts';

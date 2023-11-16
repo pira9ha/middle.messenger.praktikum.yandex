@@ -18,7 +18,7 @@
   @include flex-center;
   @include transition;
 
-  background-color: rgb(var(--color-black), 0.5);
+  background-color: var(--overlay-shadow);
   color: var(--color-white);
   font: var(--font-13-500);
   transform: translateY(100%);

@@ -14,18 +14,18 @@ import { MessageForm } from '@/widgets/messageForm/ui/MessageForm.ts';
 import { Header } from '@/pages/chats-page/ui/components/header/Header.ts';
 import { Message } from '@/features/message';
 
-export class ChatContent extends Component {
+export class ChatContent extends Component<
+  TDefaultProps,
+  TChatContentChildren
+> {
   constructor(chatContentProps: TOpenedChat) {
-    const componentProps: IComponentProps<
-      TOpenedChat & TDefaultProps,
-      TChatContentChildren
-    > = {
-      props: {
-        ...chatContentProps,
-        isChatOpen: Boolean(chatContentProps),
-        className: s.chatWrapper,
-      },
-    };
+    const componentProps: IComponentProps<TDefaultProps, TChatContentChildren> =
+      {
+        props: {
+          isChatOpen: Boolean(chatContentProps),
+          className: s.chatWrapper,
+        },
+      };
 
     if (chatContentProps) {
       componentProps.children = {

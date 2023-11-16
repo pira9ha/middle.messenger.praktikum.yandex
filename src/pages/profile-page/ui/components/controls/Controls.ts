@@ -10,13 +10,9 @@ import { Button } from '@/shared/ui/button';
 import Handlebars from 'handlebars';
 import controls from './controls.template.ts';
 
-export class Controls extends Component<
-  TControlsProps & TDefaultProps,
-  TControlsChildren
-> {
+export class Controls extends Component<TDefaultProps, TControlsChildren> {
   constructor(controlsProps: TControlsProps) {
     const props = {
-      ...controlsProps,
       className: s.controlWrapper,
     };
 

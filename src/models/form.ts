@@ -4,6 +4,7 @@ export interface IInputFields {
   value?: string;
   placeholder?: string;
   autocomplete?: string;
+  accept?: string;
 }
 
 export interface IButtonFields {

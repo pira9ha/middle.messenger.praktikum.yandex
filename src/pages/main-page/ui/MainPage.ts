@@ -11,7 +11,7 @@ import { Link } from '@/shared/ui/link';
 import s from './mainPage.module.scss';
 
 export class MainPageComponent extends Component<
-  TMainPageContext & TDefaultProps,
+  TDefaultProps,
   TMainPageChildren
 > {
   constructor(mainPageProps: TMainPageContext) {

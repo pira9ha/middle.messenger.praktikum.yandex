@@ -3,10 +3,7 @@ import Handlebars from 'handlebars';
 import loginPage from '@/pages/login-page/ui/loginPage.template.ts';
 import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 import s from './loginPage.module.scss';
-import {
-  TLoginPageChildren,
-  TLoginPageProps,
-} from '@/pages/login-page/lib/types/loginPage.ts';
+import { TLoginPageChildren, TLoginPageProps } from '../lib/types/loginPage.ts';
 import { Form } from '@/features/form';
 import { Link } from '@/shared/ui/link';
 import { context } from '../lib/context/context';

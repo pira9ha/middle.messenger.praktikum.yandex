@@ -15,9 +15,12 @@ export class UserAvatar extends Component<
 > {
   constructor(props: IUserAvatarProps) {
     const isModalOpen = Boolean(props?.isModalOpen);
-    console.log(isModalOpen);
-    const modalHandler = () => {
-      this.setProps({ isModalOpen: !this.props.isModalOpen });
+    const openModalHandler = () => {
+      const { modal } = this.children;
+
+      if (modal && modal instanceof Modal) {
+        modal.show();
+      }
     };
 
     const componentProps = {
@@ -30,17 +33,29 @@ export class UserAvatar extends Component<
         avatar: new Avatar({ ...props }),
         avatarEdit: new AvatarEdit({
           styleName: s.changeAvatar,
-          onClick: modalHandler,
+          onClick: openModalHandler,
         }),
         modal: new Modal({
           ...modalContext,
-          isOpen: isModalOpen,
-          handleClose: modalHandler,
         }),
       },
     };
 
     super('div', componentProps);
+  }
+
+  override setProps(
+    nextProps:
+      | Partial<IUserAvatarProps & TDefaultProps>
+      | (IUserAvatarProps & TDefaultProps),
+  ) {
+    const { modal } = this.children;
+    const { isModalOpen } = this.props;
+    super.setProps(nextProps);
+
+    if (isModalOpen && modal instanceof Modal) {
+      modal.show();
+    }
   }
 
   render() {

@@ -162,7 +162,11 @@ abstract class Component<
 
       if (Array.isArray(children)) {
         children.forEach((child, i) => {
-          const propsChild = propsItem[key];
+          if (!propsItem[key]) {
+            (propsItem as TDefaultProps)[key] = [];
+          }
+
+          const propsChild = propsItem[key] ? propsItem[key] : [];
 
           if (Array.isArray(propsChild)) {
             propsChild[i] = `<div data-id="${child._elementId}"></div>`;

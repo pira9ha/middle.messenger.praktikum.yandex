@@ -9,30 +9,21 @@ import {
   ProfileEditPage,
   ProfileEditPasswordPage,
 } from '@/pages';
-import { DeleteChatModal } from '@/widgets/delete-chat-modal/DeleteChatModal.ts';
-import { CreateOrDeleteUserModal } from '@/widgets/create-or-delete-user-modal/CreateOrDeleteUserModal.ts';
-import {
-  PROFILE,
-  PROFILE_EDIT,
-  PROFILE_PASSWORD_EDIT,
-} from '@/pages/profile-page/lib/constants/profile.ts';
 import Component from '@/shared/lib/component/Component.ts';
+import { Routes } from './routes.ts';
 
 export const Router = (rootElement: Element) => {
   const currentPath = window.location.pathname;
 
-  const pages: Record<string, () => string | Component> = {
-    '/': MainPage,
-    '/login': LoginPage,
-    '/signin': SigninPage,
-    '/server-error': ServerErrorPage,
-    '/modal-delete-chat': DeleteChatModal,
-    '/modal-create-user': () => CreateOrDeleteUserModal({ isDelete: false }),
-    '/modal-delete-user': () => CreateOrDeleteUserModal({ isDelete: true }),
-    [PROFILE]: ProfilePage,
-    [PROFILE_EDIT]: ProfileEditPage,
-    [PROFILE_PASSWORD_EDIT]: ProfileEditPasswordPage,
-    '/chats': ChatsPage,
+  const pages: Record<string, () => Component> = {
+    [Routes.MAIN]: MainPage,
+    [Routes.LOGIN]: LoginPage,
+    [Routes.SIGNIN]: SigninPage,
+    [Routes.SERVER_ERROR]: ServerErrorPage,
+    [Routes.PROFILE]: ProfilePage,
+    [Routes.PROFILE_EDIT]: ProfileEditPage,
+    [Routes.PROFILE_PASSWORD_EDIT]: ProfileEditPasswordPage,
+    [Routes.CHATS]: ChatsPage,
   };
 
   let currentPage;
@@ -43,15 +34,11 @@ export const Router = (rootElement: Element) => {
     currentPage = NotFoundPage();
   }
 
-  if (currentPage instanceof Component) {
-    const page = currentPage.getContent();
+  const page = currentPage.getContent();
 
-    if (page) {
-      rootElement.appendChild(page);
-    } else {
-      throw new Error('Page element not exist');
-    }
+  if (page) {
+    rootElement.appendChild(page);
   } else {
-    rootElement.innerHTML = currentPage;
+    throw new Error('Page element not exist');
   }
 };

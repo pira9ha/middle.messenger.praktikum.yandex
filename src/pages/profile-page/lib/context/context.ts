@@ -1,9 +1,4 @@
 import s from '../../ui/profilePage.module.scss';
-import {
-  PROFILE,
-  PROFILE_EDIT,
-  PROFILE_PASSWORD_EDIT,
-} from '../constants/profile.ts';
 import { ButtonVariant } from '@/shared/ui/button';
 import {
   IProfileEditPageProps,
@@ -13,6 +8,8 @@ import {
 } from '../types/profile.ts';
 import { arrowLeftIcon } from '@/shared/svg';
 import { TLinkProps } from '@/shared/ui/link';
+import { Routes } from '@/widgets/router/routes.ts';
+import { Fields } from '@/shared/lib/validation/constants.ts';
 
 const profileContext: IProfilePageContext['profileContext'] = {
   info: [
@@ -44,12 +41,12 @@ const profileContext: IProfilePageContext['profileContext'] = {
   controls: {
     links: [
       {
-        path: PROFILE_EDIT,
+        path: Routes.PROFILE_EDIT,
         title: 'Изменить данные',
         classNames: s.editLink,
       },
       {
-        path: PROFILE_PASSWORD_EDIT,
+        path: Routes.PROFILE_PASSWORD_EDIT,
         title: 'Изменить пароль',
         classNames: s.editLink,
       },
@@ -75,6 +72,7 @@ const formEditContext: IProfilePageContext['formEditContext'] = {
         labelText: 'Почта',
         for: 'email',
       },
+      field: Fields.EMAIL,
     },
     {
       input: {
@@ -85,6 +83,7 @@ const formEditContext: IProfilePageContext['formEditContext'] = {
         labelText: 'Логин',
         for: 'login',
       },
+      field: Fields.LOGIN,
     },
     {
       input: {
@@ -95,6 +94,7 @@ const formEditContext: IProfilePageContext['formEditContext'] = {
         labelText: 'Имя',
         for: 'first_name',
       },
+      field: Fields.NAME,
     },
     {
       input: {
@@ -105,6 +105,7 @@ const formEditContext: IProfilePageContext['formEditContext'] = {
         labelText: 'Фамилия',
         for: 'second_name',
       },
+      field: Fields.NAME,
     },
     {
       input: {
@@ -125,12 +126,14 @@ const formEditContext: IProfilePageContext['formEditContext'] = {
         labelText: 'Телефон',
         for: 'phone',
       },
+      field: Fields.PHONE,
     },
   ],
   buttons: [
     {
       title: 'Сохранить',
       customClass: s.formButton,
+      type: 'submit',
     },
   ],
   classNames: s.editForm,
@@ -157,6 +160,7 @@ const formPasswordContext: IProfilePageContext['formPasswordContext'] = {
         labelText: 'Новый пароль',
         for: 'new_password',
       },
+      field: Fields.PASSWORD,
     },
     {
       input: {
@@ -173,6 +177,7 @@ const formPasswordContext: IProfilePageContext['formPasswordContext'] = {
     {
       title: 'Сохранить',
       customClass: s.formButton,
+      type: 'submit',
     },
   ],
   classNames: s.editForm,
@@ -181,7 +186,7 @@ const formPasswordContext: IProfilePageContext['formPasswordContext'] = {
 const reset: IProfilePageContext['reset'] = {
   title: 'Отменить',
   classNames: s.resetLink,
-  path: PROFILE,
+  path: Routes.PROFILE,
 };
 
 const link: TLinkProps = {

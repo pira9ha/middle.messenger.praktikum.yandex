@@ -1,6 +1,7 @@
-import s from '@/pages/login-page/ui/loginPage.module.scss';
+import s from '../../ui/loginPage.module.scss';
 import { TLinkProps } from '@/shared/ui/link';
 import { TFormProps } from '@/features/form/lib/types/form';
+import { Fields } from '@/shared/lib/validation/constants.ts';
 
 const form: TFormProps = {
   fields: [
@@ -12,6 +13,7 @@ const form: TFormProps = {
         labelText: 'Логин',
         for: 'login',
       },
+      field: Fields.LOGIN,
     },
     {
       input: {
@@ -23,6 +25,7 @@ const form: TFormProps = {
         labelText: 'Пароль',
         for: 'password',
       },
+      field: Fields.PASSWORD,
     },
   ],
   buttons: [
@@ -33,6 +36,7 @@ const form: TFormProps = {
   ],
   classNames: s.loginPage_form,
 };
+
 const link: TLinkProps = {
   path: '/signin',
   title: 'Нет аккаунта?',

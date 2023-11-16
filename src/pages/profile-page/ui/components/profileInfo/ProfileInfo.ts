@@ -10,14 +10,10 @@ import { ProfileInfoField } from '../profileInfoField/ProfileInfoField.ts';
 import profileInfo from './profileInfo.template.ts';
 
 export class ProfileInfo extends Component<
-  TProfileInfoProps & TDefaultProps,
+  TDefaultProps,
   TProfileInfoChildren
 > {
   constructor(profileInfoProps: TProfileInfoProps) {
-    const props = {
-      ...profileInfoProps,
-    };
-
     const children: TProfileInfoChildren = {
       controls: new Controls(profileInfoProps.controls),
       info: profileInfoProps.info.map(
@@ -26,7 +22,7 @@ export class ProfileInfo extends Component<
     };
 
     const componentProps = {
-      props,
+      props: {},
       children,
     };
 

@@ -1,5 +1,6 @@
 import s from '../../ui/signinPage.module.scss';
 import { TSigninPageProps } from '../types/signinPage.ts';
+import { Fields } from '@/shared/lib/validation/constants.ts';
 
 const form: TSigninPageProps['form'] = {
   fields: [
@@ -12,6 +13,7 @@ const form: TSigninPageProps['form'] = {
         labelText: 'Почта',
         for: 'email',
       },
+      field: Fields.EMAIL,
     },
     {
       input: {
@@ -21,6 +23,7 @@ const form: TSigninPageProps['form'] = {
         labelText: 'Логин',
         for: 'login',
       },
+      field: Fields.LOGIN,
     },
     {
       input: {
@@ -30,6 +33,7 @@ const form: TSigninPageProps['form'] = {
         labelText: 'Имя',
         for: 'first_name',
       },
+      field: Fields.NAME,
     },
     {
       input: {
@@ -39,6 +43,7 @@ const form: TSigninPageProps['form'] = {
         labelText: 'Фамилия',
         for: 'second_name',
       },
+      field: Fields.NAME,
     },
     {
       input: {
@@ -49,6 +54,7 @@ const form: TSigninPageProps['form'] = {
         labelText: 'Телефон',
         for: 'phone',
       },
+      field: Fields.PHONE,
     },
     {
       input: {
@@ -60,6 +66,7 @@ const form: TSigninPageProps['form'] = {
         labelText: 'Пароль',
         for: 'password',
       },
+      field: Fields.PASSWORD,
     },
     {
       input: {

@@ -12,6 +12,7 @@ export type TDefaultProps = {
   events?: Partial<Event>;
   attr?: Record<string, unknown>;
   className?: string | string[];
+  id?: number;
   [prop: string]: unknown;
 };
 

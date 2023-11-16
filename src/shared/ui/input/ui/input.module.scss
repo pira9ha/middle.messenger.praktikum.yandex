@@ -7,8 +7,12 @@
   outline: 1px;
   font: var(--font-13-500);
 
-  &:hover,
+  &:hover:not(&.error),
   &:focus {
     border-bottom-color: var(--color-green);
   }
+}
+
+.error {
+  border-bottom-color: var(--color-red);
 }

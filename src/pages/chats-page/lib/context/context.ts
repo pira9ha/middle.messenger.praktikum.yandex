@@ -3,7 +3,6 @@ import {
   TChatPageContext,
   TOpenedChat,
 } from '@/pages/chats-page/lib/types/chat.ts';
-import { PROFILE } from '@/pages/profile-page/lib/constants/profile.ts';
 import { ButtonVariant } from '@/shared/ui/button';
 import {
   arrowRightIcon,
@@ -19,6 +18,7 @@ import {
 } from '@/shared/svg';
 import { DropdownMenuPlace } from '@/shared/ui/dropdown/lib/types/dropdown.ts';
 import { TChatsProps } from '@/widgets/chats/lib/types/chats.ts';
+import { Routes } from '@/widgets/router/routes.ts';
 
 const chats: TChatsProps['chats'] = [
   {
@@ -158,7 +158,7 @@ export const context = (): TChatPageContext => {
         chats,
       },
       link: {
-        path: PROFILE,
+        path: Routes.PROFILE,
         title: 'Мой профиль',
         classNames: s.chatsLink,
       },

@@ -7,6 +7,7 @@ export const modalContext: TModalProps = {
       uploadInput: {
         labelText: 'Выбрать файл на компьютере',
         name: 'avatar',
+        value: undefined,
       },
       fields: [],
       buttons: [

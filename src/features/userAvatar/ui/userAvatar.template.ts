@@ -9,6 +9,4 @@ export default `
     {{#if name }}
         <span>{{ name }}</span>
     {{/if}}
-    
-    {{{ modal }}}
 `;

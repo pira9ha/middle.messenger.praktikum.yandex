@@ -11,6 +11,8 @@ export class Modal extends Component<
   TModalProps & TDefaultProps,
   IModalChildren
 > {
+  private _portal: Element | null;
+
   constructor(modalProps: TModalProps) {
     const props: TModalProps & TDefaultProps = {
       ...modalProps,
@@ -32,7 +34,7 @@ export class Modal extends Component<
             target instanceof Element &&
             !target.contains(modalCard.getContent())
           ) {
-            modalProps?.handleClose?.();
+            this.hide();
           }
         },
         className: s.overlay,
@@ -44,15 +46,23 @@ export class Modal extends Component<
       children,
     };
     super('div', componentProps);
+
+    this._portal = document.querySelector('#portal');
   }
 
-  override setProps(props: Partial<TModalProps & TDefaultProps>) {
-    super.setProps(props);
+  override show() {
+    const modalElement = this.getContent();
 
-    if (this.props?.isOpen) {
-      this.show();
-    } else {
-      this.hide();
+    if (this._portal && modalElement) {
+      this._portal.appendChild(modalElement);
+    }
+  }
+
+  override hide() {
+    const modalElement = this.getContent();
+
+    if (this._portal && modalElement) {
+      this._portal.removeChild(modalElement);
     }
   }
 

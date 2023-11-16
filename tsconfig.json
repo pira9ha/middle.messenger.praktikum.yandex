@@ -10,7 +10,6 @@
     "sourceMap": true,
     "strictNullChecks": true,
 
-    /* Bundler mode */
     "moduleResolution": "Node",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
@@ -18,7 +17,6 @@
     "noEmit": true,
     "esModuleInterop": true,
 
-    /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

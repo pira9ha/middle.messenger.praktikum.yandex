@@ -1,6 +1,6 @@
 export const EMAIL_PATTERN =
   /^[\w!#$%&'*+/=?`{|}~^-]+(?:\.[\w!#$%&'*+/=?`{|}~^-]+)*@(?:[A-Z0-9-]+\.)+[A-Z]$/;
-export const PHONE_PATTERN = /^[\+]?[0-9]{10,15}$/;
+export const PHONE_PATTERN = /^[+]?[0-9]{10,15}$/;
 export const NUMBERS_PATTERN = /^[0-9]+$/;
 export const UPPERS_PATTERN = /[A-Z]/;
 export const LOGIN_PATTERN = /^[a-zA-Z0-9_-]+$/;

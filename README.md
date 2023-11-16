@@ -18,7 +18,9 @@
 ## Компоненты
 
 Добавила компонентный подход в проект с помощью реализацию блока Component и Event Bus
+
 #### Component
+
 Абстрактный класс, выполненный на основе класса Block из курса. Изменила передачу пропсов и children, по сравнению с примером они передаются в компонент, типизированы коомпонентами, которые отрисуются. Такой подход позволил мне удобно работать напрямую с children.
 EventBus следит за событиями и обноалениями.
 
@@ -28,30 +30,33 @@ EventBus следит за событиями и обноалениями.
 import componentTemplate from './componentTemplate.template.ts';
 
 export class CustomComponent extends Component<
-    CustomComponentProps, CustomComponentChildren
+  CustomComponentProps,
+  CustomComponentChildren
 > {
-    constructor() {
-        const props = {
-            props: TDefaultProps, // Дефолтный тип пропса
-            children: CustomComponentChildren, // Потомки в компоненте
-        };
-        super(tag, props);
-    }
-    
-    render() {
-        // Если компонент имеет темплейт на Handlebars
-        const template = Handlebars.compile(componentTemplate);
-        return this.compile(template);
-    }
+  constructor() {
+    const props = {
+      props: TDefaultProps, // Дефолтный тип пропса
+      children: CustomComponentChildren, // Потомки в компоненте
+    };
+    super(tag, props);
+  }
+
+  render() {
+    // Если компонент имеет темплейт на Handlebars
+    const template = Handlebars.compile(componentTemplate);
+    return this.compile(template);
+  }
 }
 ```
 
 Более подробно можно посмотреть в проекте, примеры с children например в pages.
 
 #### HTTPTransport
+
 Класс для работы с запросами обертка для XMLHttpRequest. Реализованы методы GET, POST, PUT, DELETE. Добавила работу с query string в GET-запросе.
 
 ### Файловая структура
+
 Организовала структуру файлов на основе [FSD](https://feature-sliced.design/ru/docs/get-started/overview) c некоторыми упрощениями и допущениями на свой лад.
 Основа:
 

@@ -18,7 +18,7 @@ import {
 } from '@/shared/svg';
 import { DropdownMenuPlace } from '@/shared/ui/dropdown/lib/types/dropdown.ts';
 import { TChatsProps } from '@/widgets/chats/lib/types/chats.ts';
-import { Routes } from '@/widgets/router/routes.ts';
+import { Routes } from '@/shared/constants/routes.ts';
 
 const chats: TChatsProps['chats'] = [
   {

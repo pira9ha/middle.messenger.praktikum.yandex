@@ -8,7 +8,7 @@ import {
 } from '../types/profile.ts';
 import { arrowLeftIcon } from '@/shared/svg';
 import { TLinkProps } from '@/shared/ui/link';
-import { Routes } from '@/widgets/router/routes.ts';
+import { Routes } from '@/shared/constants/routes.ts';
 import { Fields } from '@/shared/lib/validation/constants.ts';
 
 const profileContext: IProfilePageContext['profileContext'] = {
@@ -207,9 +207,7 @@ export const profileInfoPageContext: IProfilePageProps = {
 };
 
 export const profileEditPageContext: IProfileEditPageProps = {
-  userAvatar: {
-    avatar: '../src/assets/img/default_avatar.png',
-  },
+  userAvatar: {},
   link: {
     ...link,
     isBackButton: true,
@@ -219,9 +217,7 @@ export const profileEditPageContext: IProfileEditPageProps = {
 };
 
 export const profileEditPasswordPageContext: IProfileEditPasswordPageProps = {
-  userAvatar: {
-    avatar: '../src/assets/img/default_avatar.png',
-  },
+  userAvatar: {},
   link: {
     ...link,
     isBackButton: true,

@@ -1,6 +1,7 @@
 import { TAvatarProps } from '../lib/types/avatar.ts';
 import s from './chatAvatar.module.scss';
 import Component from '@/shared/lib/component/Component.ts';
+import { DEFAULT_AVATAR } from '@/shared/constants/avatar.ts';
 
 export class ChatAvatar extends Component {
   constructor(props: TAvatarProps) {
@@ -9,7 +10,7 @@ export class ChatAvatar extends Component {
         className: s.avatarImage,
         attr: {
           alt: props?.alt || 'Аватар пользователя',
-          src: props?.avatar || './src/assets/img/default_avatar.png',
+          src: props?.avatar || DEFAULT_AVATAR,
         },
       },
     };

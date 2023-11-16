@@ -10,7 +10,7 @@ import {
   ProfileEditPasswordPage,
 } from '@/pages';
 import Component from '@/shared/lib/component/Component.ts';
-import { Routes } from './routes.ts';
+import { Routes } from '@/shared/constants/routes.ts';
 
 export const Router = (rootElement: Element) => {
   const currentPath = window.location.pathname;

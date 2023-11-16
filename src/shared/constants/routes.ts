@@ -1,7 +1,7 @@
 export enum Routes {
   PROFILE = '/profile',
-  PROFILE_EDIT = '/profile/edit',
-  PROFILE_PASSWORD_EDIT = '/profile/edit-password',
+  PROFILE_EDIT = '/settings',
+  PROFILE_PASSWORD_EDIT = '/edit-password',
   LOGIN = '/login',
   SIGNIN = '/signin',
   CHATS = '/chats',

@@ -51,7 +51,6 @@ abstract class Component<
   _registerEvents(eventBus: EventBus) {
     eventBus.on(Component.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Component.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-    // @ts-ignore
     eventBus.on(Component.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Component.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
@@ -139,11 +138,7 @@ abstract class Component<
       return fragment.content;
     }
 
-    if (typeof this.children === 'string') {
-      fragment.innerHTML = template();
-    } else {
-      this._setTemplateChildren({ ...props }, fragment, template);
-    }
+    this._setTemplateChildren({ ...props }, fragment, template);
 
     return fragment.content;
   }

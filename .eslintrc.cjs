@@ -29,5 +29,6 @@ module.exports = {
     'eol-last': ['error', 'always'],
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-this-alias': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
   },
 };

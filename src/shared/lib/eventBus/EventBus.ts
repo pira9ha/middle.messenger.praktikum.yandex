@@ -30,7 +30,7 @@ class EventBus implements IEventBus {
     );
   }
 
-  emit(event: string, ...args: unknown[]) {
+  emit(event: string, ...args: Parameters<TFunctionEvent>) {
     if (!this._listeners[event]) {
       throw new Error(`Событие ${event} не задано`);
     }

@@ -57,6 +57,17 @@ export class Form extends Component<TDefaultProps, TFormChildren> {
     }
   }
 
+  override setProps(nextProps: Partial<TDefaultProps> | TDefaultProps) {
+    super.setProps(nextProps);
+
+    if (this.children.uploadInput && nextProps?.value === undefined) {
+      const { uploadInput } = this.children;
+      if (uploadInput instanceof UploadInput) {
+        uploadInput.setProps({ value: undefined });
+      }
+    }
+  }
+
   render() {
     const template = Handlebars.compile(form);
     return this.compile(template);

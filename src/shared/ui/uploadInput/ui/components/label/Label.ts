@@ -1,6 +1,7 @@
 import Component from '@/shared/lib/component/Component.ts';
 import s from './label.module.scss';
 import {
+  TUploadLabel,
   TUploadLabelChildren,
   TUploadLabelProps,
   TUploadProps,
@@ -11,7 +12,7 @@ import label from './label.template.ts';
 import { Input } from '@/shared/ui/input';
 
 export class Label extends Component<
-  TUploadProps & TDefaultProps,
+  TUploadLabel & TDefaultProps,
   TUploadLabelChildren
 > {
   constructor(props: TUploadLabelProps) {
@@ -19,11 +20,13 @@ export class Label extends Component<
       this.setProps({
         labelText: fileName,
       });
+      this.element?.classList?.add(s.file);
     };
 
     const componentProps = {
       props: {
-        ...props,
+        name: props.name,
+        labelText: props.labelText,
         className: s.label,
         attr: {
           for: props.name,
@@ -54,9 +57,12 @@ export class Label extends Component<
     super.setProps(nextProps);
     const { input } = this.children;
 
-    if (input instanceof Input) {
-      const uploadedFiles = (input.element as HTMLInputElement).files?.length;
-      this.element?.classList?.add(uploadedFiles ? s.file : s.label);
+    if (nextProps?.value === undefined) {
+      if (input instanceof Input) {
+        input.setProps({ value: undefined });
+        this.element?.classList?.add(s.label);
+        return;
+      }
     }
   }
 

@@ -1,13 +1,13 @@
 import { InputField, TInputFieldProps } from '@/shared/ui/inputField';
 import { Button, IButtonProps } from '@/shared/ui/button';
-import { TUploadInputProps, UploadInput } from '@/shared/ui/uploadInput';
+import { TUploadProps, UploadInput } from '@/shared/ui/uploadInput';
 import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 
 export type TFormProps = {
   fields: TInputFieldProps[];
   buttons: IButtonProps[];
   classNames?: string;
-  uploadInput?: TUploadInputProps;
+  uploadInput?: TUploadProps;
   file?: string;
   events?: TDefaultProps['events'];
 };

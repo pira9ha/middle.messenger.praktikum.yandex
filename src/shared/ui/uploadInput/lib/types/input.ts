@@ -6,6 +6,13 @@ export type TUploadProps = {
   labelText: string;
   type?: TInputProps['type'];
   accept?: TInputProps['accept'];
+  events?: TInputProps['accept'];
+  value?: TInputProps['value'];
+};
+
+export type TUploadLabel = {
+  name: string;
+  labelText: string;
 };
 
 export type TUploadLabelProps = {

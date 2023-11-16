@@ -7,16 +7,14 @@ import s from './modal.module.scss';
 import { Overlay } from '@/shared/ui/overlay';
 import { ModalContent } from './components/modalContent/ModalContent.ts';
 
-export class Modal extends Component<
-  TModalProps & TDefaultProps,
-  IModalChildren
-> {
+export class Modal extends Component<TDefaultProps, IModalChildren> {
   private _portal: Element | null;
 
   constructor(modalProps: TModalProps) {
-    const props: TModalProps & TDefaultProps = {
-      ...modalProps,
-      className: s.modalWrapper,
+    const props: TDefaultProps = {
+      attr: {
+        class: s.modalWrapper,
+      },
     };
 
     const children: IModalChildren = {

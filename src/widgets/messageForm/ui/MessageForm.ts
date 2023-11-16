@@ -26,7 +26,7 @@ export class MessageForm extends Component<
             const formData = new FormData(
               event.currentTarget as HTMLFormElement,
             );
-            console.log(...formData);
+            console.log(Object.fromEntries(formData));
           }
         },
       },

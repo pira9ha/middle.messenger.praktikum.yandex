@@ -1,2 +1,2 @@
 export { UploadInput } from './ui/UploadInput.ts';
-export { type TUploadInputProps } from './lib/types/input.ts';
+export { type TUploadProps } from './lib/types/input.ts';

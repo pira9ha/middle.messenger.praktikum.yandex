@@ -12,11 +12,16 @@
   color: rgb(var(--color-dark-gray));
   font: var(--font-12-500);
   max-width: 400px;
-  border-radius: 0 12px 12px 12px;
+  border-radius: 0 12px 12px;
 
   & + & {
     margin-top: 10px;
   }
+}
+
+.file {
+  max-width: 316px;
+  max-height: 211px;
 }
 
 .mainMessage {

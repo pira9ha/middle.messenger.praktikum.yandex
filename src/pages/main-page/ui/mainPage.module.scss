@@ -1,11 +1,13 @@
 .mainPage {
   padding: 35px;
 
+  li {
+    a {
+      font: var(--font-20-500);
+    }
+  }
+
   li + li {
     margin-top: 20px;
   }
-}
-
-.link {
-  font: var(--font-20-500);
 }

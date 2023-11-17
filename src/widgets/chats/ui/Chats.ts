@@ -1,9 +1,34 @@
 import Handlebars from 'handlebars';
-import '../lib/utils/registerPartials';
+import Component from '@/shared/lib/component/Component.ts';
+import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
+import s from './chats.module.scss';
 import chats from './chats.template.ts';
-import { IChatsProps } from '../lib/types/chats.ts';
+import { TChatsProps, TChatsChildren } from '../lib/types/chats.ts';
+import { Chat } from './components/Chat.ts';
 
-export const Chats = (props: IChatsProps) => {
-	const template = Handlebars.compile(chats);
-	return template(props);
-};
+export class Chats extends Component<
+  TChatsProps & TDefaultProps,
+  TChatsChildren
+> {
+  constructor(chatProps: TChatsProps) {
+    const props: TChatsProps & TDefaultProps = {
+      ...chatProps,
+      className: s.chatsFeed,
+    };
+
+    const children: TChatsChildren = {
+      chats: chatProps.chats.map((chatElement) => new Chat(chatElement)),
+    };
+
+    const componentProps = {
+      props,
+      children,
+    };
+    super('div', componentProps);
+  }
+
+  render() {
+    const template = Handlebars.compile(chats);
+    return this.compile(template);
+  }
+}

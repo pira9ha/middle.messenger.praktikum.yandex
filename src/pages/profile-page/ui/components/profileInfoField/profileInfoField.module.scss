@@ -1,0 +1,14 @@
+.dataField {
+  font: var(--font-13-500);
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+
+  & + & {
+    border-top: 1px solid var(--color-light-mint);
+  }
+
+  .value {
+    color: var(--color-gray);
+  }
+}

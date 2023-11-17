@@ -1,0 +1,17 @@
+.modalCard {
+  @include card;
+  @include absolute-centered-block;
+  @include form-style;
+
+  form button {
+    margin-top: 40px;
+  }
+}
+
+.modalTitle {
+  font: var(--font-20-500);
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 40px;
+  text-align: center;
+}

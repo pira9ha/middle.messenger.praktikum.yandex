@@ -1,61 +1,62 @@
-import { TMainPageContext } from '../../lib/types/mainPage.ts';
-import { ChatsPage, LoginPage, NotFoundPage, ServerErrorPage, SigninPage } from '@/pages';
-import s from '../../ui/mainPage.module.scss';
+import {
+  ChatsPage,
+  LoginPage,
+  NotFoundPage,
+  ServerErrorPage,
+  SigninPage,
+} from '@/pages';
 import { ProfilePage } from '@/pages/profile-page/ui/ProfilePage.ts';
+import { TMainPageContext } from '@/pages/main-page/lib/types/mainPage.ts';
 
-export const context: TMainPageContext = {
-	login: {
-		name: 'login',
-		component: () => LoginPage(),
-		link: {
-			path: '/login',
-			title: 'Страница авторизации',
-			className: s.link
-		},
-	},
-	signin: {
-		name: 'signin',
-		component: () => SigninPage(),
-		link: {
-			path: '/signin',
-			title: 'Страница регистрации',
-			className: s.link
-		},
-	},
-	chats: {
-		name: 'chats',
-		component: () => ChatsPage(),
-		link: {
-			path: '/chats',
-			title: 'Страница чатов',
-			className: s.link
-		},
-	},
-	profile: {
-		name: 'profile',
-		component: () => ProfilePage(),
-		link: {
-			path: '/profile',
-			title: 'Профиль пользователя',
-			className: s.link
-		},
-	},
-	serverError: {
-		name: 'serverError',
-		component: () => ServerErrorPage(),
-		link: {
-			path: '/secret-page',
-			title: 'Страница ошибки 404',
-			className: s.link
-		},
-	},
-	notFound: {
-		name: 'notFound',
-		component: () => NotFoundPage(),
-		link: {
-			path: '/server-error',
-			title: 'Страница ошибок сервера',
-			className: s.link
-		},
-	},
+export const contextPages = {
+  login: {
+    name: 'login',
+    component: () => LoginPage(),
+    link: {
+      path: '/login',
+      title: 'Страница авторизации',
+    },
+  },
+  signin: {
+    name: 'signin',
+    component: () => SigninPage(),
+    link: {
+      path: '/signin',
+      title: 'Страница регистрации',
+    },
+  },
+  chats: {
+    name: 'chats',
+    component: () => ChatsPage(),
+    link: {
+      path: '/chats',
+      title: 'Страница чатов',
+    },
+  },
+  profile: {
+    name: 'profile',
+    component: () => ProfilePage(),
+    link: {
+      path: '/profile',
+      title: 'Профиль пользователя',
+    },
+  },
+  serverError: {
+    name: 'serverError',
+    component: () => ServerErrorPage(),
+    link: {
+      path: '/secret-page',
+      title: 'Страница ошибки 404',
+    },
+  },
+  notFound: {
+    name: 'notFound',
+    component: () => NotFoundPage(),
+    link: {
+      path: '/server-error',
+      title: 'Страница ошибок сервера',
+    },
+  },
 };
+
+export const context: TMainPageContext = { links: Object.values(contextPages) };

@@ -2,23 +2,25 @@ import s from './profilePage.module.scss';
 
 // language=hbs
 export default `
-    {{#> profileLayout }}
-        {{> link backButton }}
+    {{{ link }}}
+    
+    <div class="${s.profileWrapper}">
+        {{{ userAvatar }}}
         
-        <div class="${s.profileWrapper}">
-            {{> userAvatar avatar }}
-            
-            {{#if profileContext }}
-                {{> profileData profileContext }}
-            {{/if}}
-    
-            {{#if formEditContext }}
-                {{> form formEditContext }}
-            {{/if}}
-    
-            {{#if formPasswordContext }}
-                {{> form formPasswordContext }}
-            {{/if}}
-        </div>
-    {{/profileLayout}}
+        {{#if profileContext }}
+            {{{ profileInfo }}}
+        {{/if}}
+
+        {{#if formEditContext }}
+            {{{ formEdit }}}
+        {{/if}}
+
+        {{#if formPasswordContext }}
+            {{{ formPassword }}}
+        {{/if}}
+
+        {{#if reset }}
+            {{{ reset }}}
+        {{/if}}
+    </div>
 `;

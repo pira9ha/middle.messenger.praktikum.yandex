@@ -1,28 +1,11 @@
 .modalWrapper {
-  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
   z-index: var(--modal-index);
 }
 
-.modalCard {
-  @include card;
-  @include absolute-centered-block;
-  @include form-style;
-
-  form button {
-    margin-top: 40px;
-  }
-}
-
-.modalTitle {
-  font: var(--font-20-500);
-  width: 100%;
-  display: inline-block;
-  margin-bottom: 40px;
-  text-align: center;
-}
-
 .overlay {
-  background-color: rgba(var(--color-black), 0.5);
-  width: 100vw;
-  height: 100vh;
+  background-color: var(--overlay-shadow);
 }

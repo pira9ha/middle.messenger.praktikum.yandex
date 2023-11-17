@@ -1,0 +1,9 @@
+.avatarImage {
+  object-fit: cover;
+  border-radius: 50%;
+  width: 47px;
+  height: 47px;
+  overflow: hidden;
+  background-color: var(--color-light-gray);
+  font: var(--font-12-500);
+}

@@ -1,0 +1,11 @@
+.link {
+  text-decoration: none;
+  display: inline-block;
+  color: var(--color-green);
+  font: var(--font-12-500);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-light-green);
+  }
+}

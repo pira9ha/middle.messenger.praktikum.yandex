@@ -1,37 +1,50 @@
-import { TFormProps } from '@/features/form/ui/Form.ts';
-import s from '@/pages/login-page/ui/loginPage.module.scss';
-import { TLinkProps } from '@/shared/ui/link/Link.ts';
-import { IUserLogin } from '@/models/user.ts';
+import s from '../../ui/loginPage.module.scss';
+import { TLinkProps } from '@/shared/ui/link';
+import { TFormProps } from '@/features/form/lib/types/form';
+import { Fields } from '@/shared/lib/validation/constants.ts';
 
-const formContext: TFormProps<IUserLogin> = {
-	fieldsContext: {
-		login: {
-			name: 'login',
-			labelText: 'Логин',
-		},
-		password: {
-			name: 'password',
-			labelText: 'Пароль',
-			type: 'password',
-			autocomplete: 'off'
-		},
-	},
-	buttonContext: {
-		login: {
-			type: 'submit',
-			title: 'Войти',
-		}
-	},
-	className: s.loginPage_form,
+const form: TFormProps = {
+  fields: [
+    {
+      input: {
+        name: 'login',
+      },
+      label: {
+        labelText: 'Логин',
+        for: 'login',
+      },
+      field: Fields.LOGIN,
+    },
+    {
+      input: {
+        name: 'password',
+        type: 'password',
+        autocomplete: 'off',
+      },
+      label: {
+        labelText: 'Пароль',
+        for: 'password',
+      },
+      field: Fields.PASSWORD,
+    },
+  ],
+  buttons: [
+    {
+      type: 'submit',
+      title: 'Войти',
+    },
+  ],
+  classNames: s.loginPage_form,
 };
-const linkContext: TLinkProps = {
-	path: '/signin',
-	title: 'Нет аккаунта?',
-	className: s.link,
+
+const link: TLinkProps = {
+  path: '/signin',
+  title: 'Нет аккаунта?',
+  classNames: s.link,
 };
 
 export const context = {
-	formName: 'Вход',
-	formContext,
-	linkContext,
+  formName: 'Вход',
+  form,
+  link,
 };

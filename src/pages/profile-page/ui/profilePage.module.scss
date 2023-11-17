@@ -1,6 +1,19 @@
+.profilePage {
+  @include profile-layout;
+
+  height: fit-content;
+}
+
 .profileLink {
   position: absolute;
   top: 50%;
+}
+
+.resetLink {
+  font: var(--font-13-500);
+  margin: 20px auto;
+  width: fit-content;
+  display: block !important;
 }
 
 .profileWrapper {
@@ -17,6 +30,7 @@
 
 .editForm {
   margin-top: 50px;
+
   @include form-style;
 }
 

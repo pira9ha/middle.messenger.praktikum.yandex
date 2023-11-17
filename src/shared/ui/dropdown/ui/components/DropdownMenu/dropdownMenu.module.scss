@@ -1,0 +1,33 @@
+.dropdownMenu {
+  @include card;
+
+  padding: 8px;
+  font: var(--font-12-500);
+  min-width: 162px;
+  width: max-content;
+  margin: 0;
+  display: block;
+  position: absolute;
+  z-index: var(--dropdown-index);
+
+  &.top-left {
+    transform: translateY(-100%);
+    left: -20%;
+    top: -40%;
+  }
+
+  &.top-right {
+    transform: translate(-75%, -100%);
+    top: -40%;
+  }
+
+  &.bottom-left {
+    left: -20%;
+    top: 100%;
+  }
+
+  &.bottom-right {
+    top: 100%;
+    transform: translateX(-85%);
+  }
+}

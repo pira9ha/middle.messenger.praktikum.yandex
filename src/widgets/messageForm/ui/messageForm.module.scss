@@ -1,0 +1,9 @@
+.messageForm {
+  @include flex-center;
+
+  align-items: flex-end;
+  width: 100%;
+  padding: 10px 20px;
+  background-color: var(--color-white);
+  gap: 10px;
+}

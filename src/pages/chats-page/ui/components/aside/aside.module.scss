@@ -1,0 +1,10 @@
+.chats {
+  height: 100vh;
+  max-width: 310px;
+  overflow: hidden;
+  background-color: var(--color-extra-light-gray);
+  border-right: 1px solid var(--color-medium-light-gray);
+  box-shadow: 0 0 3px 0 var(--color-medium-light-gray);
+  display: grid;
+  grid-template-rows: 58px 50px 1fr;
+}

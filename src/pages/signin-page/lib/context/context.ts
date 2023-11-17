@@ -1,61 +1,102 @@
-import { TFormProps } from '@/features/form/ui/Form.ts';
-import { TLinkProps } from '@/shared/ui/link/Link.ts';
 import s from '../../ui/signinPage.module.scss';
-import { IUserRegistration } from '@/models/user.ts';
+import { TSigninPageProps } from '../types/signinPage.ts';
+import { Fields } from '@/shared/lib/validation/constants.ts';
 
-const formContext: TFormProps<Omit<IUserRegistration, 'id' | 'avatar' | 'display_name'>> = {
-	fieldsContext: {
-		email: {
-			name: 'email',
-			labelText: 'Почта',
-			type: 'email'
-		},
-		login: {
-			name: 'login',
-			labelText: 'Логин',
-		},
-		first_name: {
-			name: 'first_name',
-			labelText: 'Имя',
-		},
-		second_name: {
-			name: 'second_name',
-			labelText: 'Фамилия',
-		},
-		phone: {
-			name: 'phone',
-			labelText: 'Телефон',
-			type: 'tel'
-		},
-		password: {
-			name: 'password',
-			labelText: 'Пароль',
-			type: 'password',
-			autocomplete: 'off'
-		},
-		password_check: {
-			name: 'password_check',
-			labelText: 'Пароль (ещё раз)',
-			type: 'password',
-			autocomplete: 'off'
-		},
-	},
-	buttonContext: {
-		login: {
-			type: 'submit',
-			title: 'Зарегистрироваться',
-		}
-	},
-	className: s.signinPage_form,
+const form: TSigninPageProps['form'] = {
+  fields: [
+    {
+      input: {
+        name: 'email',
+        type: 'email',
+      },
+      label: {
+        labelText: 'Почта',
+        for: 'email',
+      },
+      field: Fields.EMAIL,
+    },
+    {
+      input: {
+        name: 'login',
+      },
+      label: {
+        labelText: 'Логин',
+        for: 'login',
+      },
+      field: Fields.LOGIN,
+    },
+    {
+      input: {
+        name: 'first_name',
+      },
+      label: {
+        labelText: 'Имя',
+        for: 'first_name',
+      },
+      field: Fields.NAME,
+    },
+    {
+      input: {
+        name: 'second_name',
+      },
+      label: {
+        labelText: 'Фамилия',
+        for: 'second_name',
+      },
+      field: Fields.NAME,
+    },
+    {
+      input: {
+        name: 'phone',
+        type: 'tel',
+      },
+      label: {
+        labelText: 'Телефон',
+        for: 'phone',
+      },
+      field: Fields.PHONE,
+    },
+    {
+      input: {
+        name: 'password',
+        type: 'password',
+        autocomplete: 'off',
+      },
+      label: {
+        labelText: 'Пароль',
+        for: 'password',
+      },
+      field: Fields.PASSWORD,
+    },
+    {
+      input: {
+        name: 'password_check',
+        type: 'password',
+        autocomplete: 'off',
+      },
+      label: {
+        labelText: 'Пароль (ещё раз)',
+        for: 'password_check',
+      },
+    },
+  ],
+  buttons: [
+    {
+      type: 'submit',
+      title: 'Зарегистрироваться',
+    },
+  ],
+  classNames: s.signinPage_form,
 };
-const linkContext: TLinkProps = {
-	path: '/login',
-	title: 'Войти',
-	className: s.link,
+
+const link: TSigninPageProps['link'] = {
+  path: '/login',
+  title: 'Войти',
+  classNames: s.link,
 };
 
 export const context = {
-	formName: 'Регистрация',
-	formContext,
-	linkContext,
+  formName: 'Регистрация',
+  form,
+  link,
 };

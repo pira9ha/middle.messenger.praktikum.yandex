@@ -1,4 +1,3 @@
-import { isEqual } from '../utils/isEqual';
 import { render } from '../utils/renderDOM';
 import { TComponentConstructor, TRouteProps } from './routeTypes.ts';
 import Component from '@/shared/lib/component/Component.ts';
@@ -33,7 +32,7 @@ export default class Route {
   }
 
   match(pathname: string) {
-    return isEqual(pathname, this._pathname);
+    return pathname === this._pathname;
   }
 
   render() {

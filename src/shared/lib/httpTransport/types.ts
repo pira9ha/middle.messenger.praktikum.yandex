@@ -17,7 +17,7 @@ export type TFullRequest<
   timeout?: number,
 ) => Promise<XMLHttpRequest>;
 
-export type THeaders = Record<string, string>;
+export type THeaders = Record<string | symbol, string | boolean>;
 
 export type TOptions<T> = {
   data?: T;

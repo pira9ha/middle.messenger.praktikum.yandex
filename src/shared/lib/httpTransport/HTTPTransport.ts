@@ -1,24 +1,9 @@
 import { THeaders, TRequest, METHODS, TFullRequest } from './types.ts';
-
-function queryStringify(data: unknown) {
-  const res = [];
-
-  if (data) {
-    for (const [key, value] of Object.entries(data)) {
-      if (Array.isArray(value) || typeof value === 'object') {
-        res.push(`${key}=${value?.toString()}`);
-      } else {
-        res.push(`${key}=${value}`);
-      }
-    }
-  }
-
-  return `?${res.join('&')}`;
-}
+import { queryStringify } from '@/shared/lib/utils/queryStringify.ts';
 
 function setHeaders(xhr: XMLHttpRequest, headers: THeaders) {
   for (const [key, value] of Object.entries(headers)) {
-    xhr.setRequestHeader(key, value);
+    xhr.setRequestHeader(key, String(value));
   }
 }
 
@@ -54,7 +39,8 @@ export class HTTPTransport {
   };
 
   GET: TRequest = (url, options = {}) => {
-    const newUrl = url + options.data ? queryStringify(options.data) : '';
+    const newUrl =
+      url + (options.data ? '?' + queryStringify(options?.data) : '');
     return this.request(
       newUrl,
       { ...options, method: METHODS.GET },

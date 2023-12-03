@@ -1,5 +1,4 @@
 import { Controls } from '@/pages/profile-page/ui/components/controls/Controls.ts';
-import { ProfileInfoField } from '../../ui/components/profileInfoField/ProfileInfoField.ts';
 import { TControlsProps } from './controls.ts';
 import { IUserAvatarProps } from '@/features/userAvatar/lib/types/avatar.ts';
 import { Link, TLinkProps } from '@/shared/ui/link';
@@ -7,6 +6,7 @@ import { TFormProps } from '@/features/form/lib/types/form.ts';
 import { UserAvatar } from '@/features/userAvatar';
 import { ProfileInfo } from '@/pages/profile-page/ui/components/profileInfo/ProfileInfo.ts';
 import { Form } from '@/features/form';
+import { UserModel } from '@/models/user.ts';
 
 type TData = {
   field: string;
@@ -20,7 +20,6 @@ export type TProfileInfoProps = {
 
 export type TProfileInfoChildren = {
   controls: Controls;
-  info: ProfileInfoField[];
 };
 
 export type TProfileInfoField = TData;
@@ -42,6 +41,7 @@ export type IProfilePageProps = {
 } & IProfileContext;
 
 export type IProfileEditPageProps = {
+  user?: UserModel;
   reset: TLinkProps;
   formEditContext: TFormProps;
 } & IProfileContext;
@@ -58,4 +58,11 @@ export type IProfilePageChildren = {
   profileInfo?: ProfileInfo;
   formEdit?: Form;
   formPassword?: Form;
+};
+
+export type IProfileEditPageChildren = {
+  userAvatar: UserAvatar;
+  link: Link;
+  reset?: Link;
+  formEdit: Form;
 };

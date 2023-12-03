@@ -11,11 +11,9 @@ import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 import { ChatContent } from './components/chatContent/ChatContent.ts';
 import { Aside } from '../ui/components/aside/Aside.ts';
 
-export class ChatsPageComponent extends Component<
-  TChatPageContext & TDefaultProps,
-  TChatPageChildren
-> {
-  constructor(chatPageProps: TChatPageContext) {
+export class ChatsPage extends Component<TDefaultProps, TChatPageChildren> {
+  constructor() {
+    const chatPageProps = context();
     const props: TChatPageContext & TDefaultProps = {
       ...chatPageProps,
       className: s.chatPageLayout,
@@ -39,5 +37,3 @@ export class ChatsPageComponent extends Component<
     return this.compile(template);
   }
 }
-
-export const ChatsPage = () => new ChatsPageComponent(context());

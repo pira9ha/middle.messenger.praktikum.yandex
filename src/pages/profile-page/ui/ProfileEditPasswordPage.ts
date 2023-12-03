@@ -7,24 +7,26 @@ import { IProfilePageChildren } from '../lib/types/profile.ts';
 import { Form } from '@/features/form';
 import { UserAvatar } from '@/features/userAvatar';
 import { Link } from '@/shared/ui/link';
-import { profileEditPasswordPageContext } from '../lib/context/context.ts';
 import { IProfileEditPasswordPageProps } from '../lib/types/profile.ts';
+import { profileEditPasswordPageContext } from '@/pages/profile-page/lib/context/context.ts';
+import { connect } from '@/shared/lib/store/connect.ts';
+import { State } from '@/shared/lib/store/types.ts';
 
-export class ProfileEditPasswordPageComponent extends Component<
+export class ProfileEditPasswordPage extends Component<
   IProfileEditPasswordPageProps & TDefaultProps,
   IProfilePageChildren
 > {
-  constructor(profileProps: IProfileEditPasswordPageProps) {
+  constructor() {
     const props = {
-      ...profileProps,
+      ...profileEditPasswordPageContext,
       className: s.profilePage,
     };
 
     const children: IProfilePageChildren = {
-      userAvatar: new UserAvatar(profileProps.userAvatar),
-      link: new Link(profileProps.link),
-      reset: new Link(profileProps.reset),
-      formPassword: new Form(profileProps.formPasswordContext),
+      userAvatar: new UserAvatar(props.userAvatar),
+      link: new Link(props.link),
+      reset: new Link(props.reset),
+      formPassword: new Form(props.formPasswordContext),
     };
 
     const componentProps = {
@@ -41,5 +43,8 @@ export class ProfileEditPasswordPageComponent extends Component<
   }
 }
 
-export const ProfileEditPasswordPage = () =>
-  new ProfileEditPasswordPageComponent(profileEditPasswordPageContext);
+const stateConnect = connect((state: State) => ({
+  user: state?.user,
+}));
+
+export const ProfileEditPassword = stateConnect(ProfileEditPasswordPage);

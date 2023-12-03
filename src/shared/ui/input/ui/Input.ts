@@ -2,30 +2,16 @@ import Component from '@/shared/lib/component/Component.ts';
 import s from './input.module.scss';
 import { classNames } from '@/shared/lib/utils/classNames.ts';
 import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
-import {
-  TInputChildren,
-  TInputComponentProps,
-  TInputProps,
-} from '../lib/types/input';
+import { InputProps, TInputProps } from '../lib/types/input';
+import { mapAttr } from '@/shared/ui/input/lib/utils/mapAttr.ts';
 
-export class Input extends Component<
-  TDefaultProps & TInputComponentProps,
-  TInputChildren
-> {
+export class Input extends Component<InputProps> {
   constructor(props: TInputProps) {
     const componentProps = {
       props: {
         ...props,
         className: classNames(s.input, [props?.className]),
-        attr: {
-          type: props?.type || 'text',
-          name: props.name,
-          placeholder: props?.placeholder,
-          autocomplete: props?.autocomplete,
-          value: props?.value,
-          id: props.name,
-          accept: props?.accept,
-        },
+        attr: mapAttr(props),
         event: {
           ...props?.events,
         },
@@ -35,8 +21,26 @@ export class Input extends Component<
     super('input', componentProps);
   }
 
-  override setProps(nextProps: Partial<TDefaultProps> | TDefaultProps) {
+  _updateAttr() {
+    const attr = mapAttr(this.props);
+    const element = this.getContent();
+
+    if (element) {
+      Object.entries(attr).forEach(([key, value]) => {
+        if (value) {
+          element.setAttribute(key, value.toString());
+        }
+      });
+    }
+  }
+
+  setProps(
+    nextProps:
+      | Partial<TDefaultProps & TInputProps>
+      | (TDefaultProps & TInputProps),
+  ) {
     super.setProps(nextProps);
+    this._updateAttr();
 
     if (this.props?.error) {
       this.element?.classList?.add(s.error);

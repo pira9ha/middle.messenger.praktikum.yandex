@@ -4,7 +4,10 @@ import s from './profileInfo.module.scss';
 export default `
     <div class="${s.dataWrapper}">
         {{#each info }}
-            {{{ this }}}
+            <div class="${s.dataField}">
+                <span>{{ this.field }}</span>
+                <span class="${s.value}">{{ this.value }}</span>
+            </div>
         {{/each}}
     </div>
         

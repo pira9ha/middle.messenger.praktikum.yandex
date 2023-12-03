@@ -1,6 +1,7 @@
 import { TFormProps } from '@/features/form/lib/types/form.ts';
 import { Link, TLinkProps } from '@/shared/ui/link';
 import { Form } from '@/features/form';
+import { UserModel } from '@/models/user.ts';
 
 export type TSigninPage = {
   formName: TSigninPageProps['formName'];
@@ -8,7 +9,7 @@ export type TSigninPage = {
 
 export type TSigninPageProps = {
   formName: string;
-  form: TFormProps;
+  form: TFormProps<UserModel>;
   link: TLinkProps;
 };
 

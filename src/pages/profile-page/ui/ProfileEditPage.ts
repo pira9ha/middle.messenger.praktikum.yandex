@@ -5,28 +5,35 @@ import { profileEditPageContext } from '../lib/context/context.ts';
 import Component from '@/shared/lib/component/Component.ts';
 import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 import {
+  IProfileEditPageChildren,
   IProfileEditPageProps,
-  IProfilePageChildren,
 } from '../lib/types/profile.ts';
 import { Form } from '@/features/form';
 import { UserAvatar } from '@/features/userAvatar';
 import { Link } from '@/shared/ui/link';
+import { mapUserForm } from '@/pages/profile-page/lib/utils/mapUser.ts';
+import store from '@/shared/lib/store/Store.ts';
+import authService from '@/service/AuthService.ts';
+import { connect } from '@/shared/lib/store/connect.ts';
+import { State } from '@/shared/lib/store/types.ts';
 
-export class ProfileEditPageComponent extends Component<
+export class ProfileEditPage extends Component<
   IProfileEditPageProps & TDefaultProps,
-  IProfilePageChildren
+  IProfileEditPageChildren
 > {
-  constructor(profileProps: IProfileEditPageProps) {
+  constructor() {
+    authService.user();
+
     const props = {
-      ...profileProps,
+      ...profileEditPageContext,
       className: s.profilePage,
     };
 
-    const children: IProfilePageChildren = {
-      userAvatar: new UserAvatar(profileProps.userAvatar),
-      link: new Link(profileProps.link),
-      reset: new Link(profileProps.reset),
-      formEdit: new Form(profileProps.formEditContext),
+    const children: IProfileEditPageChildren = {
+      userAvatar: new UserAvatar(props.userAvatar),
+      link: new Link(props.link),
+      reset: new Link(props.reset),
+      formEdit: new Form(props.formEditContext),
     };
 
     const componentProps = {
@@ -37,11 +44,32 @@ export class ProfileEditPageComponent extends Component<
     super('div', componentProps);
   }
 
+  setProps(nextProps: Partial<IProfileEditPageProps & TDefaultProps>) {
+    if (nextProps?.user) {
+      const formEditContext = this._updateFormProps();
+      const form = this.children.formEdit as Form;
+      form.updateFields(formEditContext!);
+    }
+
+    super.setProps(nextProps);
+  }
+
+  _updateFormProps() {
+    const storeUser = store.getState();
+
+    if (storeUser?.user) {
+      return mapUserForm(this.props?.formEditContext, storeUser?.user);
+    }
+  }
+
   render() {
     const template = Handlebars.compile(profile);
     return this.compile(template);
   }
 }
 
-export const ProfileEditPage = () =>
-  new ProfileEditPageComponent(profileEditPageContext);
+const stateConnect = connect((state: State) => ({
+  user: state?.user,
+}));
+
+export const ProfileEdit = stateConnect(ProfileEditPage);

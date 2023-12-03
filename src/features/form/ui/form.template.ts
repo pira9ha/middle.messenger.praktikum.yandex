@@ -9,4 +9,7 @@ export default `
     {{#each buttons }}
         {{{ this }}}
     {{/each}}
+    {{#if error }}
+        {{{ error }}}
+    {{/if}}
 `;

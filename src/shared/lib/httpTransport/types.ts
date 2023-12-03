@@ -7,7 +7,10 @@ export enum METHODS {
 
 export type TRequest<
   P extends Record<string, unknown> = Record<string, unknown>,
-> = (url: string, options: TOptions<P>) => Promise<XMLHttpRequest>;
+> = (
+  url: string,
+  options?: Omit<TRequestOptions<P>, 'method'>,
+) => Promise<XMLHttpRequest>;
 
 export type TFullRequest<
   P extends Record<string, unknown> = Record<string, unknown>,
@@ -19,15 +22,13 @@ export type TFullRequest<
 
 export type THeaders = Record<string | symbol, string | boolean>;
 
-export type TOptions<T> = {
-  data?: T;
-  headers?: THeaders;
-  timeout?: number;
-};
-
 export type TRequestOptions<T> = {
-  data?: T;
+  data?: T | FormData;
   headers?: THeaders;
   timeout?: number;
   method: METHODS;
+};
+
+export type ErrorResponse = {
+  reason: string;
 };

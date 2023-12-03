@@ -1,17 +1,17 @@
 import EventBus from '@/shared/lib/eventBus/EventBus.ts';
-import { Indexed, StoreEvents } from './types.ts';
+import { State, StoreEvents } from './types.ts';
 import { set } from '@/shared/lib/utils/set.ts';
-
 class Store extends EventBus {
-  private state: Indexed = {};
+  private state: State = {};
 
   public getState() {
     return this.state;
   }
 
-  public set(path: string, value: unknown) {
+  public setState(path: string, value: unknown) {
     set(this.state, path, value);
     this.emit(StoreEvents.Updated);
+    console.log(this.state);
   }
 }
 

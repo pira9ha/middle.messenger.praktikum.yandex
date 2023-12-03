@@ -37,7 +37,7 @@ class Router {
   }
 
   _onRoute(pathname: string) {
-    const route = this.getRoute(pathname);
+    const route = this.getRoute(pathname) || this.getRoute('*');
     if (!route) {
       return;
     }

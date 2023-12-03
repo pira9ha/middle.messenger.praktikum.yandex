@@ -5,4 +5,6 @@ export type TRouteProps = {
   [key: string]: unknown;
 };
 
-export type TComponentConstructor = new (...args: any) => Component;
+export type TComponentConstructor<T extends Component = Component> = new (
+  ...args: any
+) => T;

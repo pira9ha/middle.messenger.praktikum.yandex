@@ -1,5 +1,10 @@
 .avatarImage {
-  object-fit: cover;
   width: inherit;
   height: inherit;
+
+  img {
+    object-fit: cover;
+    width: inherit;
+    height: inherit;
+  }
 }

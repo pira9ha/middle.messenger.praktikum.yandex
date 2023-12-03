@@ -1,6 +1,6 @@
-import { IUser } from '@/models/user.ts';
+import { UserModel } from '@/models/user.ts';
 
 export type TAvatarProps = {
-  avatar?: IUser['avatar'];
+  avatar?: UserModel['avatar'];
   alt?: string;
 };

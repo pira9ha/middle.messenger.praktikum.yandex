@@ -38,7 +38,7 @@ const form: TFormProps = {
 };
 
 const link: TLinkProps = {
-  path: '/signin',
+  path: '/sign-up',
   title: 'Нет аккаунта?',
   classNames: s.link,
 };

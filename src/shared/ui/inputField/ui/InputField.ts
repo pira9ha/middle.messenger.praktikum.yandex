@@ -9,6 +9,7 @@ import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 import { Error } from '@/shared/ui/error';
 import { getValidation } from '@/shared/lib/validation/getValidation.ts';
 import { Fields } from '@/shared/lib/validation/constants.ts';
+import { isEqual } from '@/shared/lib/utils/isEqual.ts';
 
 export class InputField extends Component<
   TInputFieldProps & TDefaultProps,
@@ -41,6 +42,18 @@ export class InputField extends Component<
     };
 
     super('div', componentProps);
+  }
+
+  setProps(
+    nextProps:
+      | Partial<TInputFieldProps & TDefaultProps>
+      | (TInputFieldProps & TDefaultProps),
+  ) {
+    if (nextProps.input && !isEqual(nextProps.input, this.props.input)) {
+      (this.children.input as Input).setProps(nextProps.input);
+    }
+
+    super.setProps(nextProps);
   }
 
   validate() {

@@ -78,6 +78,7 @@ const form: TSigninPageProps['form'] = {
         labelText: 'Пароль (ещё раз)',
         for: 'password_check',
       },
+      field: Fields.PASSWORD_CHECK,
     },
   ],
   buttons: [
@@ -90,7 +91,7 @@ const form: TSigninPageProps['form'] = {
 };
 
 const link: TSigninPageProps['link'] = {
-  path: '/login',
+  path: '/',
   title: 'Войти',
   classNames: s.link,
 };

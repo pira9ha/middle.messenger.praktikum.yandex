@@ -7,6 +7,7 @@ export default class Route {
   private _blockClass: TComponentConstructor;
   private _block: null | Component;
   private _props: TRouteProps;
+
   constructor(
     pathname: string,
     view: TComponentConstructor,

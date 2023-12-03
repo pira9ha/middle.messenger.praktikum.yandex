@@ -15,6 +15,7 @@ export const ERRORS = {
   login: 'В логине должна быть хотя бы одна буква',
   passwordLength: 'Пароль должен быть длиной от 8 до 40 символов',
   password: 'Обязательно хотя бы одна заглавная буква и цифра',
+  passwordCheck: 'Пароли не совпадают',
   phone: 'Телефон должен быть длиной от 10 до 15',
 };
 
@@ -25,4 +26,5 @@ export enum Fields {
   PASSWORD,
   NAME,
   LOGIN,
+  PASSWORD_CHECK,
 }

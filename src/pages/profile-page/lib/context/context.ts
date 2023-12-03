@@ -8,45 +8,45 @@ import {
 } from '../types/profile.ts';
 import { arrowLeftIcon } from '@/shared/svg';
 import { TLinkProps } from '@/shared/ui/link';
-import { Routes } from '@/shared/constants/routes.ts';
 import { Fields } from '@/shared/lib/validation/constants.ts';
+import authService from '@/service/AuthService.ts';
 
 const profileContext: IProfilePageContext['profileContext'] = {
   info: [
     {
       field: 'Почта',
-      value: 'saigafarova00@yandex.ru',
+      value: '',
     },
     {
       field: 'Логин',
-      value: 'pira9ha',
+      value: '',
     },
     {
       field: 'Имя',
-      value: 'MyName',
+      value: '',
     },
     {
       field: 'Фамилия',
-      value: 'MySecondName',
+      value: '',
     },
     {
       field: 'Имя в чате',
-      value: 'My name',
+      value: '',
     },
     {
       field: 'Телефон',
-      value: '+7 (800) 555 35 35',
+      value: '',
     },
   ],
   controls: {
     links: [
       {
-        path: Routes.PROFILE_EDIT,
+        path: '/settings',
         title: 'Изменить данные',
         classNames: s.editLink,
       },
       {
-        path: Routes.PROFILE_PASSWORD_EDIT,
+        path: '/edit-password',
         title: 'Изменить пароль',
         classNames: s.editLink,
       },
@@ -66,7 +66,7 @@ const formEditContext: IProfilePageContext['formEditContext'] = {
       input: {
         name: 'email',
         type: 'email',
-        value: 'saigafarova00@yandex.ru',
+        value: '',
       },
       label: {
         labelText: 'Почта',
@@ -77,7 +77,7 @@ const formEditContext: IProfilePageContext['formEditContext'] = {
     {
       input: {
         name: 'login',
-        value: 'pira9ha',
+        value: '',
       },
       label: {
         labelText: 'Логин',
@@ -88,7 +88,7 @@ const formEditContext: IProfilePageContext['formEditContext'] = {
     {
       input: {
         name: 'first_name',
-        value: 'MyName',
+        value: '',
       },
       label: {
         labelText: 'Имя',
@@ -99,7 +99,7 @@ const formEditContext: IProfilePageContext['formEditContext'] = {
     {
       input: {
         name: 'second_name',
-        value: 'MySecondName',
+        value: '',
       },
       label: {
         labelText: 'Фамилия',
@@ -110,7 +110,7 @@ const formEditContext: IProfilePageContext['formEditContext'] = {
     {
       input: {
         name: 'display_name',
-        value: 'My name',
+        value: '',
       },
       label: {
         labelText: 'Имя в чате',
@@ -120,7 +120,7 @@ const formEditContext: IProfilePageContext['formEditContext'] = {
     {
       input: {
         name: 'phone',
-        value: '+7 (800) 555 35 35',
+        value: '',
       },
       label: {
         labelText: 'Телефон',
@@ -178,6 +178,9 @@ const formPasswordContext: IProfilePageContext['formPasswordContext'] = {
       title: 'Сохранить',
       customClass: s.formButton,
       type: 'submit',
+      onClick: () => {
+        authService.logOut();
+      },
     },
   ],
   classNames: s.editForm,
@@ -186,7 +189,7 @@ const formPasswordContext: IProfilePageContext['formPasswordContext'] = {
 const reset: IProfilePageContext['reset'] = {
   title: 'Отменить',
   classNames: s.resetLink,
-  path: Routes.PROFILE,
+  path: '/profile',
 };
 
 const link: TLinkProps = {

@@ -1,11 +1,11 @@
-import { IUser } from '@/models/user.ts';
+import { UserModel } from '@/models/user.ts';
 import { Avatar } from '../../ui/components/avatar/Avatar.ts';
 import { AvatarEdit } from '@/features/userAvatar/ui/components/avatarEdit/AvatarEdit.ts';
 import { Modal } from '@/features/modal';
 
 export interface IUserAvatarProps {
-  avatar?: IUser['avatar'];
-  name?: IUser['display_name'];
+  avatar?: UserModel['avatar'];
+  name?: UserModel['display_name'];
   altText?: string;
   isModalOpen?: boolean;
 }
@@ -17,8 +17,8 @@ export type TUserAvatarChildren = {
 };
 
 export type TAvatarProps = {
-  avatar?: IUser['avatar'];
-  name?: IUser['display_name'];
+  avatar?: UserModel['avatar'];
+  name?: UserModel['display_name'];
   altText?: string;
 };
 

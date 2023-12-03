@@ -19,7 +19,7 @@ function getParams(data: Indexed | [], parentKey?: string) {
   return result;
 }
 
-export function queryStringify(data: Indexed) {
+export function queryStringify(data: unknown) {
   if (!isPlainObject(data)) {
     throw new Error('input must be an object');
   }

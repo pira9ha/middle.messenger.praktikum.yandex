@@ -5,7 +5,8 @@ export const render = (query: string, block: Component) => {
   const elementContent = block.getContent();
 
   if (root && elementContent instanceof HTMLElement) {
-    root.textContent = elementContent.innerHTML;
+    root.appendChild(elementContent);
+    block.dispatchComponentDidMount();
     return root;
   }
 };

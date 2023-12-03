@@ -6,6 +6,7 @@ import {
   validateNames,
   validateNumber,
   validatePassword,
+  validatePasswordCheck,
 } from './validation.ts';
 
 export const getValidation = (fieldName: Fields) => {
@@ -24,6 +25,9 @@ export const getValidation = (fieldName: Fields) => {
     }
     case Fields.PASSWORD: {
       return validatePassword;
+    }
+    case Fields.PASSWORD_CHECK: {
+      return validatePasswordCheck;
     }
     default: {
       return validateMessage;

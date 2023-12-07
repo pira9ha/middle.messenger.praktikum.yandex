@@ -76,12 +76,15 @@ export const validateEmail = (element: HTMLInputElement) => {
 
 export const validatePasswordCheck = (element: HTMLInputElement) => {
   const passwordInput = document.querySelector("[name='password']");
+  const newPasswordInput = document.querySelector("[name='newPassword']");
 
-  if (!passwordInput) {
+  const password = [passwordInput, newPasswordInput].filter((input) => !!input);
+
+  if (!password[0]) {
     return;
   }
 
-  if (element.value !== (passwordInput as HTMLInputElement).value) {
+  if (element.value !== (password[0] as HTMLInputElement).value) {
     return ERRORS.passwordCheck;
   }
 };

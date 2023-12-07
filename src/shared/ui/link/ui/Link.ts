@@ -16,21 +16,24 @@ export class Link extends Component<TLinkProps & TDefaultProps> {
         linkProps.classNames,
       ]),
       attr: {
-        href: linkProps?.path,
-        target: linkProps?.target || '_self',
-        rel: 'noopener noreferrer',
+        // href: linkProps?.path,
+        // target: linkProps?.target || '_self',
+        // rel: 'noopener noreferrer',
+      },
+      events: {
+        click: () => {
+          // event.preventDefault();
+          if (linkProps?.path) {
+            // debugger;
+            router.go(linkProps.path);
+          } else {
+            router.back();
+          }
+        },
       },
     };
 
-    if (linkProps.isBackButton) {
-      props.events = {
-        click: () => {
-          router.back();
-        },
-      };
-    }
-
-    super('a', { props });
+    super('span', { props });
   }
 
   render() {

@@ -10,15 +10,12 @@ import profileInfo from './profileInfo.template.ts';
 import { connect } from '@/shared/lib/store/connect.ts';
 import { State } from '@/shared/lib/store/types.ts';
 import { mapUserInfo } from '@/pages/profile-page/lib/utils/mapUser.ts';
-import authService from '@/service/AuthService.ts';
 
 export class ProfileInfo extends Component<
   TDefaultProps,
   TProfileInfoChildren
 > {
   constructor(profileInfoProps: TProfileInfoProps) {
-    authService.user();
-
     const children: TProfileInfoChildren = {
       controls: new Controls(profileInfoProps.controls),
     };
@@ -39,8 +36,10 @@ export class ProfileInfo extends Component<
   }
 }
 
-const stateConnect = connect((state: State) => ({
-  info: mapUserInfo(state),
-}));
+const stateConnect = connect((state: State) => {
+  return {
+    info: mapUserInfo(state),
+  };
+});
 
-export const ProfileInfoComponent = stateConnect<ProfileInfo>(ProfileInfo);
+export const ProfileInfoComponent = stateConnect(ProfileInfo);

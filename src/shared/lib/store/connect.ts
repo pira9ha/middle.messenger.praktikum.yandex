@@ -1,14 +1,13 @@
-import { Indexed, StoreEvents } from '@/shared/lib/store/types.ts';
+import {
+  ConnectClassConstructor,
+  Indexed,
+  StoreEvents,
+} from '@/shared/lib/store/types.ts';
 import store from './Store.ts';
-import { isEqual } from '../utils/isEqual.ts';
-import { TComponentConstructor } from '@/shared/lib/route/routeTypes.ts';
-import Component from '@/shared/lib/component/Component.ts';
+import { isEqual } from '@/shared/lib/utils/isEqual.ts';
 
 export function connect(mapStateToProps: (state: Indexed) => Indexed) {
-  return function <T extends Component>(
-    ComponentElement: TComponentConstructor<T>,
-  ) {
-    // @ts-ignore
+  return function <T extends ConnectClassConstructor>(ComponentElement: T) {
     return class extends ComponentElement {
       constructor(...props: any[]) {
         // сохраняем начальное состояние

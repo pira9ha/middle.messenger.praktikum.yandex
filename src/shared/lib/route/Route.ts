@@ -1,4 +1,3 @@
-import { render } from '../utils/renderDOM';
 import { TComponentConstructor, TRouteProps } from './routeTypes.ts';
 import Component from '@/shared/lib/component/Component.ts';
 
@@ -39,10 +38,7 @@ export default class Route {
   render() {
     if (!this._block) {
       this._block = new this._blockClass();
-      render(this._props.rootQuery, this._block);
-      return;
     }
-
-    this._block.show();
+    this._block.show(this._props.rootQuery);
   }
 }

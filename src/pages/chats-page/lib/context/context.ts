@@ -17,39 +17,18 @@ import {
   searchIcon,
 } from '@/shared/svg';
 import { DropdownMenuPlace } from '@/shared/ui/dropdown/lib/types/dropdown.ts';
-import { TChatsProps } from '@/widgets/chats/lib/types/chats.ts';
+import { TChatContext, TChatsProps } from '@/widgets/chats/lib/types/chats.ts';
 import { Routes } from '@/shared/constants/routes.ts';
+import store from '@/shared/lib/store/Store.ts';
 
-const chats: TChatsProps['chats'] = [
-  {
-    id: 123,
-    userAvatar: {},
-    unread_count: 15,
-    content: 'hjfhsjbdmsbmdbwjkergjkwehfkls,d',
-    isMainMessage: true,
-    userName: 'User Name',
-    time: new Date().toISOString(),
-  },
-  {
-    id: 2324,
-    userAvatar: {},
-    unread_count: 1000,
-    content:
-      'hjfhsjbdmsbmdbwjkergjkwehfklshjfhsjbdmsbmdbwjkergjkwehfklshjfhsjbdmsbmdbwjkergjkwehfklshjfhsjbdmsbmdbwjkergjkwehfkls,d',
-    isMainMessage: false,
-    userName: 'User Name',
-    time: new Date(2023, 10, 10).toISOString(),
-  },
-  {
-    id: 24,
-    userAvatar: {},
-    content:
-      'hjfhsjbdmsbmdbwjkergjkwehfklshjfhsjbdmsbmdbwjkergjkwehfklshjfhsjbdmsbmdbwjkergjkwehfklshjfhsjbdmsbmdbwjkergjkwehfklshjfhsjbdmsbmdbwjkergjkwehfklshjfhsjbdmsbmdbwjkergjkwehfklshjfhsjbdmsbmdbwjkergjkwehfklshjfhsjbdmsbmdbwjkergjkwehfklshjfhsjbdmsbmdbwjkergjkwehfkls,d',
-    isMainMessage: false,
-    userName: 'User Name',
-    time: new Date(2023, 5, 10).toISOString(),
-  },
-];
+export const chatsContext = (): TChatsProps => {
+  const state = store.getState();
+  const chats: Array<TChatContext> = state?.chats ?? [];
+
+  return {
+    chats,
+  };
+};
 
 const messages: TOpenedChat['messages'] = [
   {
@@ -154,9 +133,7 @@ export const context = (): TChatPageContext => {
 
   const pageContext: TChatPageContext = {
     chatsContext: {
-      chats: {
-        chats,
-      },
+      chats: chatsContext(),
       link: {
         path: Routes.PROFILE,
         title: 'Мой профиль',

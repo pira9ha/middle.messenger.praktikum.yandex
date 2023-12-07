@@ -34,6 +34,7 @@ export class HTTPTransport {
       };
 
       xhr.withCredentials = true;
+      xhr.setRequestHeader('Accept', 'application/json');
       xhr.timeout = timeout;
       xhr.onerror = () => rej(new Error('Что-то пошло не так'));
       xhr.onabort = () => rej(new Error('Запрос прервался'));

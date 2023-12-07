@@ -10,6 +10,8 @@ import {
 } from '@/pages/chats-page/lib/types/chat.ts';
 import { Link } from '@/shared/ui/link';
 import { InputField } from '@/shared/ui/inputField';
+import { connect } from '@/shared/lib/store/connect.ts';
+import { State } from '@/shared/lib/store/types.ts';
 
 export class Aside extends Component<
   TAsideProps & TDefaultProps,
@@ -47,3 +49,11 @@ export class Aside extends Component<
     return this.compile(template);
   }
 }
+
+const stateConnect = connect((state: State) => {
+  return {
+    chats: state?.chats,
+  };
+});
+
+export const AsideComponent = stateConnect(Aside);

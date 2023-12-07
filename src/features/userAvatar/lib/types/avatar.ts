@@ -1,17 +1,16 @@
 import { UserModel } from '@/models/user.ts';
-import { Avatar } from '../../ui/components/avatar/Avatar.ts';
-import { AvatarEdit } from '@/features/userAvatar/ui/components/avatarEdit/AvatarEdit.ts';
+import { AvatarEdit } from '../../ui/components/avatarEdit/AvatarEdit.ts';
 import { Modal } from '@/features/modal';
 
 export interface IUserAvatarProps {
   avatar?: UserModel['avatar'];
   name?: UserModel['display_name'];
   altText?: string;
+  named?: boolean;
   isModalOpen?: boolean;
 }
 
 export type TUserAvatarChildren = {
-  avatar: Avatar;
   avatarEdit: AvatarEdit;
   modal?: Modal;
 };

@@ -36,7 +36,7 @@ export class FormError extends Component<TFormErrorProps & TDefaultProps> {
 }
 
 const stateConnect = connect((state: State) => ({
-  error: state?.error ?? state?.submitError,
+  error: state?.clientError,
 }));
 
-export const ErrorComponent = stateConnect<FormError>(FormError);
+export const ErrorComponent = stateConnect(FormError);

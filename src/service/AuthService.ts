@@ -3,23 +3,13 @@ import { AuthApi } from '@/api/AuthApi.ts';
 import store from '@/shared/lib/store/Store.ts';
 import router from '@/shared/lib/router/Router.ts';
 import { Routes } from '@/shared/constants/routes.ts';
-import { ErrorResponse } from '@/shared/lib/httpTransport/types.ts';
-import { DEFAULT_ERROR } from '@/service/constants.ts';
 import storageController from '@/shared/lib/StorageController/StorageController.ts';
 import { CURRENT_USER } from '@/shared/constants/storageKeys.ts';
-import { updateUser } from '@/service/updateUser.ts';
+import { updateUser } from './updateUser.ts';
+import { handlingErrorStatus } from './handlingErrorStatus.ts';
 
 class AuthService {
-  private static _instance: AuthService;
   private _authApi = new AuthApi();
-
-  constructor() {
-    if (AuthService._instance) {
-      return AuthService._instance;
-    }
-
-    AuthService._instance = this;
-  }
 
   async signUp(userData: UserModel) {
     try {
@@ -27,29 +17,28 @@ class AuthService {
 
       if (signUpRes.status === 200) {
         router.go(Routes.LOGIN);
+        store.setState('clientError', null);
       } else {
-        store.setState('submitError', 'error text');
+        handlingErrorStatus(signUpRes);
       }
     } catch (e) {
-      store.setState('submitError', e);
+      store.setState('clientError', e);
     }
   }
 
   async signIn(userData: UserLogin) {
     try {
-      const signUpRes = await this._authApi.signIn(userData);
+      const signInRes = await this._authApi.signIn(userData);
 
-      if (signUpRes.status === 200) {
+      if (signInRes.status === 200) {
         router.go(Routes.CHATS);
+        store.setState('clientError', null);
       } else {
-        const errorResponse: ErrorResponse = signUpRes.response
-          ? JSON.parse(signUpRes.response)
-          : DEFAULT_ERROR;
-        store.setState('submitError', errorResponse.reason);
+        handlingErrorStatus(signInRes);
       }
     } catch (e) {
       if (e instanceof Error) {
-        store.setState('submitError', e.message);
+        store.setState('clientError', e.message);
       }
     }
   }
@@ -60,25 +49,32 @@ class AuthService {
 
       if (signUpRes.status === 200) {
         updateUser(signUpRes.response);
+        store.setState('clientError', null);
+      } else {
+        handlingErrorStatus(signUpRes);
       }
     } catch (e) {
       if (e instanceof Error) {
-        store.setState('submitError', e.message);
+        store.setState('clientError', e.message);
       }
     }
   }
 
   async logOut() {
     try {
-      const signUpRes = await this._authApi.logOut();
+      const logOutRes = await this._authApi.logOut();
 
-      if (signUpRes.status === 200) {
+      if (logOutRes.status === 200) {
         storageController.deleteItem(CURRENT_USER);
         store.setState('user', null);
+        store.setState('clientError', null);
+        router.go(Routes.LOGIN);
+      } else {
+        handlingErrorStatus(logOutRes);
       }
     } catch (e) {
       if (e instanceof Error) {
-        store.setState('submitError', e.message);
+        store.setState('clientError', e.message);
       }
     }
   }

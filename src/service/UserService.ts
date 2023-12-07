@@ -1,21 +1,14 @@
 import store from '@/shared/lib/store/Store.ts';
 import { UserApi } from '@/api/UsersApi.ts';
-import { updateUser } from '@/service/updateUser.ts';
-import { ErrorResponse } from '@/shared/lib/httpTransport/types.ts';
-import { DEFAULT_ERROR } from '@/service/constants.ts';
+import { updateUser } from './updateUser.ts';
 import modalsController from '@/shared/lib/ModalsController/ModalsController.ts';
+import { UserChangePassword, UserModel } from '@/models/user.ts';
+import router from '@/shared/lib/router/Router.ts';
+import { Routes } from '@/shared/constants/routes.ts';
+import { handlingErrorStatus } from './handlingErrorStatus.ts';
 
 class UserService {
-  private static _instance: UserService;
   private _userApi = new UserApi();
-
-  constructor() {
-    if (UserService._instance) {
-      return UserService._instance;
-    }
-
-    UserService._instance = this;
-  }
 
   async changeAvatar(newAvatar: FormData) {
     try {
@@ -24,15 +17,46 @@ class UserService {
       if (changeAvatarRes.status === 200) {
         updateUser(changeAvatarRes.response);
       } else {
-        const errorResponse: ErrorResponse = changeAvatarRes.response
-          ? JSON.parse(changeAvatarRes.response)
-          : DEFAULT_ERROR;
-        store.setState('submitError', errorResponse.reason);
-        return false;
+        handlingErrorStatus(changeAvatarRes);
       }
       modalsController.closeModal();
     } catch (e) {
-      store.setState('submitError', e);
+      if (e instanceof Error) {
+        store.setState('submitError', e.message);
+      }
+    }
+  }
+
+  async updateProfile(updatedUser: UserModel) {
+    try {
+      const updateUserRes = await this._userApi.updateProfile(updatedUser);
+
+      if (updateUserRes.status === 200) {
+        updateUser(updateUserRes.response);
+        return true;
+      } else {
+        handlingErrorStatus(updateUserRes);
+      }
+    } catch (e) {
+      if (e instanceof Error) {
+        store.setState('clientError', e.message);
+      }
+    }
+  }
+
+  async updatePassword(newPassword: UserChangePassword) {
+    try {
+      const updateUserRes = await this._userApi.updatePassword(newPassword);
+
+      if (updateUserRes.status === 200) {
+        router.go(Routes.PROFILE);
+      } else {
+        handlingErrorStatus(updateUserRes);
+      }
+    } catch (e) {
+      if (e instanceof Error) {
+        store.setState('submitError', e.message);
+      }
     }
   }
 }

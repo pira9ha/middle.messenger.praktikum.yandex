@@ -10,7 +10,6 @@ export class AuthApi extends BaseAPI {
     return this.http.POST('/signup', {
       data,
       headers: {
-        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
     });
@@ -20,18 +19,13 @@ export class AuthApi extends BaseAPI {
     return this.http.POST('/signin', {
       data,
       headers: {
-        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
     });
   }
 
   user() {
-    return this.http.GET('/user', {
-      headers: {
-        Accept: 'application/json',
-      },
-    });
+    return this.http.GET('/user', {});
   }
 
   logOut() {

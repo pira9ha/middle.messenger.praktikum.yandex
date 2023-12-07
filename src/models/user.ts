@@ -16,7 +16,7 @@ export type UserRegistration = {
   password_check: string;
 } & UserModel;
 
-export type TUserChangePassword = {
+export type UserChangePassword = {
   oldPassword: string;
   newPassword: string;
   passwordCheck: string;

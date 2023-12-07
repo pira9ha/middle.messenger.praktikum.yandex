@@ -9,6 +9,7 @@ import { TSigninPage, TSigninPageChildren } from '../lib/types/signinPage.ts';
 import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 import AuthModel from '@/service/AuthService.ts';
 import { UserModel } from '@/models/user.ts';
+import { fromFormData } from '@/shared/lib/utils/fromFormData.ts';
 
 export class SigninPage extends Component<TSigninPage, TSigninPageChildren> {
   constructor() {
@@ -21,9 +22,7 @@ export class SigninPage extends Component<TSigninPage, TSigninPageChildren> {
       form: new Form({
         ...context.form,
         submit: (userData) => {
-          AuthModel.signUp(
-            Object.fromEntries(userData) as unknown as UserModel,
-          );
+          AuthModel.signUp(fromFormData<UserModel>(userData));
         },
       }),
       link: new Link(context.link),

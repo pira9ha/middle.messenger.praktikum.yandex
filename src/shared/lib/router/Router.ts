@@ -1,5 +1,6 @@
 import Route from '@/shared/lib/route/Route.ts';
 import { TComponentConstructor } from '@/shared/lib/router/routeTypes.ts';
+import { Routes } from '@/shared/constants/routes.ts';
 
 class Router {
   private static __instance: Router;
@@ -37,9 +38,9 @@ class Router {
   }
 
   _onRoute(pathname: string) {
-    const route = this.getRoute(pathname) || this.getRoute('*');
-    if (!route) {
-      return;
+    const route = this.getRoute(pathname);
+    if (typeof route === 'undefined') {
+      return this.go(Routes.NOT_FOUND);
     }
 
     if (this._currentRoute && this._currentRoute !== route) {

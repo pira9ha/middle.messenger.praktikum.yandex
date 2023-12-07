@@ -1,21 +1,20 @@
 import { BaseAPI } from '@/api/BaseApi.ts';
 import { UserChangePassword, UserModel } from '@/models/user.ts';
 
-export class UserApi extends BaseAPI {
+export class ChatsApi extends BaseAPI {
   constructor() {
-    super('/user');
+    super('/chats');
   }
 
-  async changeAvatar(data: FormData) {
-    return this.http.PUT('/profile/avatar', {
-      data,
-    });
+  async getChats() {
+    return this.http.GET('', {});
   }
 
   async updateProfile(data: UserModel) {
     return this.http.PUT('/profile', {
       data,
       headers: {
+        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
     });
@@ -25,6 +24,7 @@ export class UserApi extends BaseAPI {
     return this.http.PUT('/password', {
       data,
       headers: {
+        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
     });

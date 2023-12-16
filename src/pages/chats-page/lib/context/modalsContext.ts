@@ -75,9 +75,7 @@ export const deleteUserFromChatModal = (chatId: number): TModalProps => {
   const fields: TInputFieldProps[] = [];
 
   const content: TModalProps['content'] = {
-    title: chatUsers?.length
-      ? 'Выберите пользователей, которых хотите удалить'
-      : 'В чате еще нет пользователей',
+    title: 'Выберите пользователей, которых хотите удалить',
   };
 
   const formContext: TFormProps = {
@@ -118,7 +116,7 @@ export const deleteUserFromChatModal = (chatId: number): TModalProps => {
         className: s.checkboxSelect,
       },
       label: {
-        labelText: user.display_name,
+        labelText: user.login,
         for: 'user',
       },
     }));

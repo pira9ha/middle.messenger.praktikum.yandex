@@ -1,8 +1,7 @@
 import router from '@/shared/lib/router/Router.ts';
 import { ProtectedPages, Pages, Routes } from '@/shared/constants/routes.ts';
-import storageController from '@/shared/lib/StorageController/StorageController.ts';
-import { CURRENT_USER } from '@/shared/constants/storageKeys.ts';
 import authService from '@/service/AuthService.ts';
+import store from '@/shared/lib/store/Store.ts';
 
 document.addEventListener('DOMContentLoaded', async () => {
   const currentPath = window.location.pathname;
@@ -11,16 +10,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   router.start();
 
-  let storageUser = storageController.getItem(CURRENT_USER);
+  await authService.user();
+  const { user } = store.getState();
 
-  if (!storageUser) {
-    await authService.user();
-    storageUser = storageController.getItem(CURRENT_USER);
-  }
-
-  if (storageUser && currentPath === Routes.LOGIN) {
+  if (user && currentPath === Routes.LOGIN) {
     router.go(Routes.CHATS);
-  } else if (!storageUser && ProtectedPages.includes(currentPath)) {
+  } else if (!user && ProtectedPages.includes(currentPath)) {
     router.go(Routes.LOGIN);
   }
 });

@@ -36,7 +36,7 @@ class ChatsService {
           const currentUser = store.getState()?.user;
 
           const filterUsers = users.filter(
-            (user) => user.id === currentUser?.id,
+            (user) => user.id !== currentUser?.id,
           );
           store.setState('chatUsers', filterUsers);
         } else {

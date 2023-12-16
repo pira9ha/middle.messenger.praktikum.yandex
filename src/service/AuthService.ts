@@ -3,8 +3,6 @@ import { AuthApi } from '@/api/AuthApi.ts';
 import store from '@/shared/lib/store/Store.ts';
 import router from '@/shared/lib/router/Router.ts';
 import { Routes } from '@/shared/constants/routes.ts';
-import storageController from '@/shared/lib/StorageController/StorageController.ts';
-import { CURRENT_USER } from '@/shared/constants/storageKeys.ts';
 import { updateUser } from './updateUser.ts';
 import { handlingErrorStatus } from './handlingErrorStatus.ts';
 
@@ -65,7 +63,6 @@ class AuthService {
       const logOutRes = await this._authApi.logOut();
 
       if (logOutRes.status === 200) {
-        storageController.deleteItem(CURRENT_USER);
         store.setState('user', null);
         store.setState('clientError', null);
         router.go(Routes.LOGIN);

@@ -31,8 +31,8 @@ export class Chat extends Component<ChatProps, TChatChildren> {
       },
       events: {
         click: async () => {
-          store.setState('activeChat', chatProps.id);
           await chatsService.getChatUsers(chatProps.id);
+          store.setState('activeChat', chatProps.id);
         },
       },
     };

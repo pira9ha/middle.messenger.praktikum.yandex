@@ -1,16 +1,19 @@
 import s from './chat.module.scss';
 
+// {{#if isMainMessage }}
+// <em>Вы: </em>
+// {{/if}}
+
 // language=hbs
 export default `
     {{{ avatar }}}
     
     <div class="${s.chatContent}">
-        <span class="${s.chatTitle}">{{ userName }}</span>
+        <span class="${s.chatTitle}">{{ title }}</span>
         <p class="${s.message}">
-            {{#if isMainMessage }}
-                <em>Вы: </em>
+            {{#if last_message }}
+                {{ last_message.content }}
             {{/if}}
-            {{ content }}
         </p>
     </div>
     <span class="${s.time}">{{ time }}</span>

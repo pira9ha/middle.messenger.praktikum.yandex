@@ -29,6 +29,22 @@ export class FormError extends Component<TFormErrorProps & TDefaultProps> {
     }
   }
 
+  show() {
+    const component = this.getContent();
+
+    if (component) {
+      component.style.display = 'block';
+    }
+  }
+
+  hide() {
+    const component = this.getContent();
+
+    if (component) {
+      component.style.display = 'none';
+    }
+  }
+
   render() {
     const template = Handlebars.compile(error);
     return this.compile(template);

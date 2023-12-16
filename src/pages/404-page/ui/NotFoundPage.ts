@@ -6,18 +6,24 @@ import { TErrorPageChildren } from '@/models/errorContext.ts';
 import Component from '@/shared/lib/component/Component.ts';
 import { Link } from '@/shared/ui/link';
 import { StatusError } from '@/features/statusError';
-import { context } from '../lib/context/context.ts';
+import { Routes } from '@/shared/constants/routes.ts';
 
 export class NotFoundPage extends Component<TDefaultProps, TErrorPageChildren> {
   constructor() {
     const componentProps = {
       props: {
-        ...context,
         className: s.page,
       },
       children: {
-        statusError: new StatusError(context.statusError),
-        link: new Link(context.link),
+        statusError: new StatusError({
+          errorCode: 404,
+          title: 'Не туда попали',
+        }),
+        link: new Link({
+          title: 'Назад',
+          classNames: s.link,
+          path: Routes.CHATS,
+        }),
       },
     };
     super('div', componentProps);

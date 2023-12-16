@@ -1,7 +1,7 @@
 import { Indexed } from './types.ts';
 import { isArrayOrObject } from './helpers.ts';
 
-export const isEqual = (lhs: Indexed, rhs: Indexed) => {
+export const isEqual = (lhs: any, rhs: any) => {
   if (Object.keys(lhs).length !== Object.keys(rhs).length) {
     return false;
   }

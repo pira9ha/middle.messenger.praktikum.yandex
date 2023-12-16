@@ -1,5 +1,9 @@
 import { BaseAPI } from '@/api/BaseApi.ts';
-import { UserChangePassword, UserModel } from '@/models/user.ts';
+import {
+  UserChangePassword,
+  UserLoginSearch,
+  UserModel,
+} from '@/models/user.ts';
 
 export class UserApi extends BaseAPI {
   constructor() {
@@ -23,6 +27,15 @@ export class UserApi extends BaseAPI {
 
   async updatePassword(data: UserChangePassword) {
     return this.http.PUT('/password', {
+      data,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  }
+
+  async searchUsersByLogin(data: UserLoginSearch) {
+    return this.http.POST('/search', {
       data,
       headers: {
         'Content-Type': 'application/json',

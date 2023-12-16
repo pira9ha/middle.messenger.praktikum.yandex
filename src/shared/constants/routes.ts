@@ -1,9 +1,10 @@
 import {
   ChatsPage,
   LoginPage,
-  ProfileEditPage,
+  NotFoundPage,
   ProfileEditPasswordPage,
   ProfilePage,
+  ProfileSettingsPage,
   ServerErrorPage,
   SigninPage,
 } from '@/pages';
@@ -17,7 +18,7 @@ export enum Routes {
   SIGNIN = '/sign-up',
   CHATS = '/messenger',
   SERVER_ERROR = '/server-error',
-  NOT_FOUND = '*',
+  NOT_FOUND = '/not-found',
 }
 
 export const Pages: Record<string, TComponentConstructor> = {
@@ -25,9 +26,10 @@ export const Pages: Record<string, TComponentConstructor> = {
   [Routes.SIGNIN]: SigninPage,
   [Routes.SERVER_ERROR]: ServerErrorPage,
   [Routes.PROFILE]: ProfilePage,
-  [Routes.PROFILE_EDIT]: ProfileEditPage,
+  [Routes.PROFILE_EDIT]: ProfileSettingsPage,
   [Routes.PROFILE_PASSWORD_EDIT]: ProfileEditPasswordPage,
   [Routes.CHATS]: ChatsPage,
+  [Routes.NOT_FOUND]: NotFoundPage,
 };
 
 export const AssignedPages: string[] = [

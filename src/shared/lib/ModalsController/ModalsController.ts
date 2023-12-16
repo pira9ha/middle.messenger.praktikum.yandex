@@ -16,8 +16,6 @@ class ModalsController {
 
   openModal(modalContent: TModalProps) {
     if (!this._currentModal) {
-      // store.setState('modal', true);
-
       this._currentModal = new Modal(modalContent);
       render(this._appModalPortal, this._currentModal);
       return;
@@ -26,8 +24,6 @@ class ModalsController {
 
   closeModal() {
     if (this._currentModal) {
-      // store.setState('modal', false);
-
       this._currentModal.hide();
       this._currentModal.getContent()?.remove();
       this._currentModal = null;

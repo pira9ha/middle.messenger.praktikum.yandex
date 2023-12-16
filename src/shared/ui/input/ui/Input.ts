@@ -34,11 +34,7 @@ export class Input extends Component<InputProps> {
     }
   }
 
-  setProps(
-    nextProps:
-      | Partial<TDefaultProps & TInputProps>
-      | (TDefaultProps & TInputProps),
-  ) {
+  setProps(nextProps: Partial<InputProps> | InputProps) {
     super.setProps(nextProps);
     this._updateAttr();
 

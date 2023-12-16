@@ -22,6 +22,8 @@ import {
   profileAvatarContext,
 } from '../lib/context/profileContext.ts';
 import { updateForm } from '../lib/api/updateForm.ts';
+import { connect } from '@/shared/lib/store/connect.ts';
+import { State } from '@/shared/lib/store/types.ts';
 
 export class ProfileEditPage extends Component<
   IProfileEditPageProps,
@@ -97,3 +99,9 @@ export class ProfileEditPage extends Component<
     return this.compile(template);
   }
 }
+
+const stateConnect = connect((state: State) => ({
+  user: state?.user,
+}));
+
+export const ProfileSettingsPage = stateConnect(ProfileEditPage);

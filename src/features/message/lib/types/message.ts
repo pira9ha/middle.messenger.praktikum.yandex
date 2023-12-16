@@ -1,4 +1,4 @@
-import { IMessage } from '@/models/chat.ts';
+import { MessageModel } from '@/models/chat.ts';
 
 export enum MessageVariant {
   TEXT = 'text',
@@ -7,4 +7,4 @@ export enum MessageVariant {
 
 export type TMessageProps = {
   messageVariant?: MessageVariant;
-} & IMessage;
+} & MessageModel;

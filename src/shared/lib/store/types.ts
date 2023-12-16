@@ -1,6 +1,6 @@
-import { UserModel } from '@/models/user.ts';
+import { ChatUserModel, UserModel } from '@/models/user.ts';
 import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
-import { TChatsProps } from '@/widgets/chats/lib/types/chats.ts';
+import { ChatModel, MessageModel } from '@/models/chat.ts';
 
 export enum StoreEvents {
   Updated = 'updated',
@@ -13,9 +13,12 @@ export type ConnectClassConstructor = {
 };
 
 export type State = {
-  serverError?: string;
+  serverError?: number;
   clientError?: string;
   user?: UserModel;
   modal?: boolean;
-  chats?: TChatsProps['chats'];
+  chats?: ChatModel[];
+  activeChat?: ChatModel['id'];
+  messages?: MessageModel[];
+  chatUsers?: ChatUserModel[];
 };

@@ -2,7 +2,11 @@ import store from '@/shared/lib/store/Store.ts';
 import { UserApi } from '@/api/UsersApi.ts';
 import { updateUser } from './updateUser.ts';
 import modalsController from '@/shared/lib/ModalsController/ModalsController.ts';
-import { UserChangePassword, UserModel } from '@/models/user.ts';
+import {
+  UserChangePassword,
+  UserLoginSearch,
+  UserModel,
+} from '@/models/user.ts';
 import router from '@/shared/lib/router/Router.ts';
 import { Routes } from '@/shared/constants/routes.ts';
 import { handlingErrorStatus } from './handlingErrorStatus.ts';
@@ -50,6 +54,28 @@ class UserService {
 
       if (updateUserRes.status === 200) {
         router.go(Routes.PROFILE);
+      } else {
+        handlingErrorStatus(updateUserRes);
+      }
+    } catch (e) {
+      if (e instanceof Error) {
+        store.setState('submitError', e.message);
+      }
+    }
+  }
+
+  async searchUsersByLogin(
+    search?: UserLoginSearch,
+  ): Promise<UserModel[] | undefined> {
+    try {
+      if (!search?.login) {
+        return;
+      }
+
+      const updateUserRes = await this._userApi.searchUsersByLogin(search);
+
+      if (updateUserRes.status === 200) {
+        return JSON.parse(updateUserRes.response);
       } else {
         handlingErrorStatus(updateUserRes);
       }

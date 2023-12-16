@@ -1,0 +1,38 @@
+.addUserForm {
+  height: fit-content;
+
+  .sendButton {
+    margin: 25px 0 16px;
+  }
+}
+
+.searchedListItem {
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-green);
+  }
+
+  &:first-of-type {
+    margin-top: 15px;
+  }
+
+  & ~ & {
+    margin-top: 5px;
+  }
+}
+
+.selectedUsers {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.selectedUser {
+  cursor: pointer;
+  background-color: var(--color-mint);
+  border-radius: 2em;
+  width: fit-content;
+  padding: 5px 10px;
+}

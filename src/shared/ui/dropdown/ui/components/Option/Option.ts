@@ -21,16 +21,6 @@ export class Option extends Component<TOption & TDefaultProps> {
     super('li', componentProps);
   }
 
-  override setProps() {
-    super.setProps(this.props);
-
-    if (this.props?.isOpen) {
-      this.show();
-    } else {
-      this.hide();
-    }
-  }
-
   render() {
     const template = Handlebars.compile(option);
     return this.compile(template);

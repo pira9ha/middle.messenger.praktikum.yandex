@@ -24,15 +24,7 @@ export class DropdownMenu extends Component<
         className: classNames(s.dropdownMenu, [s[placeVariant]]),
       },
       children: {
-        options: props.options.map(
-          (optionItem) =>
-            new Option({
-              ...optionItem,
-              onClick: () => {
-                console.log(`click on ${optionItem.title}`);
-              },
-            }),
-        ),
+        options: props.options.map((optionItem) => new Option(optionItem)),
       },
     };
     super('ul', componentProps);

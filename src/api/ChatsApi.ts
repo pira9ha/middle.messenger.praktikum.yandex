@@ -1,5 +1,5 @@
 import { BaseAPI } from '@/api/BaseApi.ts';
-import { UserChangePassword, UserModel } from '@/models/user.ts';
+import { NewChatRequest } from '@/models/chat.ts';
 
 export class ChatsApi extends BaseAPI {
   constructor() {
@@ -10,22 +10,58 @@ export class ChatsApi extends BaseAPI {
     return this.http.GET('', {});
   }
 
-  async updateProfile(data: UserModel) {
-    return this.http.PUT('/profile', {
-      data,
+  async deleteChat(chatId: number) {
+    return this.http.DELETE('', {
+      data: {
+        chatId,
+      },
       headers: {
-        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
     });
   }
 
-  async updatePassword(data: UserChangePassword) {
-    return this.http.PUT('/password', {
+  async addUserInChat(users: number[], chatId: number) {
+    return this.http.PUT('/users', {
+      data: {
+        users,
+        chatId,
+      },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  }
+
+  async deleteUserFromChat(users: number[], chatId: number) {
+    return this.http.DELETE('/users', {
+      data: {
+        users,
+        chatId,
+      },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  }
+
+  async createChat(data: NewChatRequest) {
+    return this.http.POST('', {
       data,
       headers: {
-        Accept: 'application/json',
         'Content-Type': 'application/json',
+      },
+    });
+  }
+
+  async getChatUsers(chatId: number) {
+    return this.http.GET(`/${chatId}/users`, {});
+  }
+
+  async getToken(chatId: number) {
+    return this.http.POST(`/token/${chatId}`, {
+      data: {
+        id: chatId,
       },
     });
   }

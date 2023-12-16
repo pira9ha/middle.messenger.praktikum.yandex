@@ -21,3 +21,15 @@ export type UserChangePassword = {
   newPassword: string;
   passwordCheck: string;
 };
+
+export type UserLoginSearch = Pick<UserModel, 'login'>;
+
+export type ChatUserModel = {
+  id: number;
+  first_name: string;
+  second_name: string;
+  display_name: string;
+  login: string;
+  avatar: string;
+  role: string;
+};

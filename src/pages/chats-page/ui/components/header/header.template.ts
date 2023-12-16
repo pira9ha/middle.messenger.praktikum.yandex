@@ -4,7 +4,7 @@ import s from './header.module.scss';
 export default `
     <div class="${s.userMeta}">
         {{{ avatar }}}
-        {{ userName }}
+        {{ chatName }}
     </div>
     {{{ dropdownMenu }}}
 `;

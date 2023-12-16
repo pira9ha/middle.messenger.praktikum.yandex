@@ -1,14 +1,13 @@
 import Handlebars from 'handlebars';
 import s from './chatPage.module.scss';
 import chatPage from './chatPage.template.ts';
-import { chatsContext, context } from '../lib/context/context.ts';
 import Component from '@/shared/lib/component/Component.ts';
 import {
   TChatPageChildren,
-  TChatPageContext,
+  // TChatPageContext,
 } from '@/pages/chats-page/lib/types/chat.ts';
 import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
-import { ChatContent } from './components/chatContent/ChatContent.ts';
+import { ChatContentElement } from './components/chatContent/ChatContent.ts';
 import { AsideComponent } from '../ui/components/aside/Aside.ts';
 import { Routes } from '@/shared/constants/routes.ts';
 import { searchIcon } from '@/shared/svg';
@@ -18,17 +17,12 @@ export class ChatsPage extends Component<TDefaultProps, TChatPageChildren> {
   constructor() {
     chatsService.getChats();
 
-    const chatPageProps = context();
-    const chats = chatsContext();
-
-    const props: TChatPageContext & TDefaultProps = {
-      ...chatPageProps,
+    const props: TDefaultProps = {
       className: s.chatPageLayout,
     };
 
     const children: TChatPageChildren = {
       chats: new AsideComponent({
-        chats,
         link: {
           path: Routes.PROFILE,
           title: 'Мой профиль',
@@ -48,7 +42,7 @@ export class ChatsPage extends Component<TDefaultProps, TChatPageChildren> {
           iconStyle: s.searchIcon,
         },
       }),
-      chat: new ChatContent(props.chat),
+      chat: new ChatContentElement(),
     };
 
     const componentProps = {

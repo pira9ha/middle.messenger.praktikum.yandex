@@ -16,7 +16,7 @@ class AuthService {
       const signUpRes = await this._authApi.signUp(userData);
 
       if (signUpRes.status === 200) {
-        router.go(Routes.LOGIN);
+        router.go(Routes.CHATS);
         store.setState('clientError', null);
       } else {
         handlingErrorStatus(signUpRes);

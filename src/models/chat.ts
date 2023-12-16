@@ -1,15 +1,22 @@
-export interface IChats {
+import { UserModel } from '@/models/user.ts';
+
+export type ChatModel = {
   id: number;
   title: string;
-  avatar: string;
+  avatar: string | null;
   unread_count: number;
-  last_message: TLastMessage;
-}
+  last_message: TLastMessage | null;
+  created_by: number;
+};
 
 export type TLastMessage = {
-  user: IChatUser;
+  user: UserModel;
   time: string;
-  content: IMessage;
+  content: MessageModel;
+};
+
+export type NewChatRequest = {
+  title: string;
 };
 
 export interface IChatUser {
@@ -21,7 +28,7 @@ export interface IChatUser {
   phone: string;
 }
 
-export interface IMessage {
+export type MessageModel = {
   id: number;
   user_id: number;
   chat_id: number;
@@ -30,7 +37,7 @@ export interface IMessage {
   isMainMessage?: boolean;
   currentUserId?: number;
   isRead?: boolean;
-}
+};
 
 export type TFile = {
   id: number;

@@ -28,13 +28,13 @@ export class HTTPTransport {
       xhr.open(method, url);
 
       setHeaders(xhr, headers);
+      xhr.setRequestHeader('Accept', 'application/json');
 
       xhr.onload = () => {
         res(xhr);
       };
 
       xhr.withCredentials = true;
-      xhr.setRequestHeader('Accept', 'application/json');
       xhr.timeout = timeout;
       xhr.onerror = () => rej(new Error('Что-то пошло не так'));
       xhr.onabort = () => rej(new Error('Запрос прервался'));

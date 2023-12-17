@@ -30,5 +30,5 @@ export type TRequestOptions<T> = {
 };
 
 export type ErrorResponse = {
-  reason: string;
+  reason?: string;
 };

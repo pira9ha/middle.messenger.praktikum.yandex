@@ -6,7 +6,7 @@ import { IUserAvatarProps, TUserAvatarChildren } from '../lib/types/avatar.ts';
 import s from './userAvatar.module.scss';
 import { AvatarEdit } from './components/avatarEdit/AvatarEdit.ts';
 import { modalContext } from '../lib/context/modal.ts';
-import modalsController from '@/shared/lib/ModalsController/ModalsController.ts';
+import modalsController from '@/shared/lib/modalsController/ModalsController.ts';
 import { connect } from '@/shared/lib/store/connect.ts';
 import { State } from '@/shared/lib/store/types.ts';
 import { createPath } from '@/shared/lib/utils/createPath.ts';

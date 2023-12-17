@@ -12,11 +12,16 @@
   color: rgb(var(--color-dark-gray));
   font: var(--font-12-500);
   max-width: 400px;
+  min-width: 80px;
   border-radius: 0 12px 12px;
-
   & + & {
     margin-top: 10px;
   }
+}
+
+.messageContent {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
 }
 
 .file {

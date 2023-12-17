@@ -1,7 +1,7 @@
 import store from '@/shared/lib/store/Store.ts';
 import { UserApi } from '@/api/UsersApi.ts';
 import { updateUser } from './updateUser.ts';
-import modalsController from '@/shared/lib/ModalsController/ModalsController.ts';
+import modalsController from '@/shared/lib/modalsController/ModalsController.ts';
 import {
   UserChangePassword,
   UserLoginSearch,

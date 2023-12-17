@@ -13,18 +13,22 @@ import store from '@/shared/lib/store/Store.ts';
 import { connect } from '@/shared/lib/store/connect.ts';
 import { State } from '@/shared/lib/store/types.ts';
 import chatsService from '@/service/ChatsService.ts';
+import messagesController from '@/shared/lib/messagesController/MessagesController.ts';
 
 export class Chat extends Component<ChatProps, TChatChildren> {
   constructor(chatProps: TChatContext) {
-    const { activeChat } = store.getState();
+    const { activeChat, user } = store.getState();
 
     const props: ChatProps = {
       ...chatProps,
       chatId: chatProps.id,
-      time: convertDate({
-        date: new Date(chatProps.created_by),
-        format: 'full',
-      }),
+      date: chatProps.last_message?.time
+        ? convertDate({
+            date: new Date(chatProps.last_message?.time),
+            format: 'full',
+          })
+        : '',
+      isMainMessage: chatProps.last_message?.user.login === user?.login,
       className: s.chat,
       attr: {
         'data-active': `${activeChat && activeChat === chatProps.id}`,
@@ -33,6 +37,7 @@ export class Chat extends Component<ChatProps, TChatChildren> {
         click: async () => {
           await chatsService.getChatUsers(chatProps.id);
           store.setState('activeChat', chatProps.id);
+          messagesController.updateChatHistory(chatProps.id);
         },
       },
     };
@@ -51,6 +56,7 @@ export class Chat extends Component<ChatProps, TChatChildren> {
   }
 
   setProps(nextProps: Partial<ChatProps> | ChatProps) {
+    const { user } = store.getState();
     const element = this.getContent();
 
     if (nextProps?.activeChat && element) {
@@ -59,6 +65,16 @@ export class Chat extends Component<ChatProps, TChatChildren> {
       } else {
         element.removeAttribute('data-active');
       }
+    }
+
+    if (
+      nextProps?.last_message &&
+      nextProps?.last_message?.user !== this.props.last_message?.user
+    ) {
+      nextProps = {
+        ...nextProps,
+        isMainMessage: nextProps?.last_message?.user.login === user?.login,
+      };
     }
 
     super.setProps(nextProps);

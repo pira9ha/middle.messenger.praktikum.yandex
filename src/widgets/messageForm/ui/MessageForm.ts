@@ -15,6 +15,8 @@ import {
   stapleIcon,
 } from '@/shared/svg';
 import { DropdownMenuPlace } from '@/shared/ui/dropdown/lib/types/dropdown.ts';
+import messagesController from '@/shared/lib/messagesController/MessagesController.ts';
+import store from '@/shared/lib/store/Store.ts';
 
 export class MessageForm extends Component<
   TDefaultProps,
@@ -25,13 +27,17 @@ export class MessageForm extends Component<
       className: s.messageForm,
       events: {
         submit: (event: SubmitEvent | Event) => {
+          const state = store.getState();
+          const element = (this.children.textarea as Textarea).getContent();
           event.preventDefault();
 
-          if (event.currentTarget && event instanceof SubmitEvent) {
-            const formData = new FormData(
-              event.currentTarget as HTMLFormElement,
-            );
-            console.log(Object.fromEntries(formData));
+          if (
+            state?.activeChat &&
+            element instanceof HTMLTextAreaElement &&
+            element.value
+          ) {
+            messagesController.sendMessage(state?.activeChat, element.value);
+            element.value = '';
           }
         },
       },

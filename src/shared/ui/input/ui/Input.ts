@@ -1,7 +1,6 @@
 import Component from '@/shared/lib/component/Component.ts';
 import s from './input.module.scss';
 import { classNames } from '@/shared/lib/utils/classNames.ts';
-import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 import { InputProps, TInputProps } from '../lib/types/input';
 import { mapAttr } from '@/shared/ui/input/lib/utils/mapAttr.ts';
 

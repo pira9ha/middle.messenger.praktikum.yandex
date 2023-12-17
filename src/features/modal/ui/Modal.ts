@@ -6,7 +6,7 @@ import modal from './modal.template.ts';
 import s from './modal.module.scss';
 import { Overlay } from '@/shared/ui/overlay';
 import { ModalContent } from './components/modalContent/ModalContent.ts';
-import modalsController from '@/shared/lib/ModalsController/ModalsController.ts';
+import modalsController from '@/shared/lib/modalsController/ModalsController.ts';
 
 export class Modal extends Component<TDefaultProps, IModalChildren> {
   constructor(modalProps: TModalProps) {

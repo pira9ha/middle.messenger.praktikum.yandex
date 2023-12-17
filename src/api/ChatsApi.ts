@@ -65,4 +65,8 @@ export class ChatsApi extends BaseAPI {
       },
     });
   }
+
+  async getUnreadCount(chatId: number) {
+    return this.http.GET(`/new/${chatId}`, {});
+  }
 }

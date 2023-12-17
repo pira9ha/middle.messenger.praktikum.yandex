@@ -13,7 +13,7 @@ import userService from '@/service/UserService.ts';
 import { Button } from '@/shared/ui/button';
 import store from '@/shared/lib/store/Store.ts';
 import chatsService from '@/service/ChatsService.ts';
-import modalsController from '@/shared/lib/ModalsController/ModalsController.ts';
+import modalsController from '@/shared/lib/modalsController/ModalsController.ts';
 
 export class AddUserModal extends Component<
   AddUserFormProps,

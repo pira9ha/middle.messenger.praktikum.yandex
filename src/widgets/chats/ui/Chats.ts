@@ -8,7 +8,7 @@ import { Chat, ChatElement } from './components/Chat.ts';
 import { connect } from '@/shared/lib/store/connect.ts';
 import { State } from '@/shared/lib/store/types.ts';
 import { chatsContext } from '../lib/utils/context.ts';
-import { isEqual } from '@/shared/lib/utils/isEqual.ts';
+import { convertDate } from '@/shared/lib/utils/convertDate.ts';
 
 export class Chats extends Component<
   TChatsProps & TDefaultProps,
@@ -45,7 +45,7 @@ export class Chats extends Component<
     }
 
     if (nextProps.chats?.length) {
-      if (this.props.chats?.length < nextProps.chats?.length) {
+      if (this.props.chats?.length <= nextProps.chats?.length) {
         const chatChildren = this.children.chats as Chat[];
 
         nextProps.chats?.forEach((chat) => {
@@ -57,14 +57,12 @@ export class Chats extends Component<
             chatChildren.unshift(new ChatElement(chat));
             return;
           }
-
-          const chatProps = this.props.chats.find(
-            (chatProp) => chatProp.id === chat.id,
-          );
-
-          if (chatProps && !isEqual(chat, chatProps)) {
-            currentChatChild.setProps(chat);
-          }
+          currentChatChild.setProps({
+            ...chat,
+            date: chat.last_message?.time
+              ? convertDate({ date: chat.last_message?.time })
+              : '',
+          });
         });
       } else {
         const chatChildren = this.children.chats as Chat[];

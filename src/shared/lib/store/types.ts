@@ -19,6 +19,6 @@ export type State = {
   modal?: boolean;
   chats?: ChatModel[];
   activeChat?: ChatModel['id'];
-  messages?: MessageModel[];
+  messages?: Record<number, MessageModel[]>;
   chatUsers?: ChatUserModel[];
 };

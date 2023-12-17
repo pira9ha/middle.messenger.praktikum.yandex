@@ -1,6 +1,6 @@
 import { THeaders, TRequest, METHODS, TFullRequest } from './types.ts';
 import { queryStringify } from '@/shared/lib/utils/queryStringify.ts';
-import { DEFAULT_PATH } from '@/shared/constants/api.ts';
+import { API_DEFAULT_PATH } from '@/shared/constants/api.ts';
 
 function setHeaders(xhr: XMLHttpRequest, headers: THeaders) {
   for (const [key, value] of Object.entries(headers)) {
@@ -9,7 +9,7 @@ function setHeaders(xhr: XMLHttpRequest, headers: THeaders) {
 }
 
 export class HTTPTransport {
-  private _baseURL: string = DEFAULT_PATH;
+  private _baseURL: string = API_DEFAULT_PATH;
   private _path: string;
 
   constructor(path: string) {

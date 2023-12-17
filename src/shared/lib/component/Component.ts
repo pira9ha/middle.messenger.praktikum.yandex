@@ -83,7 +83,6 @@ abstract class Component<
   componentDidMount() {}
 
   dispatchComponentDidMount() {
-    // debugger;
     this.eventBus().emit(Component.EVENTS.FLOW_CDM);
     if (Object.keys(this.children).length) {
       this.eventBus().emit(Component.EVENTS.FLOW_RENDER);

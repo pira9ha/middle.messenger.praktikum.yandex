@@ -13,7 +13,7 @@ import { InputField } from '@/shared/ui/inputField';
 import { connect } from '@/shared/lib/store/connect.ts';
 import { State } from '@/shared/lib/store/types.ts';
 import { Button } from '@/shared/ui/button';
-import modalsController from '@/shared/lib/ModalsController/ModalsController.ts';
+import modalsController from '@/shared/lib/modalsController/ModalsController.ts';
 import { createChatModal } from '@/pages/chats-page/lib/context/modalsContext.ts';
 import { plusHuge } from '@/shared/svg';
 

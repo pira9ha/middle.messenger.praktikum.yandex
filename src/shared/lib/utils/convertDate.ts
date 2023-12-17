@@ -52,7 +52,7 @@ function getCurrentFormatDate(date: Date): TDateReturn {
 }
 
 export function convertDate(params: TConvertDateProps): TDateReturn {
-  // debugger
+  // debugger;
   let { date } = params;
   const format = params?.format ?? 'time';
 
@@ -62,6 +62,7 @@ export function convertDate(params: TConvertDateProps): TDateReturn {
 
   switch (format) {
     case 'time': {
+      console.log(date, params);
       return `${date.getHours()}:${date.getMinutes()}`;
     }
     case 'full': {

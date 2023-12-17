@@ -65,6 +65,11 @@ export type ChatContentProps = {
   chat?: number;
 } & TDefaultProps;
 
+export type OpenedChatProps = {
+  messages?: MessageModel[];
+  activeChat?: number;
+} & TDefaultProps;
+
 export type HeaderProps = {
   chat?: ChatModel;
   activeChat?: number;

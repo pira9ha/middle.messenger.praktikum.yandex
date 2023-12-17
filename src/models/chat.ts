@@ -6,7 +6,7 @@ export type ChatModel = {
   avatar: string | null;
   unread_count: number;
   last_message: TLastMessage | null;
-  created_by: number;
+  time: number;
 };
 
 export type TLastMessage = {
@@ -28,15 +28,28 @@ export interface IChatUser {
   phone: string;
 }
 
+export enum MessageVariant {
+  TEXT = 'message',
+  FILE = 'file',
+}
+
 export type MessageModel = {
   id: number;
   user_id: number;
   chat_id: number;
   time: string;
+  type: MessageVariant;
   content: string;
-  isMainMessage?: boolean;
-  currentUserId?: number;
-  isRead?: boolean;
+  is_read?: boolean;
+  file?: {
+    content_size: number;
+    content_type: string;
+    filename: string;
+    id: number;
+    path: string;
+    upload_date: string;
+    user_id: number;
+  };
 };
 
 export type TFile = {

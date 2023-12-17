@@ -12,7 +12,7 @@ import { connect } from '@/shared/lib/store/connect.ts';
 import { State } from '@/shared/lib/store/types.ts';
 import { activeChatProps } from '../../../lib/context/context.ts';
 import { isEqual } from '@/shared/lib/utils/isEqual.ts';
-import modalsController from '@/shared/lib/ModalsController/ModalsController.ts';
+import modalsController from '@/shared/lib/modalsController/ModalsController.ts';
 import {
   addUserToChatModal,
   deleteChatModal,

@@ -3,7 +3,7 @@ import { TModalProps } from '@/features/modal';
 import chatsService from '@/service/ChatsService.ts';
 import { NewChatRequest } from '@/models/chat.ts';
 import { fromFormData } from '@/shared/lib/utils/fromFormData';
-import modalsController from '@/shared/lib/ModalsController/ModalsController.ts';
+import modalsController from '@/shared/lib/modalsController/ModalsController.ts';
 import { ButtonVariant } from '@/shared/ui/button';
 import store from '@/shared/lib/store/Store.ts';
 import { TInputFieldProps } from '@/shared/ui/inputField';

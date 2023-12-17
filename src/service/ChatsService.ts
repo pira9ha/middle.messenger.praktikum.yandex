@@ -1,8 +1,9 @@
 import store from '@/shared/lib/store/Store.ts';
 import { ChatsApi } from '@/api/ChatsApi.ts';
 import { handlingErrorStatus } from './handlingErrorStatus.ts';
-import { NewChatRequest } from '@/models/chat.ts';
+import { ChatModel, NewChatRequest } from '@/models/chat.ts';
 import { ChatUserModel } from '@/models/user.ts';
+import messagesController from '@/shared/lib/messagesController/MessagesController.ts';
 
 class ChatsService {
   private _chatsApi = new ChatsApi();
@@ -12,8 +13,18 @@ class ChatsService {
       const chatsRes = await this._chatsApi.getChats();
 
       if (chatsRes.status === 200) {
-        store.setState('chats', JSON.parse(chatsRes.response));
+        const chats = JSON.parse(chatsRes.response) as ChatModel[];
         store.setState('clientError', null);
+
+        chats.forEach(async (chat) => {
+          const tokenRes = await this.getToken(chat.id);
+
+          if (tokenRes) {
+            messagesController.connect(chat.id, tokenRes.token);
+          }
+        });
+
+        store.setState('chats', chats);
       } else {
         handlingErrorStatus(chatsRes);
       }
@@ -95,7 +106,7 @@ class ChatsService {
       const chatsRes = await this._chatsApi.addUserInChat(users, chatId);
 
       if (chatsRes.status === 200) {
-        await this.getChats();
+        await this.getChatUsers(chatId);
         store.setState('clientError', null);
         return true;
       } else {
@@ -114,7 +125,7 @@ class ChatsService {
         const chatsRes = await this._chatsApi.deleteUserFromChat(users, chatId);
 
         if (chatsRes.status === 200) {
-          await this.getChats();
+          await this.getChatUsers(chatId);
           store.setState('clientError', null);
           return true;
         } else {

@@ -38,8 +38,10 @@ export const AssignedPages: string[] = [
   Routes.SERVER_ERROR,
 ];
 
-export const ProtectedPages = Object.values(Routes).map((value) => {
-  if (!AssignedPages.includes(value)) {
-    return String(value);
-  }
-});
+export const ProtectedPages = Object.values(Routes)
+  .map((value) => {
+    if (!AssignedPages.includes(value)) {
+      return String(value);
+    }
+  })
+  .filter((route) => route);

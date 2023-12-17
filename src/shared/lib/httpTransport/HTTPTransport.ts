@@ -28,7 +28,6 @@ export class HTTPTransport {
       xhr.open(method, url);
 
       setHeaders(xhr, headers);
-      xhr.setRequestHeader('Accept', 'application/json');
 
       xhr.onload = () => {
         res(xhr);

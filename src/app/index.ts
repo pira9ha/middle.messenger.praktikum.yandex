@@ -1,5 +1,5 @@
 import router from '@/shared/lib/router/Router.ts';
-import { ProtectedPages, Pages, Routes } from '@/shared/constants/routes.ts';
+import { Pages, Routes } from '@/shared/constants/routes.ts';
 import authService from '@/service/AuthService.ts';
 import store from '@/shared/lib/store/Store.ts';
 
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   if (user && currentPath === Routes.LOGIN) {
     router.go(Routes.CHATS);
-  } else if (!user && ProtectedPages.includes(currentPath)) {
+  } else {
     router.go(Routes.LOGIN);
   }
 });

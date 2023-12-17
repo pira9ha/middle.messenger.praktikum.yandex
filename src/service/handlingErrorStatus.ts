@@ -10,6 +10,8 @@ export const handlingErrorStatus = (response: XMLHttpRequest) => {
       ? JSON.parse(response.response)
       : DEFAULT_ERROR;
     store.setState('clientError', errorResponse.reason);
+  } else if (response.status === 401) {
+    router.go(Routes.LOGIN);
   } else {
     store.setState('serverError', response.status);
     router.go(Routes.SERVER_ERROR);

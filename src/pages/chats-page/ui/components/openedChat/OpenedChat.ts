@@ -17,7 +17,9 @@ import { State } from '@/shared/lib/store/types.ts';
 export class OpenedChat extends Component<OpenedChatProps, ChatChildren> {
   constructor() {
     const state = store.getState();
-    const chatMessages = state?.messages?.[state?.activeChat!] ?? [];
+    const chatMessages = state?.activeChat
+      ? state?.messages?.[state?.activeChat] ?? []
+      : [];
 
     const componentProps: IComponentProps<OpenedChatProps, ChatChildren> = {
       props: {
@@ -69,7 +71,9 @@ export class OpenedChat extends Component<OpenedChatProps, ChatChildren> {
 
 const stateConnect = connect((state: State) => ({
   activeChat: state?.activeChat,
-  messages: [...(state?.messages?.[state?.activeChat!] ?? [])].reverse(),
+  messages: [
+    ...(state?.activeChat ? state?.messages?.[state?.activeChat] ?? [] : []),
+  ].reverse(),
 }));
 
 export const OpenedChatElement = stateConnect(OpenedChat);

@@ -52,7 +52,6 @@ function getCurrentFormatDate(date: Date): TDateReturn {
 }
 
 export function convertDate(params: TConvertDateProps): TDateReturn {
-  // debugger;
   let { date } = params;
   const format = params?.format ?? 'time';
 

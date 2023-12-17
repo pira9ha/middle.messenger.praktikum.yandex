@@ -22,9 +22,7 @@ export class Link extends Component<TLinkProps & TDefaultProps> {
       },
       events: {
         click: () => {
-          // event.preventDefault();
           if (linkProps?.path) {
-            // debugger;
             router.go(linkProps.path);
           } else {
             router.back();

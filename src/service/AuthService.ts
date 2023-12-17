@@ -14,6 +14,8 @@ class AuthService {
       const signUpRes = await this._authApi.signUp(userData);
 
       if (signUpRes.status === 200) {
+        await this.user();
+
         router.go(Routes.CHATS);
         store.setState('clientError', null);
       } else {
@@ -29,6 +31,8 @@ class AuthService {
       const signInRes = await this._authApi.signIn(userData);
 
       if (signInRes.status === 200) {
+        await this.user();
+
         router.go(Routes.CHATS);
         store.setState('clientError', null);
       } else {

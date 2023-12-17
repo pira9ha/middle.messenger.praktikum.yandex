@@ -62,7 +62,6 @@ export function convertDate(params: TConvertDateProps): TDateReturn {
 
   switch (format) {
     case 'time': {
-      console.log(date, params);
       return `${date.getHours()}:${date.getMinutes()}`;
     }
     case 'full': {

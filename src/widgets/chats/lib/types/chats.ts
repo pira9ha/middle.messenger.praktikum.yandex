@@ -1,17 +1,17 @@
-import { TAvatarProps } from '@/shared/ui/chatAvatar/lib/types/avatar.ts';
 import { ChatAvatar } from 'src/shared/ui/chatAvatar';
 import { Chat } from '../../ui/components/Chat.ts';
+import { ChatModel } from '@/models/chat.ts';
+import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 
-export type TChatContext = {
-  id: number;
-  content: string;
-  userName: string;
+export type TChatContext = ChatModel;
+
+export type ChatProps = {
   isMainMessage?: boolean;
-  unread_count?: number;
-  time: string;
-  isActive?: boolean;
-  userAvatar: TAvatarProps;
-};
+  activeChat?: number;
+  chatId: ChatModel['id'];
+  date: string;
+} & TChatContext &
+  TDefaultProps;
 
 export type TChatsProps = {
   chats: Array<TChatContext>;

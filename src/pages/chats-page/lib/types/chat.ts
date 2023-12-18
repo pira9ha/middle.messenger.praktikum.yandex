@@ -1,17 +1,18 @@
-import { IMessage } from '@/models/chat.ts';
+import { ChatModel, MessageModel } from '@/models/chat.ts';
 import { Link, TLinkProps } from '@/shared/ui/link';
 import { InputField, TInputFieldProps } from '@/shared/ui/inputField';
-import { TMessageFormProps } from '@/widgets/messageForm/lib/types/messageForm.ts';
 import { MessageForm } from '@/widgets/messageForm';
 import { ChatAvatar } from 'src/shared/ui/chatAvatar';
-import { Dropdown, TDropdown } from '@/shared/ui/dropdown';
-import { TAvatarProps } from '@/shared/ui/chatAvatar/lib/types/avatar.ts';
+import { Dropdown } from '@/shared/ui/dropdown';
 import { Header } from '../../ui/components/header/Header.ts';
-import { TChatsProps } from '@/widgets/chats/lib/types/chats.ts';
 import { Chats } from '@/widgets/chats';
 import { ChatContent } from '../../ui/components/chatContent/ChatContent.ts';
 import { Message } from '@/features/message';
 import { Aside } from '@/pages/chats-page/ui/components/aside/Aside.ts';
+import { Button } from '@/shared/ui/button';
+import { OpenedChat } from '@/pages/chats-page/ui/components/openedChat/OpenedChat.ts';
+import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
+import { UserModel } from '@/models/user.ts';
 
 export type TChatPageContext = {
   chatsContext: TAsideProps;
@@ -19,9 +20,7 @@ export type TChatPageContext = {
 };
 
 export type TOpenedChat = {
-  chatContext: THeader;
-  messageFormContext: TMessageFormProps;
-  messages: IMessage[];
+  messages: MessageModel[];
 };
 
 export type TChatPageChildren = {
@@ -33,25 +32,49 @@ export type TAsideChildren = {
   chats: Chats;
   link: Link;
   searchInput: InputField;
+  createChat: Button;
 };
 
 export type TAsideProps = {
-  chats: TChatsProps;
   link: TLinkProps;
   searchInput: TInputFieldProps;
 };
 
-export type TChatContentChildren = {
+export type ChatChildren = {
   messageForm?: MessageForm | undefined;
   header?: Header;
-  messages: Message[];
+  messages?: Message[];
 };
 
-export type THeader = {
-  menu: TDropdown;
-  avatar: TAvatarProps;
-  userName: string;
+export type ChatContentChildren = {
+  chat: OpenedChat;
 };
+
+export type AddUserFormProps = {
+  searchedUsers: UserModel[];
+  selectedUsers: UserModel[];
+} & TDefaultProps;
+
+export type AddUserFormChildren = {
+  loginSearch: InputField;
+  sendButton: Button;
+};
+
+export type ChatContentProps = {
+  isChatOpen: boolean;
+  chat?: number;
+} & TDefaultProps;
+
+export type OpenedChatProps = {
+  messages?: MessageModel[];
+  activeChat?: number;
+} & TDefaultProps;
+
+export type HeaderProps = {
+  chat?: ChatModel;
+  activeChat?: number;
+  chatName?: string;
+} & TDefaultProps;
 
 export type THeaderChildren = {
   avatar: ChatAvatar;

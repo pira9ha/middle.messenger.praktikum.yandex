@@ -1,10 +1,4 @@
-import { IMessage } from '@/models/chat.ts';
+import { MessageModel } from '@/models/chat.ts';
+import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 
-export enum MessageVariant {
-  TEXT = 'text',
-  FILE = 'file',
-}
-
-export type TMessageProps = {
-  messageVariant?: MessageVariant;
-} & IMessage;
+export type TMessageProps = TDefaultProps & MessageModel;

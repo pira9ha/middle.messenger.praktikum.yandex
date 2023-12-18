@@ -7,6 +7,8 @@ import {
   TMeta,
 } from '@/shared/lib/component/componentTypes.ts';
 import { v4 as makeUUID } from 'uuid';
+import { isEqual } from '@/shared/lib/utils/isEqual.ts';
+import { render } from '../utils/renderDOM';
 
 abstract class Component<
   Props extends TDefaultProps = TDefaultProps,
@@ -82,6 +84,9 @@ abstract class Component<
 
   dispatchComponentDidMount() {
     this.eventBus().emit(Component.EVENTS.FLOW_CDM);
+    if (Object.keys(this.children).length) {
+      this.eventBus().emit(Component.EVENTS.FLOW_RENDER);
+    }
   }
 
   _componentDidUpdate(oldProps: Props, newProps: Props) {
@@ -93,15 +98,7 @@ abstract class Component<
   }
 
   componentDidUpdate(oldProps: Props, newProps: Props) {
-    const newPropsValues = Object.entries(newProps);
-
-    for (const [key, value] of newPropsValues) {
-      if (oldProps[key] !== value) {
-        return true;
-      }
-    }
-
-    return false;
+    return !isEqual(newProps, oldProps);
   }
 
   setProps(nextProps: Props | Partial<Props>) {
@@ -290,11 +287,11 @@ abstract class Component<
     }
   }
 
-  show() {
+  show(parentQuery: string) {
     const component = this.getContent();
 
     if (component) {
-      component.style.display = 'block';
+      render(parentQuery, this);
     }
   }
 
@@ -302,7 +299,7 @@ abstract class Component<
     const component = this.getContent();
 
     if (component) {
-      component.style.display = 'none';
+      component.remove();
     }
   }
 }

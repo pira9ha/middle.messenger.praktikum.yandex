@@ -3,6 +3,7 @@ import { Label } from '../../ui/components/label/Label.ts';
 import { TInputProps } from '@/shared/ui/input';
 import { Error } from '@/shared/ui/error';
 import { Fields } from '@/shared/lib/validation/constants.ts';
+import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 
 export type TInputFieldProps = {
   input: TInputProps;
@@ -12,7 +13,7 @@ export type TInputFieldProps = {
   errorMessage?: string;
   field?: Fields;
   validate?: (element: HTMLInputElement) => string | undefined;
-};
+} & TDefaultProps;
 
 export type TLabelProps = {
   labelText: string;

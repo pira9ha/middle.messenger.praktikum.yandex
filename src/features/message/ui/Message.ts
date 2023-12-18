@@ -3,14 +3,15 @@ import Component from '@/shared/lib/component/Component.ts';
 import message from './message.template.ts';
 import s from './message.module.scss';
 import { classNames } from '@/shared/lib/utils/classNames.ts';
-import { MessageVariant, TMessageProps } from '../lib/types/message.ts';
-import { convertDate } from '@/shared/lib/utils/convertDate.ts';
+import { TMessageProps } from '../lib/types/message.ts';
 import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
+import store from '@/shared/lib/store/Store.ts';
+import { convertDate } from '@/shared/lib/utils/convertDate.ts';
 
 export class Message extends Component<TMessageProps & TDefaultProps> {
   constructor(messageProps: TMessageProps) {
-    const isMainMessage = messageProps.user_id === messageProps.currentUserId;
-    const variant = messageProps?.messageVariant || MessageVariant.TEXT;
+    const state = store.getState();
+    const isMainMessage = messageProps.user_id === state?.user?.id;
 
     const componentProps = {
       props: {
@@ -19,7 +20,6 @@ export class Message extends Component<TMessageProps & TDefaultProps> {
           [s.mainMessage]: isMainMessage,
         }),
         isMainMessage,
-        variant,
         time: convertDate({ date: messageProps.time }),
       },
     };

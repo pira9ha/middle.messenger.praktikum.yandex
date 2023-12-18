@@ -57,3 +57,26 @@
 .sendButton {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28' fill='none'%3E%3Ccircle cx='14' cy='14' r='14' fill='%2399B800'/%3E%3Crect x='8' y='13.2' width='11' height='1.6' fill='white'/%3E%3Cpath d='M15 9L19 14L15 19' stroke='white' stroke-width='1.6'/%3E%3C/svg%3E");
 }
+
+.checkboxSelect {
+  position: absolute;
+  visibility: hidden;
+}
+
+.checkboxSelect ~ label {
+  position: static;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  font: var(--font-13-500);
+  border-radius: 6px;
+  color: var(--color-medium-gray);
+
+  &:hover {
+    background-color: var(--color-extra-light-mint);
+  }
+}
+
+.checkboxSelect:checked + label {
+  background-color: var(--color-extra-light-mint);
+}

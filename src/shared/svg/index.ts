@@ -9,6 +9,7 @@ import crossIcon from './icons/crossIcon.template.ts';
 import errorCrossIcon from './icons/errorCrossIcon.template.ts';
 import menuIcon from './icons/menuIcon.template.ts';
 import searchIcon from './icons/searchIcon.template.ts';
+import plusHuge from './icons/plusHugeIcon.template.ts';
 
 export {
   arrowRightIcon,
@@ -22,4 +23,5 @@ export {
   errorCrossIcon,
   menuIcon,
   searchIcon,
+  plusHuge,
 };

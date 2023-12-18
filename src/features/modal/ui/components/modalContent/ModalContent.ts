@@ -15,6 +15,7 @@ export class ModalContent extends Component<
   IModalContentChildren
 > {
   constructor(modalContentProps: TModalContentProps) {
+    const customContent = modalContentProps?.customForm;
     const props = {
       ...modalContentProps,
       className: s.modalCard,
@@ -25,6 +26,7 @@ export class ModalContent extends Component<
         ? new Form(modalContentProps.formContext)
         : undefined,
       buttons: modalContentProps?.buttons?.map((button) => new Button(button)),
+      customForm: customContent ? new customContent() : undefined,
     };
 
     const componentProps = {

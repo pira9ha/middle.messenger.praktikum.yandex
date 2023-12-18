@@ -3,15 +3,16 @@ import Component from '@/shared/lib/component/Component.ts';
 import inputField from './inputField.template.ts';
 import { TInputFieldChildren, TInputFieldProps } from '../lib/types/input.ts';
 import s from './inputField.module.scss';
-import { Input } from '@/shared/ui/input';
+import { Input, InputProps } from '@/shared/ui/input';
 import { Label } from './components/label/Label.ts';
 import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 import { Error } from '@/shared/ui/error';
 import { getValidation } from '@/shared/lib/validation/getValidation.ts';
 import { Fields } from '@/shared/lib/validation/constants.ts';
+import { isEqual } from '@/shared/lib/utils/isEqual.ts';
 
 export class InputField extends Component<
-  TInputFieldProps & TDefaultProps,
+  TInputFieldProps,
   TInputFieldChildren
 > {
   constructor(fieldProps: TInputFieldProps) {
@@ -31,6 +32,7 @@ export class InputField extends Component<
             blur: () => {
               this.validate();
             },
+            ...fieldProps?.events,
           },
         }),
         label: new Label(fieldProps.label),
@@ -41,6 +43,18 @@ export class InputField extends Component<
     };
 
     super('div', componentProps);
+  }
+
+  setProps(
+    nextProps:
+      | Partial<TInputFieldProps & TDefaultProps>
+      | (TInputFieldProps & TDefaultProps),
+  ) {
+    if (nextProps.input && !isEqual(nextProps.input, this.props.input)) {
+      (this.children.input as Input).setProps(nextProps.input as InputProps);
+    }
+
+    super.setProps(nextProps);
   }
 
   validate() {

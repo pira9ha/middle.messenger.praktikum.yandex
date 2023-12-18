@@ -5,6 +5,7 @@ import s from './link.module.scss';
 import { classNames } from '@/shared/lib/utils/classNames.ts';
 import { TLinkProps } from '../lib/types/link.ts';
 import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
+import router from '@/shared/lib/router/Router.ts';
 
 export class Link extends Component<TLinkProps & TDefaultProps> {
   constructor(linkProps: TLinkProps) {
@@ -15,21 +16,22 @@ export class Link extends Component<TLinkProps & TDefaultProps> {
         linkProps.classNames,
       ]),
       attr: {
-        href: linkProps?.path,
-        target: linkProps?.target || '_self',
-        rel: 'noopener noreferrer',
+        // href: linkProps?.path,
+        // target: linkProps?.target || '_self',
+        // rel: 'noopener noreferrer',
+      },
+      events: {
+        click: () => {
+          if (linkProps?.path) {
+            router.go(linkProps.path);
+          } else {
+            router.back();
+          }
+        },
       },
     };
 
-    if (linkProps.isBackButton) {
-      props.events = {
-        click: () => {
-          history.back();
-        },
-      };
-    }
-
-    super('a', { props });
+    super('span', { props });
   }
 
   render() {

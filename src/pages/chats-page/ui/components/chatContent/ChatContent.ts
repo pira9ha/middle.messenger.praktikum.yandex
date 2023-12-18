@@ -3,39 +3,34 @@ import s from './chatContent.module.scss';
 import chatContent from './chatContent.template.ts';
 import Component from '@/shared/lib/component/Component.ts';
 import {
-  TChatContentChildren,
-  TOpenedChat,
+  ChatContentChildren,
+  ChatContentProps,
 } from '@/pages/chats-page/lib/types/chat.ts';
-import {
-  IComponentProps,
-  TDefaultProps,
-} from '@/shared/lib/component/componentTypes.ts';
-import { MessageForm } from '@/widgets/messageForm/ui/MessageForm.ts';
-import { Header } from '@/pages/chats-page/ui/components/header/Header.ts';
-import { Message } from '@/features/message';
+import { IComponentProps } from '@/shared/lib/component/componentTypes.ts';
+import { OpenedChatElement } from '../openedChat/OpenedChat.ts';
+import { connect } from '@/shared/lib/store/connect.ts';
+import { State } from '@/shared/lib/store/types.ts';
+import store from '@/shared/lib/store/Store.ts';
 
 export class ChatContent extends Component<
-  TDefaultProps,
-  TChatContentChildren
+  ChatContentProps,
+  ChatContentChildren
 > {
-  constructor(chatContentProps?: TOpenedChat) {
-    const componentProps: IComponentProps<TDefaultProps, TChatContentChildren> =
-      {
-        props: {
-          isChatOpen: Boolean(chatContentProps),
-          className: s.chatWrapper,
-        },
-      };
+  constructor() {
+    const state = store.getState();
 
-    if (chatContentProps) {
-      componentProps.children = {
-        messageForm: new MessageForm(chatContentProps.messageFormContext),
-        header: new Header(chatContentProps.chatContext),
-        messages: chatContentProps.messages.map(
-          (message) => new Message(message),
-        ),
-      };
-    }
+    const componentProps: IComponentProps<
+      ChatContentProps,
+      ChatContentChildren
+    > = {
+      props: {
+        isChatOpen: Boolean(state?.activeChat),
+        className: s.chatWrapper,
+      },
+      children: {
+        chat: new OpenedChatElement(),
+      },
+    };
 
     super('div', componentProps);
   }
@@ -45,3 +40,10 @@ export class ChatContent extends Component<
     return this.compile(template);
   }
 }
+
+const stateConnect = connect((state: State) => ({
+  isChatOpen: Boolean(state?.activeChat),
+  chat: state?.activeChat,
+}));
+
+export const ChatContentElement = stateConnect(ChatContent);

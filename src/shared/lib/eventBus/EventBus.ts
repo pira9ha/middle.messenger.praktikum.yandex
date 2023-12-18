@@ -1,16 +1,9 @@
 import { IEventBus, TFunctionEvent, TListeners } from './eventBusTypes.ts';
 
 class EventBus implements IEventBus {
-  private static _instance: EventBus;
   private _listeners: TListeners = {};
 
-  constructor() {
-    if (EventBus._instance) {
-      return EventBus._instance;
-    }
-
-    EventBus._instance = this;
-  }
+  constructor() {}
 
   on(event: string, callback: TFunctionEvent) {
     if (!this._listeners[event]) {

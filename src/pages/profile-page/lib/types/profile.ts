@@ -1,12 +1,12 @@
 import { Controls } from '@/pages/profile-page/ui/components/controls/Controls.ts';
-import { ProfileInfoField } from '../../ui/components/profileInfoField/ProfileInfoField.ts';
 import { TControlsProps } from './controls.ts';
-import { IUserAvatarProps } from '@/features/userAvatar/lib/types/avatar.ts';
 import { Link, TLinkProps } from '@/shared/ui/link';
 import { TFormProps } from '@/features/form/lib/types/form.ts';
 import { UserAvatar } from '@/features/userAvatar';
 import { ProfileInfo } from '@/pages/profile-page/ui/components/profileInfo/ProfileInfo.ts';
 import { Form } from '@/features/form';
+import { UserModel } from '@/models/user.ts';
+import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 
 type TData = {
   field: string;
@@ -20,14 +20,6 @@ export type TProfileInfoProps = {
 
 export type TProfileInfoChildren = {
   controls: Controls;
-  info: ProfileInfoField[];
-};
-
-export type TProfileInfoField = TData;
-
-export type IProfileContext = {
-  userAvatar: IUserAvatarProps;
-  link: TLinkProps;
 };
 
 export type IProfilePageContext = {
@@ -35,21 +27,20 @@ export type IProfilePageContext = {
   profileContext?: TProfileInfoProps;
   formEditContext?: TFormProps;
   formPasswordContext?: TFormProps;
-} & IProfileContext;
+} & TDefaultProps;
 
 export type IProfilePageProps = {
-  profileContext: TProfileInfoProps;
-} & IProfileContext;
+  profileContext: boolean;
+} & TDefaultProps;
 
 export type IProfileEditPageProps = {
-  reset: TLinkProps;
-  formEditContext: TFormProps;
-} & IProfileContext;
+  user?: UserModel;
+  formEditContext: boolean;
+} & TDefaultProps;
 
 export type IProfileEditPasswordPageProps = {
-  reset: TLinkProps;
-  formPasswordContext: TFormProps;
-} & IProfileContext;
+  formPasswordContext: boolean;
+} & TDefaultProps;
 
 export type IProfilePageChildren = {
   userAvatar: UserAvatar;
@@ -58,4 +49,11 @@ export type IProfilePageChildren = {
   profileInfo?: ProfileInfo;
   formEdit?: Form;
   formPassword?: Form;
+};
+
+export type IProfileEditPageChildren = {
+  userAvatar: UserAvatar;
+  link: Link;
+  reset?: Link;
+  formEdit: Form;
 };

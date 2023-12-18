@@ -1,4 +1,4 @@
-export interface IUser {
+export type UserModel = {
   id?: number;
   first_name: string;
   second_name: string;
@@ -7,20 +7,29 @@ export interface IUser {
   login: string;
   avatar?: string;
   email: string;
-}
+};
 
-export interface IUserLogin {
-  login: string;
-  password: string;
-}
+export type UserLogin = Pick<UserRegistration, 'login' | 'password'>;
 
-export interface IUserRegistration extends IUser {
+export type UserRegistration = {
   password: string;
   password_check: string;
-}
+} & UserModel;
 
-export type TUserChangePassword = {
+export type UserChangePassword = {
   oldPassword: string;
   newPassword: string;
   passwordCheck: string;
+};
+
+export type UserLoginSearch = Pick<UserModel, 'login'>;
+
+export type ChatUserModel = {
+  id: number;
+  first_name: string;
+  second_name: string;
+  display_name: string;
+  login: string;
+  avatar: string;
+  role: string;
 };

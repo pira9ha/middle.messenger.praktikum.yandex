@@ -1,29 +1,29 @@
 import Handlebars from 'handlebars';
 import s from './notFoundPage.module.scss';
 import notFoundPage from './notFoundPage.template';
-import { context } from '../lib/context/context.ts';
 import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
-import {
-  TErrorPageChildren,
-  TErrorPageContext,
-} from '@/models/errorContext.ts';
+import { TErrorPageChildren } from '@/models/errorContext.ts';
 import Component from '@/shared/lib/component/Component.ts';
 import { Link } from '@/shared/ui/link';
 import { StatusError } from '@/features/statusError';
+import { Routes } from '@/shared/constants/routes.ts';
 
-export class NotFoundPageComponent extends Component<
-  TErrorPageContext & TDefaultProps,
-  TErrorPageChildren
-> {
-  constructor(props: TErrorPageContext) {
+export class NotFoundPage extends Component<TDefaultProps, TErrorPageChildren> {
+  constructor() {
     const componentProps = {
       props: {
-        ...props,
         className: s.page,
       },
       children: {
-        statusError: new StatusError(props.statusError),
-        link: new Link(props.link),
+        statusError: new StatusError({
+          errorCode: 404,
+          title: 'Не туда попали',
+        }),
+        link: new Link({
+          title: 'Назад',
+          classNames: s.link,
+          path: Routes.CHATS,
+        }),
       },
     };
     super('div', componentProps);
@@ -34,5 +34,3 @@ export class NotFoundPageComponent extends Component<
     return this.compile(template);
   }
 }
-
-export const NotFoundPage = () => new NotFoundPageComponent(context);

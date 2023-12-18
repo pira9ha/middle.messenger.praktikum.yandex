@@ -6,10 +6,9 @@ import modal from './modal.template.ts';
 import s from './modal.module.scss';
 import { Overlay } from '@/shared/ui/overlay';
 import { ModalContent } from './components/modalContent/ModalContent.ts';
+import modalsController from '@/shared/lib/modalsController/ModalsController.ts';
 
 export class Modal extends Component<TDefaultProps, IModalChildren> {
-  private _portal: Element | null;
-
   constructor(modalProps: TModalProps) {
     const props: TDefaultProps = {
       attr: {
@@ -20,20 +19,8 @@ export class Modal extends Component<TDefaultProps, IModalChildren> {
     const children: IModalChildren = {
       content: new ModalContent(modalProps.content),
       overlay: new Overlay({
-        onClick: (event: MouseEvent | Event) => {
-          const target = event.target;
-          const modalCard = this.children.content;
-
-          if (!modalCard || !(modalCard instanceof ModalContent)) {
-            return;
-          }
-
-          if (
-            target instanceof Element &&
-            !target.contains(modalCard.getContent())
-          ) {
-            this.hide();
-          }
+        onClick: () => {
+          modalsController.closeModal();
         },
         className: s.overlay,
       }),
@@ -44,24 +31,6 @@ export class Modal extends Component<TDefaultProps, IModalChildren> {
       children,
     };
     super('div', componentProps);
-
-    this._portal = document.querySelector('#portal');
-  }
-
-  override show() {
-    const modalElement = this.getContent();
-
-    if (this._portal && modalElement) {
-      this._portal.appendChild(modalElement);
-    }
-  }
-
-  override hide() {
-    const modalElement = this.getContent();
-
-    if (this._portal && modalElement) {
-      this._portal.removeChild(modalElement);
-    }
   }
 
   render(): DocumentFragment {

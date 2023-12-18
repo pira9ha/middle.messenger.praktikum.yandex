@@ -34,6 +34,12 @@
   position: relative;
   cursor: pointer;
 
+  img {
+    object-fit: cover;
+    width: inherit;
+    height: inherit;
+  }
+
   @include tablet {
     --size: 150px;
   }

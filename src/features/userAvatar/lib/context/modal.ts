@@ -1,4 +1,5 @@
 import { TModalProps } from '@/features/modal';
+import userService from '@/service/UserService.ts';
 
 export const modalContext: TModalProps = {
   content: {
@@ -7,14 +8,18 @@ export const modalContext: TModalProps = {
       uploadInput: {
         labelText: 'Выбрать файл на компьютере',
         name: 'avatar',
-        accept: '.jpg, .jpeg, .png, .webp',
+        accept: 'image/jpg, image/jpeg, image/png, image/gif',
       },
       fields: [],
       buttons: [
         {
           title: 'Поменять',
+          type: 'submit',
         },
       ],
+      submit: (avatarFile) => {
+        userService.changeAvatar(avatarFile);
+      },
     },
   },
 };

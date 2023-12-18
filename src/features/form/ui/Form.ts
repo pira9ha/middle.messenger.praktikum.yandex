@@ -8,6 +8,7 @@ import { InputField, TInputFieldProps } from '@/shared/ui/inputField';
 import { classNames } from '@/shared/lib/utils/classNames.ts';
 import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
 import { UploadInput } from '@/shared/ui/uploadInput';
+import { ErrorComponent } from './formError/FormError.ts';
 
 export class Form extends Component<TDefaultProps, TFormChildren> {
   constructor(formProps: TFormProps) {
@@ -20,16 +21,16 @@ export class Form extends Component<TDefaultProps, TFormChildren> {
           event.preventDefault();
           const validationResult = this.validate();
 
-          if (!validationResult) {
+          if (
+            !validationResult ||
+            !event.currentTarget ||
+            !(event instanceof SubmitEvent)
+          ) {
             return;
           }
 
-          if (event.currentTarget && event instanceof SubmitEvent) {
-            const formData = new FormData(
-              event.currentTarget as HTMLFormElement,
-            );
-            console.log(Object.fromEntries(formData));
-          }
+          const formData = new FormData(event.currentTarget as HTMLFormElement);
+          formProps?.submit?.(formData);
         },
         ...formProps?.events,
       },
@@ -41,6 +42,7 @@ export class Form extends Component<TDefaultProps, TFormChildren> {
       uploadInput: formProps?.uploadInput
         ? new UploadInput(formProps?.uploadInput)
         : undefined,
+      error: new ErrorComponent(),
     };
 
     const componentProps = { props, children };
@@ -57,14 +59,17 @@ export class Form extends Component<TDefaultProps, TFormChildren> {
     }
   }
 
-  override setProps(nextProps: Partial<TDefaultProps> | TDefaultProps) {
-    super.setProps(nextProps);
+  updateFields(fieldsProps: TInputFieldProps[]) {
+    if (Array.isArray(this.children?.fields)) {
+      this.children?.fields.forEach((field) => {
+        const fieldProp = fieldsProps.find(
+          (prop) => prop.label === field.props.label,
+        );
 
-    if (this.children.uploadInput && nextProps?.value === undefined) {
-      const { uploadInput } = this.children;
-      if (uploadInput instanceof UploadInput) {
-        uploadInput.setProps({ value: undefined });
-      }
+        if (fieldProp) {
+          field.setProps(fieldProp);
+        }
+      });
     }
   }
 

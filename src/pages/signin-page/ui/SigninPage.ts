@@ -5,26 +5,27 @@ import Component from '@/shared/lib/component/Component.ts';
 import s from './signinPage.module.scss';
 import { Form } from '@/features/form';
 import { Link } from '@/shared/ui/link';
-import {
-  TSigninPage,
-  TSigninPageChildren,
-  TSigninPageProps,
-} from '../lib/types/signinPage.ts';
+import { TSigninPage, TSigninPageChildren } from '../lib/types/signinPage.ts';
 import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
+import AuthModel from '@/service/AuthService.ts';
+import { UserModel } from '@/models/user.ts';
+import { fromFormData } from '@/shared/lib/utils/fromFormData.ts';
 
-export class SigninPageComponent extends Component<
-  TSigninPage,
-  TSigninPageChildren
-> {
-  constructor(signinPageProps: TSigninPageProps) {
+export class SigninPage extends Component<TSigninPage, TSigninPageChildren> {
+  constructor() {
     const props: TSigninPage & TDefaultProps = {
-      formName: signinPageProps.formName,
+      formName: context.formName,
       className: s.signinPage,
     };
 
     const children: TSigninPageChildren = {
-      form: new Form(signinPageProps.form),
-      link: new Link(signinPageProps.link),
+      form: new Form({
+        ...context.form,
+        submit: (userData) => {
+          AuthModel.signUp(fromFormData<UserModel>(userData));
+        },
+      }),
+      link: new Link(context.link),
     };
 
     const componentProps = {
@@ -39,5 +40,3 @@ export class SigninPageComponent extends Component<
     return this.compile(template);
   }
 }
-
-export const SigninPage = () => new SigninPageComponent(context);

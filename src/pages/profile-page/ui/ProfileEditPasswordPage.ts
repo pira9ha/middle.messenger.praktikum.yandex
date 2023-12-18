@@ -1,30 +1,61 @@
 import Handlebars from 'handlebars';
+import Component from '@/shared/lib/component/Component.ts';
 import s from './profilePage.module.scss';
 import profile from './profilePage.template';
-import Component from '@/shared/lib/component/Component.ts';
-import { TDefaultProps } from '@/shared/lib/component/componentTypes.ts';
-import { IProfilePageChildren } from '../lib/types/profile.ts';
-import { Form } from '@/features/form';
-import { UserAvatar } from '@/features/userAvatar';
-import { Link } from '@/shared/ui/link';
-import { profileEditPasswordPageContext } from '../lib/context/context.ts';
-import { IProfileEditPasswordPageProps } from '../lib/types/profile.ts';
+import { arrowLeftIcon } from '@/shared/svg';
+import { FORM_PASSWORD_FIELDS } from '../lib/context/formMock.ts';
+import authService from '@/service/AuthService.ts';
+import { UserAvatarComponent } from '@/features/userAvatar';
 
-export class ProfileEditPasswordPageComponent extends Component<
-  IProfileEditPasswordPageProps & TDefaultProps,
+import { profileAvatarContext } from '../lib/context/profileContext.ts';
+import { updatePassword } from '../lib/api/updatePassword.ts';
+
+import {
+  IProfileEditPasswordPageProps,
+  IProfilePageChildren,
+} from '../lib/types/profile.ts';
+import { Form } from '@/features/form';
+import { Link } from '@/shared/ui/link';
+import { Routes } from '@/shared/constants/routes.ts';
+
+export class ProfileEditPasswordPage extends Component<
+  IProfileEditPasswordPageProps,
   IProfilePageChildren
 > {
-  constructor(profileProps: IProfileEditPasswordPageProps) {
-    const props = {
-      ...profileProps,
+  constructor() {
+    authService.user();
+    const userAvatar = profileAvatarContext();
+
+    const props: IProfileEditPasswordPageProps = {
+      formPasswordContext: true,
       className: s.profilePage,
     };
 
     const children: IProfilePageChildren = {
-      userAvatar: new UserAvatar(profileProps.userAvatar),
-      link: new Link(profileProps.link),
-      reset: new Link(profileProps.reset),
-      formPassword: new Form(profileProps.formPasswordContext),
+      userAvatar: new UserAvatarComponent(userAvatar),
+      link: new Link({
+        type: 'icon',
+        classNames: s.profileLink,
+        icon: arrowLeftIcon,
+        isBackButton: true,
+      }),
+      reset: new Link({
+        title: 'Отменить',
+        classNames: s.resetLink,
+        path: Routes.PROFILE,
+      }),
+      formPassword: new Form({
+        fields: FORM_PASSWORD_FIELDS,
+        buttons: [
+          {
+            title: 'Сохранить',
+            customClass: s.formButton,
+            type: 'submit',
+          },
+        ],
+        submit: updatePassword,
+        classNames: s.editForm,
+      }),
     };
 
     const componentProps = {
@@ -40,6 +71,3 @@ export class ProfileEditPasswordPageComponent extends Component<
     return this.compile(template);
   }
 }
-
-export const ProfileEditPasswordPage = () =>
-  new ProfileEditPasswordPageComponent(profileEditPasswordPageContext);

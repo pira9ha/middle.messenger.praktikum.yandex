@@ -3,6 +3,7 @@ import { Button, IButtonProps } from '@/shared/ui/button';
 import { Form } from '@/features/form';
 import { Overlay } from '@/shared/ui/overlay';
 import { ModalContent } from '../../ui/components/modalContent/ModalContent.ts';
+import { TComponentConstructor } from '@/shared/lib/router/routeTypes.ts';
 
 export type TModalProps = {
   content: TModalContentProps;
@@ -13,6 +14,8 @@ export type TModalContentProps = {
   title: string;
   formContext?: TFormProps;
   buttons?: IButtonProps[];
+  customForm?: TComponentConstructor;
+  isCustom?: boolean;
 };
 
 export type IModalContentChildren = {

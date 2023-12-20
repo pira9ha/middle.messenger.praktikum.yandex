@@ -1,6 +1,6 @@
-import Route from '@/shared/lib/route/Route.ts';
-import { TComponentConstructor } from '@/shared/lib/router/routeTypes.ts';
-import { Routes } from '@/shared/constants/routes.ts';
+import Route from '../../lib/route/Route.ts';
+import { TComponentConstructor } from '../../lib/router/routeTypes.ts';
+import { Routes } from '../../constants/routes.ts';
 
 class Router {
   private static __instance: Router;

@@ -10,11 +10,6 @@
     "preview": "vite preview",
     "test": "ts-mocha"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run test && lint-staged"
-    }
-  },
   "lint-staged": {
     "*": "prettier . --write",
     "*.ts": "eslint . --fix --ignore-pattern \"*.d.ts\"",

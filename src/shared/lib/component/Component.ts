@@ -1,14 +1,14 @@
-import EventBus from '@/shared/lib/eventBus/EventBus.ts';
+import EventBus from '../eventBus/EventBus.ts';
 import {
   IComponentProps,
   Tag,
   TDefaultChildren,
   TDefaultProps,
   TMeta,
-} from '@/shared/lib/component/componentTypes.ts';
+} from './componentTypes.ts';
 import { v4 as makeUUID } from 'uuid';
-import { isEqual } from '@/shared/lib/utils/isEqual.ts';
-import { render } from '../utils/renderDOM';
+import { isEqual } from '../utils/isEqual.ts';
+import { render } from '../utils/renderDOM.ts';
 
 abstract class Component<
   Props extends TDefaultProps = TDefaultProps,

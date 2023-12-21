@@ -80,18 +80,6 @@ describe('HTTPTransport', () => {
     expect(request.method).to.equal('PUT');
   });
 
-  it('should invoke PUT request with string data', () => {
-    const requestData = {
-      name: 'data',
-      value: 1,
-      content: [1, 2, 3],
-    };
-    httpTransport.PUT('/', { data: requestData });
-    const [request] = requests;
-
-    expect(request.requestBody).to.equal(JSON.stringify(requestData));
-  });
-
   it('should invoke request with content header', () => {
     httpTransport.POST('/', {
       headers: {

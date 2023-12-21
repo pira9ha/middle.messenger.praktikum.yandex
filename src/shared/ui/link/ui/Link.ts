@@ -15,11 +15,6 @@ export class Link extends Component<TLinkProps & TDefaultProps> {
         s[linkProps?.type ?? 'text'],
         linkProps.classNames,
       ]),
-      attr: {
-        // href: linkProps?.path,
-        // target: linkProps?.target || '_self',
-        // rel: 'noopener noreferrer',
-      },
       events: {
         click: () => {
           if (linkProps?.path) {

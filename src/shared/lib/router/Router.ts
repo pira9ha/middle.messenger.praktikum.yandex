@@ -1,8 +1,8 @@
-import Route from '@/shared/lib/route/Route.ts';
-import { TComponentConstructor } from '@/shared/lib/router/routeTypes.ts';
-import { Routes } from '@/shared/constants/routes.ts';
+import Route from '../../lib/route/Route.ts';
+import { TComponentConstructor } from '../../lib/router/routeTypes.ts';
+import { Routes } from '../../constants/routes.ts';
 
-class Router {
+export class Router {
   private static __instance: Router;
   private routes: Route[] = [];
   private history = window.history;
@@ -30,11 +30,11 @@ class Router {
   }
 
   start() {
-    window.onpopstate = ((event: PopStateEvent) => {
+    window.onpopstate = (event: PopStateEvent) => {
       this._onRoute((event.target as Window)?.location?.pathname);
-    }).bind(this);
+    };
 
-    this._onRoute(window.location.pathname);
+    this._onRoute(window.location?.pathname);
   }
 
   _onRoute(pathname: string) {

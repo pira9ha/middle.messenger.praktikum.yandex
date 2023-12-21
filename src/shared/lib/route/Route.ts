@@ -1,5 +1,5 @@
 import { TComponentConstructor, TRouteProps } from './routeTypes.ts';
-import Component from '@/shared/lib/component/Component.ts';
+import Component from '../../lib/component/Component.ts';
 
 export default class Route {
   private _pathname: string | undefined;

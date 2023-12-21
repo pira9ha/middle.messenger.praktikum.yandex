@@ -1,6 +1,6 @@
 import { THeaders, TRequest, METHODS, TFullRequest } from './types.ts';
-import { queryStringify } from '@/shared/lib/utils/queryStringify.ts';
-import { API_DEFAULT_PATH } from '@/shared/constants/api.ts';
+import { API_DEFAULT_PATH } from '../../constants/api.ts';
+import { queryStringify } from '../utils/queryStringify.ts';
 
 function setHeaders(xhr: XMLHttpRequest, headers: THeaders) {
   for (const [key, value] of Object.entries(headers)) {

@@ -1,5 +1,6 @@
 import router from '@/shared/lib/router/Router.ts';
-import { Pages, ProtectedPages, Routes } from '@/shared/constants/routes.ts';
+import { Pages, ProtectedPages } from '@/shared/constants/routePages.ts';
+import { Routes } from '@/shared/constants/routes.ts';
 import authService from '@/service/AuthService.ts';
 import store from '@/shared/lib/store/Store.ts';
 
